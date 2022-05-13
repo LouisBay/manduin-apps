@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">Mandu.in</string>
+    <string name="app_name">manduin</string>
+    <string name="first_slide_title">Detect\nthe\nLandmark</string>
+    <string name="first_slide_desc">Scan and get attractive information\nfrom each landmark.</string>
+    <string name="second_slide_title">Explore\nNew\nPlaces</string>
+    <string name="second_slide_desc">Explore new places around you\neasily and quickly.</string>
+    <string name="third_slide_title">Gain\nNew\nInsight</string>
+    <string name="third_slide_desc">Gain new insights from the places\nyou have visited.</string>
+    <string name="login_now">Login Now</string>
+    <string name="desc_login">Please login to continue using our app</string>
 </resources>
