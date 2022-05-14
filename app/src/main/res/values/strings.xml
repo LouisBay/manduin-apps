@@ -18,4 +18,12 @@
     <string name="dont_have_account">Don\'t have account?</string>
     <string name="register">Register</string>
 
+    <!--String On Register Layout-->
+    <string name="register_now">Register Now</string>
+    <string name="desc_register">Please fill the fields and create account</string>
+    <string name="fullname">Fullname</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_account">Already have account?</string>
+    <string name="login">Login</string>
+
 </resources>
