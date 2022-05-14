@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">manduin</string>
 
-    <!--String On OnBoaring-->
+    <!--String On OnBoarding-->
     <string name="first_slide_title">Detect\nthe\nLandmark</string>
     <string name="first_slide_desc">Scan and get attractive information\nfrom each landmark.</string>
     <string name="second_slide_title">Explore\nNew\nPlaces</string>
@@ -25,5 +25,15 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="already_have_account">Already have account?</string>
     <string name="login">Login</string>
+
+    <!--String On Forgot Password Layout-->
+    <string name="reset_password">Reset Password</string>
+    <string name="desc_reset_password">Enter the email associated with your account and we’ll send an email with instructions to reset your password.</string>
+    <string name="send_instructions">Send instructions</string>
+
+    <!--String On Reset Password Success Layout-->
+    <string name="check_your_email">Check your Email</string>
+    <string name="desc_check_your_email">We have sent a password recover instructions to your email.</string>
+    <string name="finish">Finish</string>
 
 </resources>

@@ -120,7 +120,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:cornerRadius="5dp"
-            android:text="Login"
+            android:text="@string/login"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semi_bold"
             android:textSize="20sp"

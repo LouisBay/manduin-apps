@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Manduin">
         <activity
+            android:name=".ResetPasswordSuccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
