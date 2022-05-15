@@ -7,33 +7,35 @@
     <string name="dummy_title">Title\nTitle\nTitle</string>
     <string name="dummy_description">Description</string>
     <string name="cd_onboard_image">Onboard Image</string>
+    <string name="cd_background_splash">Background Splash</string>
+    <string name="cd_application_logo">Application Logo</string>
+    <string name="text_or">or</string>
 
-    <!-- String On Register Layout -->
+    <!-- String On Login Layout -->
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="dont_have_account">Don\'t have account?</string>
-    <string name="register">Register</string>
+    <string name="cd_button_google_login">Button Google Login</string>
+    <string name="login">Login</string>
 
     <!--String On Register Layout-->
     <string name="register_now">Register Now</string>
     <string name="desc_register">Please fill the fields and create account</string>
     <string name="fullname">Fullname</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
     <string name="already_have_account">Already have account?</string>
-    <string name="login">Login</string>
 
     <!--String On Forgot Password Layout-->
     <string name="reset_password">Reset Password</string>
     <string name="desc_reset_password">Enter the email associated with your account and we’ll send an email with instructions to reset your password.</string>
-    <string name="send_instructions">Send instructions</string>
+    <string name="send_instructions">Send Email</string>
 
     <!--String On Reset Password Success Layout-->
     <string name="check_your_email">Check your Email</string>
     <string name="desc_check_your_email">We have sent a password recover instructions to your email.</string>
     <string name="finish">Finish</string>
-    <string name="cd_background_splash">Background Splash</string>
-    <string name="cd_application_logo">Application Logo</string>
 
     <!-- String On OnBoarding Layout -->
     <string-array name="title">
