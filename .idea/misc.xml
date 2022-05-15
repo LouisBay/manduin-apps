@@ -3,12 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/drawable/btn_google.xml" value="0.108" />
-        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/activity_forgot_password.xml" value="0.264" />
-        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/activity_login.xml" value="0.2" />
-        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/activity_register.xml" value="0.264" />
-        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/activity_reset_password_success.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Louis Bayu/Documents/Capstone/manduin-apps/app/src/main/res/drawable/bg_btn_next_onboard.xml" value="0.1145" />
+        <entry key="..\:/Users/Louis Bayu/Documents/Capstone/manduin-apps/app/src/main/res/drawable/ic_arrow_forward.xml" value="0.1145" />
+        <entry key="..\:/Users/Louis Bayu/Documents/Capstone/manduin-apps/app/src/main/res/drawable/onboarding_indicator_active.xml" value="0.1" />
+        <entry key="..\:/Users/Louis Bayu/Documents/Capstone/manduin-apps/app/src/main/res/drawable/onboarding_indicator_inactive.xml" value="0.1" />
         <entry key="..\:/Users/Louis Bayu/Documents/Capstone/manduin-apps/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Louis Bayu/Documents/Capstone/manduin-apps/app/src/main/res/layout/activity_onboarding.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/Louis Bayu/Documents/Capstone/manduin-apps/app/src/main/res/layout/activity_reset_password_success.xml" value="0.15307971014492755" />
+        <entry key="..\:/Users/Louis Bayu/Documents/Capstone/manduin-apps/app/src/main/res/layout/activity_splashscreen.xml" value="0.16842105263157894" />
+        <entry key="..\:/Users/Louis Bayu/Documents/Capstone/manduin-apps/app/src/main/res/layout/onboarding_slide.xml" value="0.1" />
       </map>
     </option>
   </component>

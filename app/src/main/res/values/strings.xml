@@ -1,17 +1,14 @@
 <resources>
-    <string name="app_name">manduin</string>
-
-    <!--String On OnBoarding-->
-    <string name="first_slide_title">Detect\nthe\nLandmark</string>
-    <string name="first_slide_desc">Scan and get attractive information\nfrom each landmark.</string>
-    <string name="second_slide_title">Explore\nNew\nPlaces</string>
-    <string name="second_slide_desc">Explore new places around you\neasily and quickly.</string>
-    <string name="third_slide_title">Gain\nNew\nInsight</string>
-    <string name="third_slide_desc">Gain new insights from the places\nyou have visited.</string>
-
-    <!--String On Login Layout-->
+    <string name="app_name">Mandu.in</string>
+    <string name="cd_button_next_onboard">Button Next OnBoard</string>
     <string name="login_now">Login Now</string>
     <string name="desc_login">Please login to continue using our app</string>
+    <string name="text_skip">Skip</string>
+    <string name="dummy_title">Title\nTitle\nTitle</string>
+    <string name="dummy_description">Description</string>
+    <string name="cd_onboard_image">Onboard Image</string>
+
+    <!-- String On Register Layout -->
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
@@ -35,5 +32,26 @@
     <string name="check_your_email">Check your Email</string>
     <string name="desc_check_your_email">We have sent a password recover instructions to your email.</string>
     <string name="finish">Finish</string>
+    <string name="cd_background_splash">Background Splash</string>
+    <string name="cd_application_logo">Application Logo</string>
+
+    <!-- String On OnBoarding Layout -->
+    <string-array name="title">
+        <item>Detect\nthe\nLandmark</item>
+        <item>Explore\nNew\nPlaces</item>
+        <item>Gain\nNew\nInsight</item>
+    </string-array>
+
+    <string-array name="description">
+        <item>Scan and get attractive information\nfrom each landmark.</item>
+        <item>Explore new places around you\neasily and quickly.</item>
+        <item>Gain new insights from the places\nyou have visited.</item>
+    </string-array>
+
+    <string-array name="image">
+        <item>@drawable/onboard_slide1</item>
+        <item>@drawable/onboard_slide2</item>
+        <item>@drawable/onboard_slide3</item>
+    </string-array>
 
 </resources>
