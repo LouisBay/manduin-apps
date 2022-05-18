@@ -138,7 +138,7 @@ class OnboardingActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun toLoginPage() {
-        Intent(this@OnboardingActivity, LoginActivity::class.java).also {
+        Intent(this@OnboardingActivity, MainActivity::class.java).also {
             startActivity(it)
             finish()
         }

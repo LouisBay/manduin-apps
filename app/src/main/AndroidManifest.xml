@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Manduin">
         <activity
+            android:name=".CameraActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.splash.SplashscreenActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
@@ -32,10 +35,10 @@
             android:exported="false" />
         <activity
             android:name=".ui.onboard.OnboardingActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>
