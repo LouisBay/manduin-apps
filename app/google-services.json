@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "278051793691",
+    "project_id": "manduin-apps",
+    "storage_bucket": "manduin-apps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278051793691:android:627658c29bd7deb5c701be",
+        "android_client_info": {
+          "package_name": "com.bangkit.manduin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278051793691-4595lu9f6sbjtj35h3ickpj22u06d7h9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bangkit.manduin",
+            "certificate_hash": "848395a9c970a43a5518bdb93bcd7b30e7937f8c"
+          }
+        },
+        {
+          "client_id": "278051793691-h6skfoh36kvnl354nd6353at0nk871bv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk6njw5aKLqNJ8COKm5AYv-8SxRMTNQHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278051793691-h6skfoh36kvnl354nd6353at0nk871bv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,6 @@
-package com.bangkit.manduin
+package com.bangkit.manduin.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,9 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.bangkit.manduin.R
+import com.bangkit.manduin.model.SliderItemDestinationModel
 import com.bumptech.glide.Glide
 
-class SliderAdapter(private val listSliderItemDestination: ArrayList<SliderItemDestination>, private val viewPager: ViewPager2) :
+class SliderAdapter(private val listSliderItemDestination: ArrayList<SliderItemDestinationModel>, private val viewPager: ViewPager2) :
     RecyclerView.Adapter<SliderAdapter.SliderViewHolder>() {
 
     class SliderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -40,6 +43,7 @@ class SliderAdapter(private val listSliderItemDestination: ArrayList<SliderItemD
         return listSliderItemDestination.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private val runnable = Runnable {
         listSliderItemDestination.addAll(listSliderItemDestination)
         notifyDataSetChanged()

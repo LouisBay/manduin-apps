@@ -3,10 +3,10 @@ package com.bangkit.manduin.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.manduin.model.OnBoardingItem
+import com.bangkit.manduin.model.OnBoardingItemModel
 import com.bangkit.manduin.databinding.OnboardingSlideBinding
 
-class OnBoardingAdapter(private val onBoardingListItem: ArrayList<OnBoardingItem>) :
+class OnBoardingAdapter(private val onBoardingListItem: ArrayList<OnBoardingItemModel>) :
 RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnBoardingViewHolder {
@@ -21,7 +21,7 @@ RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
     override fun getItemCount() = onBoardingListItem.size
 
     class OnBoardingViewHolder(private val binding: OnboardingSlideBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun setOnBoardingData(onBoardingItem: OnBoardingItem) {
+        fun setOnBoardingData(onBoardingItem: OnBoardingItemModel) {
             binding.apply {
                 tvTitleOnboard.text = onBoardingItem.title
                 tvDescOnboard.text = onBoardingItem.description

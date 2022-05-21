@@ -10,11 +10,10 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-import com.bangkit.manduin.model.OnBoardingItem
+import com.bangkit.manduin.model.OnBoardingItemModel
 import com.bangkit.manduin.R
 import com.bangkit.manduin.adapter.OnBoardingAdapter
 import com.bangkit.manduin.databinding.ActivityOnboardingBinding
-import com.bangkit.manduin.ui.auth.LoginActivity
 import com.bangkit.manduin.ui.main.MainActivity
 
 class OnboardingActivity : AppCompatActivity(), View.OnClickListener {
@@ -30,16 +29,16 @@ class OnboardingActivity : AppCompatActivity(), View.OnClickListener {
         setupComponent()
     }
 
-    private val listOnBoard: ArrayList<OnBoardingItem>
+    private val listOnBoard: ArrayList<OnBoardingItemModel>
         get() {
-            val list = ArrayList<OnBoardingItem>()
+            val list = ArrayList<OnBoardingItemModel>()
             resources.apply {
                 val title = getStringArray(R.array.title)
                 val desc = getStringArray(R.array.description)
                 val image = obtainTypedArray(R.array.image)
 
                 for (i in title.indices) {
-                    OnBoardingItem(
+                    OnBoardingItemModel(
                         image.getResourceId(i, -1),
                         title[i],
                         desc[i],

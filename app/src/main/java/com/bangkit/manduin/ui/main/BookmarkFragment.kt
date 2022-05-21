@@ -1,4 +1,4 @@
-package com.bangkit.manduin.ui
+package com.bangkit.manduin.ui.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,18 +8,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.bangkit.manduin.R
 
-class ExploreFragment : Fragment() {
+class BookmarkFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_explore, container, false)
+        return inflater.inflate(R.layout.fragment_bookmark, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val titleActionBar: TextView = view.findViewById(R.id.tv_title)
-        titleActionBar.text = resources.getString(R.string.explore)
+        titleActionBar.text = resources.getString(R.string.bookmark)
     }
+
 }

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Mandu.in</string>
+    <string name="web_client_id" translatable="false">278051793691-h6skfoh36kvnl354nd6353at0nk871bv.apps.googleusercontent.com</string>
     <string name="cd_button_next_onboard">Button Next OnBoard</string>
     <string name="login_now">Login Now</string>
     <string name="desc_login">Please login to continue using our app</string>
@@ -15,6 +16,9 @@
     <string name="bookmark">Favorite Places</string>
     <string name="profile">Profile</string>
     <string name="logout">Log Out</string>
+    <string name="please_wait">Please Wait…</string>
+    <string name="confirm_logout">Confirm Logout</string>
+    <string name="logout_dialog_message">Are you sure want to Logout?</string>
 
     <!-- String On Login Layout -->
     <string name="email">Email</string>
@@ -23,6 +27,7 @@
     <string name="dont_have_account">Don\'t have account?</string>
     <string name="cd_button_google_login">Button Google Login</string>
     <string name="login">Login</string>
+    <string name="login_success">Login Success</string>
 
     <!--String On Register Layout-->
     <string name="register_now">Register Now</string>

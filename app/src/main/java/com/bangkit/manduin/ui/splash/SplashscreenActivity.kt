@@ -6,9 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.Window
-import com.bangkit.manduin.ui.onboard.OnboardingActivity
 import com.bangkit.manduin.R
+import com.bangkit.manduin.ui.auth.AuthActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashscreenActivity : AppCompatActivity() {
@@ -22,7 +21,7 @@ class SplashscreenActivity : AppCompatActivity() {
 
     private fun setupSplash() {
         Handler(Looper.getMainLooper()).postDelayed({
-            Intent(this@SplashscreenActivity, OnboardingActivity::class.java).also {
+            Intent(this@SplashscreenActivity, AuthActivity::class.java).also {
                 startActivity(it)
                 finish()
             }

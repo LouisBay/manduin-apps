@@ -1,4 +1,4 @@
-package com.bangkit.manduin.ui
+package com.bangkit.manduin.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

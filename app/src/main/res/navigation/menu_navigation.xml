@@ -7,21 +7,21 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.bangkit.manduin.ui.HomeFragment"
+        android:name="com.bangkit.manduin.ui.main.HomeFragment"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_explore"
-        android:name="com.bangkit.manduin.ui.ExploreFragment"
+        android:name="com.bangkit.manduin.ui.main.ExploreFragment"
         tools:layout="@layout/fragment_explore" />
 
     <fragment
         android:id="@+id/navigation_bookmark"
-        android:name="com.bangkit.manduin.ui.BookmarkFragment"
+        android:name="com.bangkit.manduin.ui.main.BookmarkFragment"
         tools:layout="@layout/fragment_bookmark" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.bangkit.manduin.ui.ProfileFragment"
+        android:name="com.bangkit.manduin.ui.main.ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
 </navigation>

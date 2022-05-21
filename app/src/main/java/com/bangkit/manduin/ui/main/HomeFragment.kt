@@ -1,4 +1,4 @@
-package com.bangkit.manduin.ui
+package com.bangkit.manduin.ui.main
 
 import android.os.Bundle
 import android.os.Handler
@@ -13,7 +13,10 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.manduin.*
+import com.bangkit.manduin.adapter.ListNewsAdapter
+import com.bangkit.manduin.adapter.SliderAdapter
 import com.bangkit.manduin.databinding.FragmentHomeBinding
+import com.bangkit.manduin.model.SliderItemDestinationModel
 import java.lang.Math.abs
 
 class HomeFragment : Fragment() {
@@ -23,7 +26,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var handler : Handler
-    private lateinit var listSliderItemDestination: ArrayList<SliderItemDestination>
+    private lateinit var listSliderItemDestination: ArrayList<SliderItemDestinationModel>
     private lateinit var adapter: SliderAdapter
     private lateinit var newsAdapter: ListNewsAdapter
 
@@ -86,24 +89,36 @@ class HomeFragment : Fragment() {
         handler = Handler(Looper.myLooper()!!)
         listSliderItemDestination = ArrayList()
 
-        listSliderItemDestination.add(SliderItemDestination(R.drawable.slide1,
+        listSliderItemDestination.add(
+            SliderItemDestinationModel(R.drawable.slide1,
             resources.getString(R.string.lawang_sewu),
-            resources.getString(R.string.loc_lawang_sewu)))
-        listSliderItemDestination.add(SliderItemDestination(R.drawable.slide2,
+            resources.getString(R.string.loc_lawang_sewu))
+        )
+        listSliderItemDestination.add(
+            SliderItemDestinationModel(R.drawable.slide2,
             resources.getString(R.string.tugu_jogja),
-            resources.getString(R.string.loc_tugu_jogja)))
-        listSliderItemDestination.add(SliderItemDestination(R.drawable.slide3,
+            resources.getString(R.string.loc_tugu_jogja))
+        )
+        listSliderItemDestination.add(
+            SliderItemDestinationModel(R.drawable.slide3,
             resources.getString(R.string.masjid_agung),
-            resources.getString(R.string.loc_masjid_agung)))
-        listSliderItemDestination.add(SliderItemDestination(R.drawable.slide4,
+            resources.getString(R.string.loc_masjid_agung))
+        )
+        listSliderItemDestination.add(
+            SliderItemDestinationModel(R.drawable.slide4,
             resources.getString(R.string.jogja_kembali),
-            resources.getString(R.string.loc_jogja_kembali)))
-        listSliderItemDestination.add(SliderItemDestination(R.drawable.slide5,
+            resources.getString(R.string.loc_jogja_kembali))
+        )
+        listSliderItemDestination.add(
+            SliderItemDestinationModel(R.drawable.slide5,
             resources.getString(R.string.borobudur),
-            resources.getString(R.string.loc_borobudur)))
-        listSliderItemDestination.add(SliderItemDestination(R.drawable.slide6,
+            resources.getString(R.string.loc_borobudur))
+        )
+        listSliderItemDestination.add(
+            SliderItemDestinationModel(R.drawable.slide6,
             resources.getString(R.string.prambanan),
-            resources.getString(R.string.loc_prambanan)))
+            resources.getString(R.string.loc_prambanan))
+        )
 
         adapter = SliderAdapter(listSliderItemDestination, viewPager)
 

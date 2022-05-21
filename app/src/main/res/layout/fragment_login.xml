@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingHorizontal="24dp"
-    tools:context=".ui.auth.RegisterActivity">
+    tools:context=".ui.auth.fragment.LoginFragment">
 
     <ImageView
         android:id="@+id/iv_logo"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
+        android:layout_marginTop="48dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="@string/cd_application_logo" />
+        android:contentDescription="@string/app_name" />
 
     <TextView
-        android:id="@+id/btn_to_register"
+        android:id="@+id/btn_to_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         style="@style/headerText"
-        android:text="@string/register_now"
+        android:text="@string/login_now"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/iv_logo"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,21 +38,11 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         style="@style/subHeaderText"
-        android:text="@string/desc_register"
+        android:text="@string/desc_login"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/btn_to_register"
+        app:layout_constraintTop_toBottomOf="@id/btn_to_login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout_fullname"
-        style="@style/customInput">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_fullname"
-            style="@style/editText"
-            android:hint="@string/fullname"
-            android:inputType="textPersonName"/>
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout_email"
@@ -75,38 +66,37 @@
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout_confirm_password"
-        style="@style/customInput"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/dark_blue">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_confirm_password"
-            style="@style/editText"
-            android:hint="@string/confirm_password"
-            android:inputType="textPassword"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
     <androidx.constraintlayout.helper.widget.Flow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="text_input_layout_fullname,text_input_layout_email,text_input_layout_password,text_input_layout_confirm_password"
-        android:layout_marginTop="8dp"
-        app:flow_verticalGap="8dp"
+        android:layout_marginTop="28dp"
         android:orientation="vertical"
+        app:flow_verticalGap="12dp"
+        app:constraint_referenced_ids="text_input_layout_email,text_input_layout_password"
+        app:layout_constraintTop_toBottomOf="@id/tv_desc_register"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_desc_register"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/btn_forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/forgot_password"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/dark_blue"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/text_input_layout_password"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_register"
+        android:id="@+id/btn_login"
         style="@style/button"
-        android:text="@string/register"
         android:layout_marginBottom="16dp"
+        android:text="@string/login"
+        app:layout_constraintBottom_toTopOf="@id/tv_or"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_or"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/tv_or"
@@ -148,16 +138,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/subHeaderText"
-            android:text="@string/already_have_account"/>
+            android:text="@string/dont_have_account"/>
         <TextView
-            android:id="@+id/btn_to_login"
+            android:id="@+id/btn_to_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="@string/login"
+            android:text="@string/register"
             android:textColor="@color/dark_blue"
             android:textSize="14sp"
-            android:fontFamily="@font/poppins_semi_bold" />
+            android:fontFamily="@font/poppins_semi_bold"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
