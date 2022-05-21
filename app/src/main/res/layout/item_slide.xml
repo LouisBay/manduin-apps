@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        card_view:cardCornerRadius="16dp"
+        card_view:cardElevation="1dp"
+        android:focusable="true"
+        android:clickable="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/iv_destination"
+                android:layout_width="240dp"
+                android:layout_height="320dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_preview"
+                card_view:riv_corner_radius="12dp"
+                card_view:layout_constraintTop_toTopOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@string/image" />
+
+            <TextView
+                android:id="@+id/place_slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                style="@style/sliderPlaceText"
+                android:maxLines="2"
+                android:text="Place"
+                card_view:layout_constraintTop_toBottomOf="@id/iv_destination"
+                card_view:layout_constraintStart_toStartOf="@id/iv_destination"
+                card_view:layout_constraintEnd_toEndOf="@id/iv_destination"/>
+
+            <TextView
+                android:id="@+id/location_slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                style="@style/sliderLocationText"
+                android:maxLines="2"
+                android:text="Location"
+                card_view:layout_constraintTop_toBottomOf="@id/place_slider"
+                card_view:layout_constraintStart_toStartOf="@id/iv_destination"
+                card_view:layout_constraintEnd_toEndOf="@id/iv_destination"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

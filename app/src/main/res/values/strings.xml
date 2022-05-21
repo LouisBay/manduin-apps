@@ -10,6 +10,11 @@
     <string name="cd_background_splash">Background Splash</string>
     <string name="cd_application_logo">Application Logo</string>
     <string name="text_or">or</string>
+    <string name="image">image</string>
+    <string name="explore">Explore</string>
+    <string name="bookmark">Favorite Places</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Log Out</string>
 
     <!-- String On Login Layout -->
     <string name="email">Email</string>
@@ -55,7 +60,22 @@
         <item>@drawable/onboard_slide2</item>
         <item>@drawable/onboard_slide3</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--    String On Home Layout-->
+    <string name="greetings1">Discover the</string>
+    <string name="greetings2">beauty of nusantara</string>
+    <string name="lawang_sewu">Lawang Sewu</string>
+    <string name="loc_lawang_sewu">Semarang, Central Java</string>
+    <string name="tugu_jogja">Jogja Monument</string>
+    <string name="loc_tugu_jogja">Special Region of Yogyakarta</string>
+    <string name="masjid_agung">Central Java Grand Mosque</string>
+    <string name="loc_masjid_agung">Semarang, Central Java</string>
+    <string name="jogja_kembali">Jogja Kembali Museum</string>
+    <string name="loc_jogja_kembali">Special Region of Yogyakarta</string>
+    <string name="borobudur">Borobudur Temple</string>
+    <string name="loc_borobudur">Magelang, Central Java</string>
+    <string name="prambanan">Prambanan Temple</string>
+    <string name="loc_prambanan">Special Region of Yogyakarta</string>
+    <string name="travel_news">Travel News</string>
+    <string name="see_all_news">See all travel news</string>
 </resources>

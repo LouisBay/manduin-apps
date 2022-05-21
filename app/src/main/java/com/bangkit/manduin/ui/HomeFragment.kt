@@ -1,60 +1,124 @@
 package com.bangkit.manduin.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bangkit.manduin.R
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
+import com.bangkit.manduin.*
+import com.bangkit.manduin.databinding.FragmentHomeBinding
+import java.lang.Math.abs
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var viewPager: ViewPager2
+    private lateinit var handler : Handler
+    private lateinit var listSliderItemDestination: ArrayList<SliderItemDestination>
+    private lateinit var adapter: SliderAdapter
+    private lateinit var newsAdapter: ListNewsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container , false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init(view)
+        setupTransformer()
+        loadNews()
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                handler.removeCallbacks(runnable)
+                handler.postDelayed(runnable , 2000)
             }
+        })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        handler.removeCallbacks(runnable)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        handler.postDelayed(runnable , 2000)
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
+
+    private val runnable = Runnable {
+        viewPager.currentItem = viewPager.currentItem + 1
+    }
+
+    private fun setupTransformer(){
+        val transformer = CompositePageTransformer()
+        transformer.addTransformer(MarginPageTransformer(40))
+        transformer.addTransformer { page, position ->
+            val r = 1 - abs(position)
+            page.scaleY = 0.85f + r * 0.14f
+        }
+
+        viewPager.setPageTransformer(transformer)
+    }
+
+    private fun init(view: View){
+        viewPager = view.findViewById(R.id.vp_destination)
+
+        handler = Handler(Looper.myLooper()!!)
+        listSliderItemDestination = ArrayList()
+
+        listSliderItemDestination.add(SliderItemDestination(R.drawable.slide1,
+            resources.getString(R.string.lawang_sewu),
+            resources.getString(R.string.loc_lawang_sewu)))
+        listSliderItemDestination.add(SliderItemDestination(R.drawable.slide2,
+            resources.getString(R.string.tugu_jogja),
+            resources.getString(R.string.loc_tugu_jogja)))
+        listSliderItemDestination.add(SliderItemDestination(R.drawable.slide3,
+            resources.getString(R.string.masjid_agung),
+            resources.getString(R.string.loc_masjid_agung)))
+        listSliderItemDestination.add(SliderItemDestination(R.drawable.slide4,
+            resources.getString(R.string.jogja_kembali),
+            resources.getString(R.string.loc_jogja_kembali)))
+        listSliderItemDestination.add(SliderItemDestination(R.drawable.slide5,
+            resources.getString(R.string.borobudur),
+            resources.getString(R.string.loc_borobudur)))
+        listSliderItemDestination.add(SliderItemDestination(R.drawable.slide6,
+            resources.getString(R.string.prambanan),
+            resources.getString(R.string.loc_prambanan)))
+
+        adapter = SliderAdapter(listSliderItemDestination, viewPager)
+
+        viewPager.adapter = adapter
+        viewPager.offscreenPageLimit = 3
+        viewPager.clipToPadding = false
+        viewPager.clipChildren = false
+        viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+    }
+
+    private fun loadNews() {
+        newsAdapter = ListNewsAdapter()
+        binding.rvNews.layoutManager = LinearLayoutManager(context)
+        binding.rvNews.adapter = newsAdapter
+        val listNews = DataDummy.generateDummyNews()
+        newsAdapter.setList(listNews)
     }
 }
