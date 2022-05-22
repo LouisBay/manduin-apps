@@ -14,19 +14,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:layout_height="wrap_content">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_news"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             tools:src="@drawable/image_preview"
             android:scaleType="centerCrop"
-            card_view:riv_corner_radius="4dp"
+            card_view:riv_corner_radius="8dp"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +37,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:text="Title"
             android:maxLines="2"
             android:layout_toEndOf="@id/iv_news"

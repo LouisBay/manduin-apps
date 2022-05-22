@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "278051793691-32fapbuifr6qb9g7rgr24qu2icbtclbv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bangkit.manduin",
+            "certificate_hash": "c5d757819021f8b2e95e093f6b60ba1198c013b0"
+          }
+        },
+        {
           "client_id": "278051793691-4595lu9f6sbjtj35h3ickpj22u06d7h9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
