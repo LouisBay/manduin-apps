@@ -3,6 +3,7 @@ package com.bangkit.manduin
 import com.bangkit.manduin.model.FavoriteModel
 import com.bangkit.manduin.model.NewsModel
 import com.bangkit.manduin.model.ProvinceModel
+import com.bangkit.manduin.model.ReviewModel
 
 object DataDummy {
     fun generateDummyNews() : ArrayList<NewsModel> {
@@ -112,5 +113,35 @@ object DataDummy {
             )
         )
         return favorite
+    }
+
+    fun generateDummyReview() : ArrayList<ReviewModel> {
+        val review = ArrayList<ReviewModel>()
+        review.add(
+            ReviewModel(
+                "User" ,
+                "Awesome" ,
+                "22/04/2022" ,
+                R.drawable.profile_ava
+            )
+        )
+        review.add(
+            ReviewModel(
+                "User" ,
+                "Awesome" ,
+                "22/04/2022" ,
+                R.drawable.profile_ava
+            )
+        )
+        review.add(
+            ReviewModel(
+                "User" ,
+                "Awesome" ,
+                "22/04/2022" ,
+                R.drawable.profile_ava
+            )
+        )
+
+        return review
     }
 }

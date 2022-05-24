@@ -1,12 +1,15 @@
 package com.bangkit.manduin.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.bangkit.manduin.R
 import com.bangkit.manduin.databinding.ActivityMainBinding
+import com.bangkit.manduin.ui.DetailLandmarkActivity
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -23,5 +26,9 @@ class MainActivity : AppCompatActivity() {
         val navControl = navHostFragment.navController
 
         binding.navView.setupWithNavController(navControl)
+
+        binding.fabScan.setOnClickListener {
+            startActivity(Intent(this@MainActivity, DetailLandmarkActivity::class.java))
+        }
     }
 }

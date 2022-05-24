@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Manduin">
-
+        <activity
+            android:name=".ui.DetailLandmarkActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:exported="false" />
         <activity
             android:name=".ui.main.CameraActivity"
             android:exported="false" />
