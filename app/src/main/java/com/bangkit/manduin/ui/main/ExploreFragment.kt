@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bangkit.manduin.DataDummy
+import com.bangkit.manduin.utils.DataDummy
 import com.bangkit.manduin.R
 import com.bangkit.manduin.adapter.ListProvinceAdapter
 import com.bangkit.manduin.databinding.FragmentExploreBinding

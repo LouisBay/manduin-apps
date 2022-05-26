@@ -19,6 +19,7 @@ import com.bangkit.manduin.adapter.SliderAdapter
 import com.bangkit.manduin.databinding.FragmentHomeBinding
 import com.bangkit.manduin.model.SliderItemDestinationModel
 import com.bangkit.manduin.ui.AllNewsActivity
+import com.bangkit.manduin.utils.DataDummy
 import java.lang.Math.abs
 
 class HomeFragment : Fragment() {

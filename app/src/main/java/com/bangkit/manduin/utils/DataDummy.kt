@@ -1,5 +1,6 @@
-package com.bangkit.manduin
+package com.bangkit.manduin.utils
 
+import com.bangkit.manduin.R
 import com.bangkit.manduin.model.FavoriteModel
 import com.bangkit.manduin.model.NewsModel
 import com.bangkit.manduin.model.ProvinceModel
