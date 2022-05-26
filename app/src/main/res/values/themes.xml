@@ -157,7 +157,9 @@
     <style name="buttonBack">
         <item name="android:layout_width">32dp</item>
         <item name="android:layout_height">32dp</item>
-        <item name="iconSize">28dp</item>
+        <item name="iconSize">24dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
         <item name="cornerRadius">4dp</item>
         <item name="iconGravity">textStart</item>
         <item name="android:stateListAnimator">@null</item>
@@ -212,6 +214,18 @@
         <item name="fontFamily">@font/poppins_regular</item>
         <item name="android:textSize">10sp</item>
         <item name="backgroundTint">@color/grey_card</item>
+    </style>
+
+    <style name="placeText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="locationText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="fontFamily">@font/poppins_regular</item>
     </style>
 
 </resources>

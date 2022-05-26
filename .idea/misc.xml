@@ -3,10 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/drawable/ic_capture.xml" value="0.108" />
+        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/activity_all_news.xml" value="0.21052631578947367" />
+        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/activity_camera.xml" value="0.21052631578947367" />
         <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/activity_detail_landmark.xml" value="0.2" />
         <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/activity_maps.xml" value="0.2185089974293059" />
+        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/activity_onboarding.xml" value="0.21052631578947367" />
         <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/activity_splashscreen.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/custom_action_bar_detail.xml" value="0.4207920792079208" />
+        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/custom_action_bar.xml" value="0.21052631578947367" />
+        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/custom_action_bar_back.xml" value="0.21052631578947367" />
+        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/custom_action_bar_detail.xml" value="0.2" />
+        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/custom_action_bar_logo.xml" value="0.21052631578947367" />
+        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/custom_marker_maps.xml" value="0.2" />
         <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/fragment_bookmark.xml" value="0.2" />
         <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/fragment_explore.xml" value="0.176" />
         <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/fragment_forgot.xml" value="0.21052631578947367" />
@@ -15,7 +24,7 @@
         <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/item_row_bookmark.xml" value="0.152" />
         <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/item_row_bookmarks.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/item_row_news.xml" value="0.2847571189279732" />
-        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/item_row_province.xml" value="0.4" />
+        <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/item_row_province.xml" value="0.2" />
         <entry key="..\:/Users/ASUS/Documents/GitHub/manduin-apps/app/src/main/res/layout/item_row_review.xml" value="0.176" />
         <entry key="..\:/Users/Louis Bayu/Documents/Capstone/manduin-apps/app/src/main/res/drawable/bg_btn_next_onboard.xml" value="0.1145" />
         <entry key="..\:/Users/Louis Bayu/Documents/Capstone/manduin-apps/app/src/main/res/drawable/ic_arrow_forward.xml" value="0.1145" />

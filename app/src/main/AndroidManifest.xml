@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
@@ -10,9 +13,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Manduin">
         <activity
-            android:name=".ui.DetailLandmarkActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:name=".ui.AllNewsActivity"
             android:exported="false" />
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAcGL64H6dBzyvWxF6m3AlB5hsd78mL9P8" />
+
+        <activity
+            android:name=".ui.MapsActivity"
+            android:exported="false"
+            android:theme="@style/SplashTheme"
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".ui.DetailLandmarkActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".ui.main.CameraActivity"
             android:exported="false" />

@@ -1,5 +1,6 @@
 package com.bangkit.manduin.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -17,6 +18,7 @@ import com.bangkit.manduin.adapter.ListNewsAdapter
 import com.bangkit.manduin.adapter.SliderAdapter
 import com.bangkit.manduin.databinding.FragmentHomeBinding
 import com.bangkit.manduin.model.SliderItemDestinationModel
+import com.bangkit.manduin.ui.AllNewsActivity
 import java.lang.Math.abs
 
 class HomeFragment : Fragment() {
@@ -43,6 +45,7 @@ class HomeFragment : Fragment() {
         init(view)
         setupTransformer()
         loadNews()
+        toAllNews()
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
@@ -135,5 +138,11 @@ class HomeFragment : Fragment() {
         binding.rvNews.adapter = newsAdapter
         val listNews = DataDummy.generateDummyNews()
         newsAdapter.setList(listNews)
+    }
+
+    private fun toAllNews() {
+        binding.tvAllNews.setOnClickListener {
+            startActivity(Intent(requireActivity(), AllNewsActivity::class.java))
+        }
     }
 }
