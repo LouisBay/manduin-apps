@@ -17,6 +17,7 @@ import com.bangkit.manduin.R
 import com.bangkit.manduin.databinding.FragmentLoginBinding
 import com.bangkit.manduin.model.UserSessionModel
 import com.bangkit.manduin.ui.main.MainActivity
+import com.bangkit.manduin.utils.Helper.addTextErrorListener
 import com.bangkit.manduin.utils.Helper.isEmailValid
 import com.bangkit.manduin.utils.StateAuth
 import com.bangkit.manduin.viewmodel.LoginViewModel
@@ -53,7 +54,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        iniComponent()
+        initComponent()
         googleSignInInit()
 
         auth = Firebase.auth
@@ -66,11 +67,14 @@ class LoginFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun iniComponent() {
+    private fun initComponent() {
         val builder = MaterialAlertDialogBuilder(requireContext())
             .setView(R.layout.loading_dialog)
             .setCancelable(false)
         loadingDialog = builder.create()
+
+        binding.edtPassword.addTextErrorListener(binding.textInputLayoutPassword)
+        binding.edtEmail.addTextErrorListener(binding.textInputLayoutEmail)
     }
 
     private fun googleSignInInit() {
@@ -140,18 +144,18 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
             if (email.isBlank()) {
                 status = false
-                edtEmail.error = resources.getString(R.string.empty_field)
+                textInputLayoutEmail.error = resources.getString(R.string.empty_field)
             } else if (!email.isEmailValid()) {
                 status = false
-                edtEmail.error = resources.getString(R.string.email_not_valid)
+                textInputLayoutEmail.error = resources.getString(R.string.email_not_valid)
             }
 
             if (password.isBlank()) {
                 status = false
-                edtPassword.error = resources.getString(R.string.empty_field)
+                textInputLayoutPassword.error = resources.getString(R.string.empty_field)
             } else if (password.length < 6) {
                 status = false
-                edtPassword.error = resources.getString(R.string.invalid_password)
+                textInputLayoutPassword.error = resources.getString(R.string.invalid_password)
             }
         }
 
@@ -174,7 +178,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 showLoading(false)
             }
             is StateAuth.Error -> {
-                Toast.makeText(requireContext(), resources.getString(R.string.login_failed, state.message), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), resources.getString(R.string.login_failed, state.message), Toast.LENGTH_LONG).show()
                 showLoading(false)
             }
             else -> {}

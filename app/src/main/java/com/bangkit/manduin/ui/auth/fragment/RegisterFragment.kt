@@ -17,6 +17,7 @@ import com.bangkit.manduin.R
 import com.bangkit.manduin.databinding.FragmentRegisterBinding
 import com.bangkit.manduin.model.UserSessionModel
 import com.bangkit.manduin.ui.main.MainActivity
+import com.bangkit.manduin.utils.Helper.addTextErrorListener
 import com.bangkit.manduin.utils.Helper.isEmailValid
 import com.bangkit.manduin.utils.StateAuth
 import com.bangkit.manduin.viewmodel.RegisterViewModel
@@ -38,8 +39,6 @@ class RegisterFragment : Fragment(), View.OnClickListener {
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
     private var loadingDialog: AlertDialog? = null
-
-    private val scope = CoroutineScope(Dispatchers.Main)
 
     private val registerViewModel: RegisterViewModel by viewModels()
 
@@ -71,6 +70,11 @@ class RegisterFragment : Fragment(), View.OnClickListener {
             .setView(R.layout.loading_dialog)
             .setCancelable(false)
         loadingDialog = builder.create()
+
+        binding.edtPassword.addTextErrorListener(binding.textInputLayoutPassword)
+        binding.edtConfirmPassword.addTextErrorListener(binding.textInputLayoutConfirmPassword)
+        binding.edtFullname.addTextErrorListener(binding.textInputLayoutFullname)
+        binding.edtEmail.addTextErrorListener(binding.textInputLayoutEmail)
     }
 
     private fun googleSignInInit() {
@@ -137,7 +141,7 @@ class RegisterFragment : Fragment(), View.OnClickListener {
                     resources.getString(R.string.login_failed, state.message)
                 } else { resources.getString(R.string.register_failed, state.message) }
 
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
                 showLoading(false)
             }
             else -> {}
@@ -205,31 +209,31 @@ class RegisterFragment : Fragment(), View.OnClickListener {
 
             if (name.isBlank()) {
                 status = false
-                edtFullname.error = resources.getString(R.string.empty_field)
+                textInputLayoutFullname.error = resources.getString(R.string.empty_field)
             }
 
             if (email.isBlank()) {
                 status = false
-                edtEmail.error = resources.getString(R.string.empty_field)
+                textInputLayoutEmail.error = resources.getString(R.string.empty_field)
             } else if (!email.isEmailValid()) {
                 status = false
-                edtEmail.error = resources.getString(R.string.email_not_valid)
+                textInputLayoutEmail.error = resources.getString(R.string.email_not_valid)
             }
 
             if (password.isBlank()) {
                 status = false
-                edtPassword.error = resources.getString(R.string.empty_field)
+                textInputLayoutPassword.error = resources.getString(R.string.empty_field)
             } else if (password.length < 6) {
                 status = false
-                edtPassword.error = resources.getString(R.string.invalid_password)
+                textInputLayoutPassword.error = resources.getString(R.string.invalid_password)
             }
 
             if (confirmPassword.isBlank()) {
                 status = false
-                edtConfirmPassword.error = resources.getString(R.string.empty_field)
+                textInputLayoutConfirmPassword.error = resources.getString(R.string.empty_field)
             } else if (confirmPassword != password) {
                 status = false
-                edtConfirmPassword.error = resources.getString(R.string.invalid_confirm_password)
+                textInputLayoutConfirmPassword.error = resources.getString(R.string.invalid_confirm_password)
             }
         }
 
@@ -240,11 +244,6 @@ class RegisterFragment : Fragment(), View.OnClickListener {
         _binding = null
         loadingDialog = null
         super.onDestroy()
-    }
-
-    override fun onPause() {
-        scope.cancel()
-        super.onPause()
     }
 
     companion object {

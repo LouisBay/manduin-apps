@@ -50,6 +50,8 @@
     <string name="reset_password">Reset Password</string>
     <string name="desc_reset_password">Enter the email associated with your account and we’ll send an email with instructions to reset your password.</string>
     <string name="send_instructions">Send Email</string>
+    <string name="success_send">Send Email Reset Password Successfully</string>
+    <string name="failed_send">Failed to Send Email Reset Password</string>
 
     <!--String On Reset Password Success Layout-->
     <string name="check_your_email">Check your Email</string>

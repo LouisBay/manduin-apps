@@ -71,12 +71,14 @@ class ProfileFragment : Fragment() {
     }
 
     private fun signOut() {
+        profileViewModel.setUserLoginStatusDB(auth.currentUser, false)
         auth.signOut()
         googleSignInClient.signOut().addOnCompleteListener {
             profileViewModel.deleteSession()
             startActivity(Intent(requireContext(), AuthActivity::class.java))
             requireActivity().finish()
         }
+
     }
 
     private fun setAppBar(view: View) {
@@ -89,7 +91,7 @@ class ProfileFragment : Fragment() {
             .setTitle(resources.getString(R.string.confirm_logout))
             .setMessage(resources.getString(R.string.logout_dialog_message))
             .setIcon(R.drawable.ic_baseline_logout_24)
-            .setPositiveButton("Yes") {_, _ ->
+            .setPositiveButton("Yes") { _, _ ->
                 signOut()
                 Toast.makeText(requireContext(), "Logout Success", Toast.LENGTH_SHORT).show()
             }
