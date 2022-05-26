@@ -17,6 +17,7 @@ import com.bangkit.manduin.R
 import com.bangkit.manduin.databinding.FragmentLoginBinding
 import com.bangkit.manduin.model.UserSessionModel
 import com.bangkit.manduin.ui.main.MainActivity
+import com.bangkit.manduin.utils.Helper.isEmailValid
 import com.bangkit.manduin.utils.StateAuth
 import com.bangkit.manduin.viewmodel.LoginViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -61,6 +62,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
             btnForgotPassword.setOnClickListener(this@LoginFragment)
             btnToRegister.setOnClickListener(this@LoginFragment)
             ivGoogle.setOnClickListener(this@LoginFragment)
+            btnLogin.setOnClickListener(this@LoginFragment)
         }
     }
 
@@ -104,9 +106,56 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
     private fun observeGoogleSignInResult(idToken: String) {
-        loginViewModel.loginWithGoogle(idToken).observe(viewLifecycleOwner) { state ->
-            processResult(state)
+        loginViewModel.apply {
+            loginWithGoogle(idToken)
+            stateAuth.observe(viewLifecycleOwner) { state ->
+                processResult(state)
+            }
         }
+    }
+
+    private fun emailPasswordSignIn() {
+        val email = binding.edtEmail.text.toString()
+        val password = binding.edtPassword.text.toString()
+
+        val isValidInput = validateInput()
+
+        if (isValidInput) {
+            loginViewModel.apply {
+                loginWithEmailAndPassword(email, password)
+                stateAuth.observe(viewLifecycleOwner) { result ->
+                    processResult(result)
+                }
+            }
+        }
+    }
+
+    private fun validateInput(): Boolean {
+        var status = true
+
+        binding.apply {
+            val email = edtEmail.text.toString()
+            val password = edtPassword.text.toString()
+
+
+            if (email.isBlank()) {
+                status = false
+                edtEmail.error = resources.getString(R.string.empty_field)
+            } else if (!email.isEmailValid()) {
+                status = false
+                edtEmail.error = resources.getString(R.string.email_not_valid)
+            }
+
+            if (password.isBlank()) {
+                status = false
+                edtPassword.error = resources.getString(R.string.empty_field)
+            } else if (password.length < 6) {
+                status = false
+                edtPassword.error = resources.getString(R.string.invalid_password)
+            }
+        }
+
+        return status
     }
 
     private fun processResult(state: StateAuth?) {
@@ -121,11 +170,11 @@ class LoginFragment : Fragment(), View.OnClickListener {
                     requireActivity().finish()
                 }
 
-                Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), resources.getString(R.string.login_success), Toast.LENGTH_SHORT).show()
                 showLoading(false)
             }
             is StateAuth.Error -> {
-                Toast.makeText(requireContext(), "Login Failed, please try again.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), resources.getString(R.string.login_failed, state.message), Toast.LENGTH_SHORT).show()
                 showLoading(false)
             }
             else -> {}
@@ -165,6 +214,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 view.findNavController().navigate(R.id.action_loginFragment_to_forgotFragment)
             }
             R.id.iv_google -> { googleSignIn() }
+            R.id.btn_login -> { emailPasswordSignIn() }
         }
     }
 

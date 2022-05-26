@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
+class RegisterViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val userPreferences: UserPreferences
 ) : ViewModel() {
@@ -25,9 +25,10 @@ class LoginViewModel @Inject constructor(
             }
         }
     }
-    fun loginWithEmailAndPassword(email:String, password: String) {
+
+    fun registerUser(fullname: String, email: String, password: String) {
         viewModelScope.launch {
-            authRepository.loginWithEmailAndPassword(email, password).collect {
+            authRepository.registerUser(fullname, email, password).collect {
                 _stateAuth.value = it
             }
         }

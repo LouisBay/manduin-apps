@@ -25,7 +25,7 @@ class UserPreferences @Inject constructor(private val dataStore: DataStore<Prefe
     suspend fun saveSession(session: UserSessionModel) {
         dataStore.edit { pref ->
             pref[USER_UID] = session.uid
-            pref[USER_NAME] = session.name
+            pref[USER_NAME] = session.fullname
             pref[USER_EMAIL] = session.email
             pref[LOGIN_STATE] = session.isLogin
         }

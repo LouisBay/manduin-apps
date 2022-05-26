@@ -54,7 +54,7 @@ class ProfileFragment : Fragment() {
     private fun observeDataAndSetupView() {
         profileViewModel.getSession().observe(viewLifecycleOwner) {
             binding.apply {
-                tvFullName.text = it.name
+                tvFullName.text = it.fullname
                 tvEmailProfile.text = it.email
             }
         }

@@ -65,9 +65,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout_password"
-        style="@style/customInput"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/dark_blue">
+        style="@style/customInput">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_password"
             style="@style/editText"
@@ -77,9 +75,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout_confirm_password"
-        style="@style/customInput"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/dark_blue">
+        style="@style/customInput">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_confirm_password"
             style="@style/editText"
@@ -88,10 +84,21 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/toggle_show_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_password"
+        android:textColor="@color/dark_blue"
+        android:textSize="14sp"
+        android:fontFamily="@font/poppins_semi_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_input_layout_confirm_password"/>
+
     <androidx.constraintlayout.helper.widget.Flow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="text_input_layout_fullname,text_input_layout_email,text_input_layout_password,text_input_layout_confirm_password"
+        app:constraint_referenced_ids="text_input_layout_fullname,text_input_layout_email,text_input_layout_password,text_input_layout_confirm_password, toggle_show_password"
         android:layout_marginTop="8dp"
         app:flow_verticalGap="8dp"
         android:orientation="vertical"

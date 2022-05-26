@@ -14,5 +14,5 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideAuthRepository(userPreferences: UserPreferences): AuthRepository = AuthRepository(userPreferences)
+    fun provideAuthRepository(): AuthRepository = AuthRepository()
 }
