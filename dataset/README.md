@@ -1,4 +1,4 @@
-## Mandu.in dataset can be accessed throught : 
+## Mandu.in dataset can be accessed through : 
 
 [Landmark Dataset](https://github.com/mrsambaga/Bangkit-Capstone-Dataset)
 
