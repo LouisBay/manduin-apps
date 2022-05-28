@@ -8,7 +8,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_back"
         style="@style/buttonBack"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="16dp"
         app:iconGravity="top"
         app:layout_constraintTop_toTopOf="parent"

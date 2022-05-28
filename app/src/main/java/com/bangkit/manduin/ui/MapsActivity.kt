@@ -1,6 +1,5 @@
 package com.bangkit.manduin.ui
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.manduin.R
@@ -10,6 +9,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
@@ -48,7 +48,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
         val udinus = LatLng(-6.983773510311124, 110.41042618605893)
-        mMap.addMarker(MarkerOptions().position(udinus).title("Lawang Sewu").snippet("Alamat"))
+        mMap.addMarker(
+            MarkerOptions()
+                .position(udinus)
+                .title("Lawang Sewu")
+                .snippet("Alamat")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.logo_marker)))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(udinus, 14F))
 
         mMap.uiSettings.isZoomControlsEnabled = true

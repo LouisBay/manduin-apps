@@ -1,10 +1,7 @@
 package com.bangkit.manduin.utils
 
 import com.bangkit.manduin.R
-import com.bangkit.manduin.model.FavoriteModel
-import com.bangkit.manduin.model.NewsModel
-import com.bangkit.manduin.model.ProvinceModel
-import com.bangkit.manduin.model.ReviewModel
+import com.bangkit.manduin.model.*
 
 object DataDummy {
     fun generateDummyNews() : ArrayList<NewsModel> {
@@ -144,5 +141,100 @@ object DataDummy {
         )
 
         return review
+    }
+
+    fun generateDummyTourism() : ArrayList<TourismModel> {
+        val tourism = ArrayList<TourismModel>()
+        tourism.add(
+            TourismModel(
+                "Central Java" ,
+                "Lawang Sewu" ,
+                "Semarang, Central Java" ,
+                "Description",
+                R.drawable.slide1
+            )
+        )
+
+        tourism.add(
+            TourismModel(
+                "Central Java" ,
+                "Borobudur Temple" ,
+                "Magelang, Central Java" ,
+                "Description",
+                R.drawable.slide5
+            )
+        )
+
+        tourism.add(
+            TourismModel(
+                "Central Java" ,
+                "Place" ,
+                "Location" ,
+                "Description",
+                R.drawable.image_preview
+            )
+        )
+
+        tourism.add(
+            TourismModel(
+                "Central Java" ,
+                "Place" ,
+                "Location" ,
+                "Description",
+                R.drawable.image_preview
+            )
+        )
+
+        tourism.add(
+            TourismModel(
+                "Central Java" ,
+                "Place" ,
+                "Location" ,
+                "Description",
+                R.drawable.image_preview
+            )
+        )
+
+        tourism.add(
+            TourismModel(
+                "Special Region of Yogyakarta" ,
+                "Prambanan Temple" ,
+                "Sleman, Yogyakarta" ,
+                "Description",
+                R.drawable.slide6
+            )
+        )
+
+        tourism.add(
+            TourismModel(
+                "Special Region of Yogyakarta" ,
+                "Jogja Monument" ,
+                "Yogyakarta" ,
+                "Description",
+                R.drawable.slide2
+            )
+        )
+
+        tourism.add(
+            TourismModel(
+                "Special Region of Yogyakarta" ,
+                "Place" ,
+                "Location" ,
+                "Description",
+                R.drawable.image_preview
+            )
+        )
+
+        tourism.add(
+            TourismModel(
+                "Special Region of Yogyakarta" ,
+                "Jogja Monument" ,
+                "Yogyakarta" ,
+                "Description",
+                R.drawable.slide2
+            )
+        )
+
+        return tourism
     }
 }
