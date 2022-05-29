@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.manduin.databinding.ItemRowProvinceBinding
 import com.bangkit.manduin.databinding.ItemRowReviewBinding
-import com.bangkit.manduin.model.ProvinceModel
 import com.bangkit.manduin.model.ReviewModel
 import com.bumptech.glide.Glide
 import java.util.ArrayList

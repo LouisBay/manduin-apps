@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 style="@style/sliderPlaceText"
-                android:text="Place"
+                android:text="@string/lawang_sewu"
                 card_view:layout_constraintTop_toBottomOf="@id/iv_destination"
                 card_view:layout_constraintStart_toStartOf="@id/iv_destination"
                 card_view:layout_constraintEnd_toEndOf="@id/iv_destination"/>
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
                 style="@style/sliderLocationText"
-                android:text="Location"
+                android:text="@string/loc_borobudur"
                 card_view:layout_constraintTop_toBottomOf="@id/place_slider"
                 card_view:layout_constraintStart_toStartOf="@id/iv_destination"
                 card_view:layout_constraintEnd_toEndOf="@id/iv_destination"/>

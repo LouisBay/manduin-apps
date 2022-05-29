@@ -1,11 +1,11 @@
-package com.bangkit.manduin.data.remote.retrofit
+package com.bangkit.manduin.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
 data class NewsResponse(
 
 	@field:SerializedName("data")
-	val data: NewsData? = null,
+	val data: NewsData,
 
 	@field:SerializedName("success")
 	val success: Boolean? = null,
@@ -35,5 +35,5 @@ data class NewsItem(
 data class NewsData(
 
 	@field:SerializedName("posts")
-	val posts: ArrayList<NewsItem?>? = null
+	val posts: ArrayList<NewsItem>
 )

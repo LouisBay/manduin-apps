@@ -15,6 +15,7 @@
     <string name="explore">Explore</string>
     <string name="bookmark">Favorite Places</string>
     <string name="profile">Profile</string>
+    <string name="travel_news">Travel News</string>
     <string name="logout">Log Out</string>
     <string name="please_wait">Please Wait…</string>
     <string name="confirm_logout">Confirm Logout</string>
@@ -22,6 +23,8 @@
     <string name="empty_field">This field is empty</string>
     <string name="email_not_valid">Invalid Format Email</string>
     <string name="invalid_password">Password must be at least 6 characters long</string>
+    <string name="error_occured">An Error Occurred: %s</string>
+    <string name="something_wrong">Something went wrong</string>
 
     <!-- String On Login Layout -->
     <string name="email">Email</string>
@@ -92,7 +95,6 @@
     <string name="loc_borobudur">Magelang, Central Java</string>
     <string name="prambanan">Prambanan Temple</string>
     <string name="loc_prambanan">Special Region of Yogyakarta</string>
-    <string name="travel_news">Travel News</string>
     <string name="see_all_news">See all travel news</string>
 
     <!--    String On Detail Activity-->

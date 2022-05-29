@@ -42,7 +42,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="boxStrokeColor">@color/custom_input_outline_color</item>
         <item name="boxStrokeWidth">1dp</item>
-        <item name="boxBackgroundColor">@color/grey_card</item>
+        <item name="boxBackgroundColor">@color/gray_card</item>
         <item name="boxCornerRadiusBottomEnd">8dp</item>
         <item name="boxCornerRadiusBottomStart">8dp</item>
         <item name="boxCornerRadiusTopEnd">8dp</item>
@@ -56,7 +56,7 @@
         <item name="android:textColor">@color/dark_blue</item>
         <item name="fontFamily">@font/poppins_regular</item>
         <item name="android:textSize">14sp</item>
-        <item name="backgroundTint">@color/grey_card</item>
+        <item name="backgroundTint">@color/gray_card</item>
     </style>
 
     <style name="button">
@@ -213,7 +213,7 @@
         <item name="android:textColor">@color/text</item>
         <item name="fontFamily">@font/poppins_regular</item>
         <item name="android:textSize">10sp</item>
-        <item name="backgroundTint">@color/grey_card</item>
+        <item name="backgroundTint">@color/gray_card</item>
     </style>
 
     <style name="placeText">

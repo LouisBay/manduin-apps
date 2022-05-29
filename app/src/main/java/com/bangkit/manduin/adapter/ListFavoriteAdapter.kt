@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.manduin.databinding.ItemRowBookmarkBinding
-import com.bangkit.manduin.databinding.ItemRowProvinceBinding
 import com.bangkit.manduin.model.FavoriteModel
-import com.bangkit.manduin.model.ProvinceModel
 import com.bumptech.glide.Glide
 import java.util.ArrayList
 

@@ -5,11 +5,12 @@
     <color name="dark_blue">#003580</color>
     <color name="light_blue_200">#0BAAFB</color>
     <color name="light_blue_700">#0B8CCD</color>
-    <color name="grey_card">#F3F3F3</color>
+    <color name="gray_card">#F3F3F3</color>
     <color name="text">#242424</color>
     <color name="hint">#BABAC2</color>
     <color name="date">#8D8D8D</color>
     <color name="red">#FF0000</color>
     <color name="red_google">#DE4A36</color>
+    <color name="shimmer">#E6E6F3</color>
 
 </resources>

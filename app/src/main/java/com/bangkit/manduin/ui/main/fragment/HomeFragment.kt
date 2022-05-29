@@ -1,13 +1,17 @@
-package com.bangkit.manduin.ui.main
+package com.bangkit.manduin.ui.main.fragment
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -16,12 +20,18 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.manduin.*
 import com.bangkit.manduin.adapter.ListNewsAdapter
 import com.bangkit.manduin.adapter.SliderAdapter
+import com.bangkit.manduin.data.remote.response.NewsItem
 import com.bangkit.manduin.databinding.FragmentHomeBinding
 import com.bangkit.manduin.model.SliderItemDestinationModel
 import com.bangkit.manduin.ui.AllNewsActivity
-import com.bangkit.manduin.utils.DataDummy
-import java.lang.Math.abs
+import com.bangkit.manduin.utils.Result
+import com.bangkit.manduin.viewmodel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.math.abs
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -33,11 +43,14 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: SliderAdapter
     private lateinit var newsAdapter: ListNewsAdapter
 
+    private val homeViewModel: HomeViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container , false)
+
         return binding.root
     }
 
@@ -45,8 +58,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         init(view)
         setupTransformer()
-        loadNews()
         toAllNews()
+        setNewsRecyclerView()
+
+        binding.shimmerNews.startShimmer()
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
@@ -133,17 +148,70 @@ class HomeFragment : Fragment() {
         viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
     }
 
-    private fun loadNews() {
+    private fun setNewsRecyclerView() {
         newsAdapter = ListNewsAdapter()
-        binding.rvNews.layoutManager = LinearLayoutManager(context)
-        binding.rvNews.adapter = newsAdapter
-        val listNews = DataDummy.generateDummyNews()
-        newsAdapter.setList(listNews)
+
+        binding.rvNews.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = newsAdapter
+        }
+
+        newsAdapter.setOnItemClickCallback(object : ListNewsAdapter.OnItemClickCallback {
+            override fun onItemClicked(news: NewsItem) {
+                if (news.link == null) {
+                    Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+                } else {
+                    Intent(Intent.ACTION_VIEW).apply {
+                        data = Uri.parse(news.link.toString())
+                    }.also { startActivity(it) }
+                }
+            }
+        })
+
+        loadNews()
+    }
+
+    private fun loadNews() {
+        homeViewModel.getTravelNewsData().observe(viewLifecycleOwner) { result ->
+            showResult(result)
+        }
+    }
+
+    private fun showResult(result: Result<ArrayList<NewsItem>>?) {
+        when (result) {
+            is Result.Loading -> { setShimmer(true) }
+            is Result.Succes -> {
+                lifecycleScope.launch {
+                    delay(2000L)
+                    newsAdapter.setList(result.data, ListNewsAdapter.TAG_HOME)
+                    setShimmer(false)
+                }
+            }
+            is Result.Error -> {
+                Toast.makeText(requireContext(), resources.getString(R.string.error_occured, result.errorMessage), Toast.LENGTH_SHORT).show()
+                setShimmer(false)
+            }
+            else -> {}
+        }
     }
 
     private fun toAllNews() {
         binding.tvAllNews.setOnClickListener {
             startActivity(Intent(requireActivity(), AllNewsActivity::class.java))
+        }
+    }
+
+    private fun setShimmer(isLoading: Boolean) {
+        binding.apply {
+            if (isLoading) {
+                shimmerNews.visibility = View.VISIBLE
+                shimmerNews.startShimmer()
+                rvNews.visibility = View.GONE
+            } else {
+                shimmerNews.visibility = View.GONE
+                shimmerNews.stopShimmer()
+                rvNews.visibility = View.VISIBLE
+            }
         }
     }
 }

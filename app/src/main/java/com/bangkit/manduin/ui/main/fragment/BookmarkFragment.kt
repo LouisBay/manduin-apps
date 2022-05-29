@@ -1,4 +1,4 @@
-package com.bangkit.manduin.ui.main
+package com.bangkit.manduin.ui.main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

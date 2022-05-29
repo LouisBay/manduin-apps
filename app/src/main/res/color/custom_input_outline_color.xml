@@ -2,5 +2,5 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:color="@color/dark_blue" android:state_focused="true"/>
     <item android:color="@color/dark_blue" android:state_hovered="true"/>
-    <item android:color="@color/grey_card"/>
+    <item android:color="@color/gray_card"/>
 </selector>

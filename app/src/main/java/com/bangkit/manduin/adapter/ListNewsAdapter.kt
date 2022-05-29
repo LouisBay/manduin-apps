@@ -4,46 +4,68 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.manduin.model.NewsModel
+import com.bangkit.manduin.R
+import com.bangkit.manduin.data.remote.response.NewsItem
 import com.bangkit.manduin.databinding.ItemRowNewsBinding
 import com.bumptech.glide.Glide
-import java.util.ArrayList
 
-class ListNewsAdapter : RecyclerView.Adapter<ListNewsAdapter.ItemTarget>() {
-    private val listNews = ArrayList<NewsModel>()
+class ListNewsAdapter : RecyclerView.Adapter<ListNewsAdapter.ListViewHolder>() {
+    private val listNews = ArrayList<NewsItem>()
+
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(listNews : List<NewsModel>) {
+    fun setList(listNews: ArrayList<NewsItem>, tag: String?) {
         this.listNews.clear()
-        this.listNews.addAll(listNews)
+        this.listNews.addAll(
+            if (tag == TAG_HOME) listNews.take(5) else listNews
+        )
         notifyDataSetChanged()
     }
 
-    inner class ItemTarget(private val binding : ItemRowNewsBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(model : NewsModel) {
-            Glide.with(itemView.context)
-                .load(model.news_image)
-                .centerCrop()
-                .into(binding.ivNews)
-            binding.tvTitleNews.text = model.news_title
-            binding.tvDescriptionNews.text = model.news_description
-        }
-    }
-
-    override fun onCreateViewHolder(parent : ViewGroup , viewType : Int) : ItemTarget {
-        return ItemTarget(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ListViewHolder {
+        return ListViewHolder(
             ItemRowNewsBinding.inflate(
-                LayoutInflater.from(parent.context) ,
-                parent ,
+                LayoutInflater.from(parent.context),
+                parent,
                 false
             )
         )
     }
 
-    override fun onBindViewHolder(holder : ItemTarget, position : Int) {
-        holder.bind(listNews[position])
+    override fun onBindViewHolder(holder : ListViewHolder, position : Int) {
+        val news = listNews[position]
+        holder.bind(news)
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(news) }
     }
 
-    override fun getItemCount() : Int = listNews.size
+    override fun getItemCount() = listNews.size
+
+    class ListViewHolder(private val binding : ItemRowNewsBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(news: NewsItem) {
+            binding.apply {
+                tvTitleNews.text = news.title
+                tvDescriptionNews.text = news.description
+
+                Glide.with(ivNews.context)
+                    .load(news.thumbnail)
+                    .placeholder(R.drawable.image_preview)
+                    .error(R.drawable.image_preview)
+                    .centerCrop()
+                    .into(ivNews)
+            }
+        }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(news: NewsItem)
+    }
+
+    companion object {
+        const val TAG_HOME = "HOME"
+    }
 }
