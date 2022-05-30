@@ -202,7 +202,7 @@ object DataDummy {
         return tourism
     }
 
-    fun getModelLabel() = arrayListOf(
+    fun getModelLabel() = arrayOf(
         "besakih",
         "borobudur",
         "gedungsate",

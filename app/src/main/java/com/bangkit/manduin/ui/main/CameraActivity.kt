@@ -2,12 +2,12 @@ package com.bangkit.manduin.ui.main
 
 import android.graphics.Bitmap
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
@@ -38,14 +38,38 @@ class CameraActivity : AppCompatActivity() {
             super.onBackPressed()
         }
 
-        binding.ivCapture.setOnClickListener { detect() }
+        binding.ivCapture.setOnClickListener { take() }
 
         startCamera()
         hideSystemUI()
     }
 
-    private fun detect() {
+    private fun take() {
         val imageCapture = imageCapture ?: return
+
+//        val photoFile = Helper.createFile(application)
+//
+//        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+
+//        imageCapture.takePicture(
+//            outputOptions,
+//            ContextCompat.getMainExecutor(this),
+//            object : ImageCapture.OnImageSavedCallback {
+//                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+//                    Intent(this@CameraActivity, PreviewCamResult::class.java).apply {
+//                        putExtra("picture", photoFile)
+//                        putExtra("isBackCamera", cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
+//                    }.also { startActivity(it) }
+//                    finish()
+//                }
+//
+//                override fun onError(exception: ImageCaptureException) {
+//                    Toast.makeText(this@CameraActivity, "Gagal mengambil gambar.", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        )
+//
+//        val imageCapture = imageCapture ?: return
 
         imageCapture.takePicture(
             ContextCompat.getMainExecutor(this),
@@ -53,9 +77,10 @@ class CameraActivity : AppCompatActivity() {
                 override fun onCaptureSuccess(image: ImageProxy) {
                     this@CameraActivity.image = Helper.imageProxyToBitmap(image)
                     setImage()
+//                    binding.previewiv.setImageBitmap(this@CameraActivity.image)
                     classifyImage()
+                    image.close()
                     Log.d("CAM", "Success")
-                    super.onCaptureSuccess(image)
                 }
                 override fun onError(exception: ImageCaptureException) {
                     Log.d("CAM", "Error Capture")
@@ -111,6 +136,9 @@ class CameraActivity : AppCompatActivity() {
 
     private fun setImage() {
         image = Bitmap.createScaledBitmap(image, imageSize, imageSize, false)
+        image = Helper.rotateBitmap(
+            image,
+            true)
     }
 
     private fun classifyImage() {
@@ -118,7 +146,7 @@ class CameraActivity : AppCompatActivity() {
 
         // Creates inputs for reference.
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
-
+//
         val byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3)
         byteBuffer.order(ByteOrder.nativeOrder())
 
@@ -128,23 +156,23 @@ class CameraActivity : AppCompatActivity() {
 
         var pixel = 0
 
-        for (i in 0 until imageSize) {
-            for (j in 0 until imageSize) {
-                val value = intValues[pixel++]
-                byteBuffer.putFloat(((value shr 16) and 0xFF) * ((1f / 255) - 1) * 2)
-                byteBuffer.putFloat(((value shr 8) and 0xFF) * ((1f / 255) - 1) * 2)
-                byteBuffer.putFloat((value and 0xFF) * ((1f / 255) - 1) * 2)
-            }
-        }
-
 //        for (i in 0 until imageSize) {
 //            for (j in 0 until imageSize) {
 //                val value = intValues[pixel++]
-//                byteBuffer.putFloat(((value shr 16) and 0xFF) * (1f / 1))
-//                byteBuffer.putFloat(((value shr 8) and 0xFF) * (1f / 1))
-//                byteBuffer.putFloat(((value and 0xFF) * (1f / 1)))
+//                byteBuffer.putFloat(((((value shr 16) and 0xFF) * (1f / 255)) - 1f) * 2f)
+//                byteBuffer.putFloat(((((value shr 8) and 0xFF) * (1f / 255)) - 1f) * 2f)
+//                byteBuffer.putFloat((((value and 0xFF) * (1f / 255)) - 1f) * 2f)
 //            }
 //        }
+
+        for (i in 0 until imageSize) {
+            for (j in 0 until imageSize) {
+                val value = intValues[pixel++]
+                byteBuffer.putFloat(((value shr 16) and 0xFF) * (1f / 255))
+                byteBuffer.putFloat(((value shr 8) and 0xFF) * (1f / 255))
+                byteBuffer.putFloat(((value and 0xFF) * (1f / 255)))
+            }
+        }
 
         inputFeature0.loadBuffer(byteBuffer)
 
@@ -163,9 +191,14 @@ class CameraActivity : AppCompatActivity() {
             }
         }
 
-        val labels = DataDummy.getModelLabel()
 
-        binding.tvLabel.text = labels[maxPos] + maxConfidence
+        val classes = DataDummy.getModelLabel()
+
+        if (maxConfidence > 0.8) {
+            binding.tvLabel.text = "${classes[maxPos]} : $maxConfidence"
+        } else {
+            binding.tvLabel.text = ""
+        }
 
         // Releases model resources if no longer used.
         model.close()
