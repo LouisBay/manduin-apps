@@ -25,6 +25,7 @@
     <string name="invalid_password">Password must be at least 6 characters long</string>
     <string name="error_occured">An Error Occurred: %s</string>
     <string name="something_wrong">Something went wrong</string>
+    <string name="permission_not_granted">Allow permission to use camera feature</string>
 
     <!-- String On Login Layout -->
     <string name="email">Email</string>
@@ -102,4 +103,7 @@
     <string name="desc_landmark">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="add_review">Add review</string>
     <string name="title_activity_maps">MapsActivity</string>
+
+    <!--    String On Camera Activity-->
+    <string name="camera_failed">Failed to show camera</string>
 </resources>

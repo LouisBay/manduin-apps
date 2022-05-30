@@ -33,24 +33,11 @@
         app:srcCompat="@drawable/ic_close"
         android:contentDescription="@string/image" />
 
-    <ImageView
-        android:id="@+id/previewiv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:contentDescription="@string/image" />
-
     <TextView
         android:id="@+id/tv_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="TEST"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:fontFamily="@font/poppins_bold"

@@ -11,10 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import com.bangkit.manduin.R
 import com.bangkit.manduin.databinding.ActivityCameraBinding
 import com.bangkit.manduin.ml.Model
 import com.bangkit.manduin.utils.DataDummy
 import com.bangkit.manduin.utils.Helper
+import com.bangkit.manduin.utils.Helper.toPercentage
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.nio.ByteBuffer
@@ -47,44 +49,19 @@ class CameraActivity : AppCompatActivity() {
     private fun take() {
         val imageCapture = imageCapture ?: return
 
-//        val photoFile = Helper.createFile(application)
-//
-//        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
-
-//        imageCapture.takePicture(
-//            outputOptions,
-//            ContextCompat.getMainExecutor(this),
-//            object : ImageCapture.OnImageSavedCallback {
-//                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-//                    Intent(this@CameraActivity, PreviewCamResult::class.java).apply {
-//                        putExtra("picture", photoFile)
-//                        putExtra("isBackCamera", cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
-//                    }.also { startActivity(it) }
-//                    finish()
-//                }
-//
-//                override fun onError(exception: ImageCaptureException) {
-//                    Toast.makeText(this@CameraActivity, "Gagal mengambil gambar.", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        )
-//
-//        val imageCapture = imageCapture ?: return
-
         imageCapture.takePicture(
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageCapturedCallback() {
                 override fun onCaptureSuccess(image: ImageProxy) {
                     this@CameraActivity.image = Helper.imageProxyToBitmap(image)
                     setImage()
-//                    binding.previewiv.setImageBitmap(this@CameraActivity.image)
                     classifyImage()
                     image.close()
-                    Log.d("CAM", "Success")
+                    Log.d(TAG, "Success Capture Photo")
                 }
                 override fun onError(exception: ImageCaptureException) {
-                    Log.d("CAM", "Error Capture")
-                    Toast.makeText(this@CameraActivity, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                    Log.d(TAG, "Failed to Capture Photo")
+                    Toast.makeText(this@CameraActivity, resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
                 }
         })
     }
@@ -114,7 +91,7 @@ class CameraActivity : AppCompatActivity() {
             } catch (exc: Exception) {
                 Toast.makeText(
                     this@CameraActivity,
-                    "Gagal memunculkan kamera.",
+                    resources.getString(R.string.camera_failed),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -136,9 +113,7 @@ class CameraActivity : AppCompatActivity() {
 
     private fun setImage() {
         image = Bitmap.createScaledBitmap(image, imageSize, imageSize, false)
-        image = Helper.rotateBitmap(
-            image,
-            true)
+        image = Helper.rotateBitmap(image, true)
     }
 
     private fun classifyImage() {
@@ -146,24 +121,14 @@ class CameraActivity : AppCompatActivity() {
 
         // Creates inputs for reference.
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
-//
+
         val byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3)
         byteBuffer.order(ByteOrder.nativeOrder())
-
 
         val intValues = IntArray(imageSize * imageSize)
         image.getPixels(intValues, 0, image.width, 0, 0, image.width, image.height)
 
         var pixel = 0
-
-//        for (i in 0 until imageSize) {
-//            for (j in 0 until imageSize) {
-//                val value = intValues[pixel++]
-//                byteBuffer.putFloat(((((value shr 16) and 0xFF) * (1f / 255)) - 1f) * 2f)
-//                byteBuffer.putFloat(((((value shr 8) and 0xFF) * (1f / 255)) - 1f) * 2f)
-//                byteBuffer.putFloat((((value and 0xFF) * (1f / 255)) - 1f) * 2f)
-//            }
-//        }
 
         for (i in 0 until imageSize) {
             for (j in 0 until imageSize) {
@@ -191,20 +156,21 @@ class CameraActivity : AppCompatActivity() {
             }
         }
 
-
         val classes = DataDummy.getModelLabel()
 
-        if (maxConfidence > 0.8) {
-            binding.tvLabel.text = "${classes[maxPos]} : $maxConfidence"
-        } else {
-            binding.tvLabel.text = ""
-        }
+        showDetectedObject(classes[maxPos], maxConfidence)
 
         // Releases model resources if no longer used.
         model.close()
     }
 
+    private fun showDetectedObject(label: String, confidence: Float) {
+        val text = if (confidence > 0.8) String.format("%s : %s", label, confidence.toPercentage()) else ""
+        binding.tvLabel.text = text
+    }
+
     companion object {
         private const val imageSize = 224
+        private const val TAG = "CameraActivity"
     }
 }

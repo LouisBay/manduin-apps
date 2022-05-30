@@ -1,6 +1,5 @@
 package com.bangkit.manduin.utils
 
-import android.app.Application
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
@@ -8,17 +7,19 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import androidx.camera.core.ImageProxy
-import com.bangkit.manduin.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import java.io.File
 import java.nio.ByteBuffer
-import java.text.SimpleDateFormat
-import java.util.*
 
 object Helper {
+
+    // Float to Percentage
+    fun Float.toPercentage() = String.format("%.1f%%", this * 100f)
+
+    // Email Pattern Validation
     fun String.isEmailValid() = Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
+    // Error Input Listener TextInputEditTExt
     fun TextInputEditText.addTextErrorListener(textInputLayout: TextInputLayout) {
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -33,6 +34,7 @@ object Helper {
         this.addTextChangedListener(textWatcher)
     }
 
+    // Convert Image Proxy to Bitmap
     fun imageProxyToBitmap(image: ImageProxy): Bitmap {
         val planeProxy = image.planes[0]
         val buffer: ByteBuffer = planeProxy.buffer
@@ -41,25 +43,7 @@ object Helper {
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
     }
 
-    private const val FILENAME_FORMAT = "dd-MMM-yyyy"
-
-    val timeStamp: String = SimpleDateFormat(
-        FILENAME_FORMAT,
-        Locale.US
-    ).format(System.currentTimeMillis())
-
-    fun createFile(application: Application): File {
-        val mediaDir = application.externalMediaDirs.firstOrNull()?.let {
-            File(it, application.resources.getString(R.string.app_name)).apply { mkdirs() }
-        }
-
-        val outputDirectory = if (
-            mediaDir != null && mediaDir.exists()
-        ) mediaDir else application.filesDir
-
-        return File(outputDirectory, "$timeStamp.jpg")
-    }
-
+    // Rotate Image Bitmap to Normal for CameraX
     fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = false): Bitmap {
         val matrix = Matrix()
         return if (isBackCamera) {
