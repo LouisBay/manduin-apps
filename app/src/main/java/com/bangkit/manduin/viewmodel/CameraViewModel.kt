@@ -76,15 +76,15 @@ class CameraViewModel : ViewModel() {
 
     }
 
-    private fun preprocessImage(image: ImageProxy): Bitmap {
-        var imageBitmap = Helper.imageProxyToBitmap(image)
+    private fun preprocessImage(imageProxy: ImageProxy): Bitmap {
+        var imageBitmap = Helper.imageProxyToBitmap(imageProxy)
         imageBitmap = Bitmap.createScaledBitmap(
             imageBitmap,
             CameraActivity.imageSize,
             CameraActivity.imageSize,
             false
         )
-        imageBitmap = Helper.rotateBitmap(imageBitmap, true)
+        imageBitmap = Helper.rotateBitmap(imageBitmap, imageProxy)
         return imageBitmap
     }
 }

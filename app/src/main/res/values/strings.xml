@@ -106,6 +106,10 @@
 
     <!--    String On Camera Activity-->
     <string name="camera_failed">Failed to show camera</string>
+    <string name="detect">Detect</string>
     <string name="detect_failed">Failed to Detect</string>
     <string name="accuracy">Accuracy</string>
+    <string name="detail_landmark">Detail Landmark</string>
+    <string name="detect_again">Detect Again</string>
+    <string name="no_object">No Object Detected</string>
 </resources>

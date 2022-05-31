@@ -3,6 +3,7 @@ package com.bangkit.manduin.ui.main
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -15,9 +16,11 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.bangkit.manduin.R
 import com.bangkit.manduin.databinding.ActivityCameraBinding
+import com.bangkit.manduin.databinding.ItemSheetLabelCameraBinding
 import com.bangkit.manduin.utils.Helper.toPercentage
 import com.bangkit.manduin.utils.Result
 import com.bangkit.manduin.viewmodel.CameraViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +30,7 @@ import kotlinx.coroutines.launch
 class CameraActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCameraBinding
+    private lateinit var bindingBottomSheet: ItemSheetLabelCameraBinding
 
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
@@ -144,35 +148,35 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun showDetectedObject(data: Array<Any>) {
-//        val text = if ((data[1] as Float) > 0.8) {
-//            String.format("%s : %s", data[0].toString(), (data[1] as Float).toPercentage())
-//        } else "No Object Detected"
 
         val label = data[0].toString()
         val confidence = data[1] as Float
         val forProgress = String.format("%.1f", confidence * 100f).toFloat().toInt()
 
+        val bottomSheetDialog = BottomSheetDialog(
+            this@CameraActivity, R.style.BottomSheetDialogTheme
+        )
+        val inflater = LayoutInflater.from(applicationContext)
+        bindingBottomSheet = ItemSheetLabelCameraBinding.inflate(inflater)
 
-        binding.apply {
-            layout.cardLabel.visibility = View.VISIBLE
-            if (confidence > 0.8) {
-                layout.tvPercentage.visibility = View.VISIBLE
-                layout.textAccuracy.visibility = View.VISIBLE
-                layout.pgHorizontal.visibility = View.VISIBLE
-                layout.tvPercentage.text = confidence.toPercentage()
-                layout.tvLabel.text = label
-                CoroutineScope(Dispatchers.Default).launch {
-                    for (i in 1 until forProgress + 1) {
-                        layout.pgHorizontal.progress = i
-                        delay(10)
-                    }
+        bottomSheetDialog.setContentView(bindingBottomSheet.root)
+        bottomSheetDialog.show()
+
+        if (confidence > 0.8) {
+            bindingBottomSheet.tvPercentage.text = confidence.toPercentage()
+            bindingBottomSheet.tvLabel.text = label
+            CoroutineScope(Dispatchers.Default).launch {
+                for (i in 1 until forProgress + 1) {
+                    bindingBottomSheet.pgHorizontal.progress = i
+                    delay(5)
                 }
-            } else {
-                layout.textAccuracy.visibility = View.GONE
-                layout.tvPercentage.visibility = View.GONE
-                layout.pgHorizontal.visibility = View.GONE
-                layout.tvLabel.text = "No Object Detected"
             }
+        } else {
+            bindingBottomSheet.textAccuracy.visibility = View.GONE
+            bindingBottomSheet.tvPercentage.visibility = View.GONE
+            bindingBottomSheet.pgHorizontal.visibility = View.GONE
+            bindingBottomSheet.tvLabel.text = resources.getString(R.string.no_object)
+            bindingBottomSheet.btnDetailLandmark.visibility = View.GONE
         }
     }
 

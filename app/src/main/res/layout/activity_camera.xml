@@ -19,7 +19,7 @@
         android:paddingVertical="8dp"
         android:paddingHorizontal="16dp"
         android:backgroundTint="@color/light_blue_200"
-        android:text="Detect"
+        android:text="@string/detect"
         android:letterSpacing="0.08"
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_bold"
@@ -29,22 +29,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <include
-        android:id="@+id/layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/item_label_camera"
-        android:layout_marginBottom="16dp"
-        android:layout_marginHorizontal="16dp"
-        app:layout_constraintBottom_toTopOf="@id/btn_detect"/>
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_back"
         style="@style/buttonBack"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
+        app:iconGravity="top"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:elevation="1dp"
         app:icon="@drawable/ic_back"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
