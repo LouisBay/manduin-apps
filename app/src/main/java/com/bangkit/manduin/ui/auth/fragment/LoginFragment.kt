@@ -138,8 +138,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
         var status = true
 
         binding.apply {
-            val email = edtEmail.text.toString()
-            val password = edtPassword.text.toString()
+            val email = edtEmail.text.toString().trim()
+            val password = edtPassword.text.toString().trim()
 
 
             if (email.isBlank()) {

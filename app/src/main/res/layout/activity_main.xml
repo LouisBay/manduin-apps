@@ -39,10 +39,10 @@
         app:elevation="8dp"
         app:fabSize="normal"
         app:srcCompat="@drawable/scan"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="-28dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

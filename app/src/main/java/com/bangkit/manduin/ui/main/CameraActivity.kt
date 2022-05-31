@@ -1,26 +1,28 @@
 package com.bangkit.manduin.ui.main
 
-import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.bangkit.manduin.R
 import com.bangkit.manduin.databinding.ActivityCameraBinding
-import com.bangkit.manduin.ml.Model
-import com.bangkit.manduin.utils.DataDummy
-import com.bangkit.manduin.utils.Helper
 import com.bangkit.manduin.utils.Helper.toPercentage
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
+import com.bangkit.manduin.utils.Result
+import com.bangkit.manduin.viewmodel.CameraViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class CameraActivity : AppCompatActivity() {
 
@@ -29,34 +31,64 @@ class CameraActivity : AppCompatActivity() {
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
-    private lateinit var image: Bitmap
+    private lateinit var loadingDialog: AlertDialog
+
+    private val cameraViewModel: CameraViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.ivClose.setOnClickListener {
-            super.onBackPressed()
-        }
-
-        binding.ivCapture.setOnClickListener { take() }
-
+        initComponent()
         startCamera()
         hideSystemUI()
+        setObserver()
     }
 
-    private fun take() {
+    private fun initComponent() {
+        val builder = MaterialAlertDialogBuilder(this)
+            .setView(R.layout.loading_dialog)
+            .setCancelable(false)
+        loadingDialog = builder.create()
+
+        binding.btnBack.setOnClickListener { super.onBackPressed() }
+
+        binding.btnDetect.setOnClickListener {
+            loadingDialog.show()
+            takePhoto()
+        }
+    }
+
+    private fun setObserver() {
+        cameraViewModel.result.observe(this) { result ->
+            processResult(result)
+        }
+    }
+
+    private fun processResult(result: Result<Array<Any>>) {
+        when(result) {
+            is Result.Loading -> { showLoading(true) }
+            is Result.Success -> {
+                showDetectedObject(result.data)
+                showLoading(false)
+            }
+            is Result.Error -> {
+                Toast.makeText(applicationContext, resources.getString(R.string.detect_failed), Toast.LENGTH_LONG).show()
+                showLoading(false)
+            }
+        }
+    }
+
+    private fun takePhoto() {
         val imageCapture = imageCapture ?: return
 
         imageCapture.takePicture(
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageCapturedCallback() {
-                override fun onCaptureSuccess(image: ImageProxy) {
-                    this@CameraActivity.image = Helper.imageProxyToBitmap(image)
-                    setImage()
-                    classifyImage()
-                    image.close()
+                override fun onCaptureSuccess(img: ImageProxy) {
+                    cameraViewModel.detectImage(img, applicationContext)
+                    img.close()
                     Log.d(TAG, "Success Capture Photo")
                 }
                 override fun onError(exception: ImageCaptureException) {
@@ -111,66 +143,46 @@ class CameraActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    private fun setImage() {
-        image = Bitmap.createScaledBitmap(image, imageSize, imageSize, false)
-        image = Helper.rotateBitmap(image, true)
-    }
+    private fun showDetectedObject(data: Array<Any>) {
+//        val text = if ((data[1] as Float) > 0.8) {
+//            String.format("%s : %s", data[0].toString(), (data[1] as Float).toPercentage())
+//        } else "No Object Detected"
 
-    private fun classifyImage() {
-        val model = Model.newInstance(applicationContext)
+        val label = data[0].toString()
+        val confidence = data[1] as Float
+        val forProgress = String.format("%.1f", confidence * 100f).toFloat().toInt()
 
-        // Creates inputs for reference.
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
 
-        val byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3)
-        byteBuffer.order(ByteOrder.nativeOrder())
-
-        val intValues = IntArray(imageSize * imageSize)
-        image.getPixels(intValues, 0, image.width, 0, 0, image.width, image.height)
-
-        var pixel = 0
-
-        for (i in 0 until imageSize) {
-            for (j in 0 until imageSize) {
-                val value = intValues[pixel++]
-                byteBuffer.putFloat(((value shr 16) and 0xFF) * (1f / 255))
-                byteBuffer.putFloat(((value shr 8) and 0xFF) * (1f / 255))
-                byteBuffer.putFloat(((value and 0xFF) * (1f / 255)))
+        binding.apply {
+            layout.cardLabel.visibility = View.VISIBLE
+            if (confidence > 0.8) {
+                layout.tvPercentage.visibility = View.VISIBLE
+                layout.textAccuracy.visibility = View.VISIBLE
+                layout.pgHorizontal.visibility = View.VISIBLE
+                layout.tvPercentage.text = confidence.toPercentage()
+                layout.tvLabel.text = label
+                CoroutineScope(Dispatchers.Default).launch {
+                    for (i in 1 until forProgress + 1) {
+                        layout.pgHorizontal.progress = i
+                        delay(10)
+                    }
+                }
+            } else {
+                layout.textAccuracy.visibility = View.GONE
+                layout.tvPercentage.visibility = View.GONE
+                layout.pgHorizontal.visibility = View.GONE
+                layout.tvLabel.text = "No Object Detected"
             }
         }
-
-        inputFeature0.loadBuffer(byteBuffer)
-
-        // Runs model inference and gets result.
-        val outputs = model.process(inputFeature0)
-        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-
-        val confidences = outputFeature0.floatArray
-        var maxPos = 0
-        var maxConfidence = 0f
-
-        for (i in confidences.indices) {
-            if (confidences[i] > maxConfidence) {
-                maxConfidence = confidences[i]
-                maxPos = i
-            }
-        }
-
-        val classes = DataDummy.getModelLabel()
-
-        showDetectedObject(classes[maxPos], maxConfidence)
-
-        // Releases model resources if no longer used.
-        model.close()
     }
 
-    private fun showDetectedObject(label: String, confidence: Float) {
-        val text = if (confidence > 0.8) String.format("%s : %s", label, confidence.toPercentage()) else ""
-        binding.tvLabel.text = text
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) loadingDialog.show()
+        else loadingDialog.dismiss()
     }
 
     companion object {
-        private const val imageSize = 224
+        const val imageSize = 224
         private const val TAG = "CameraActivity"
     }
 }

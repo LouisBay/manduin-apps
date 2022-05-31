@@ -202,10 +202,10 @@ class RegisterFragment : Fragment(), View.OnClickListener {
         var status = true
 
         binding.apply {
-            val name = edtFullname.text.toString()
-            val email = edtEmail.text.toString()
-            val password = edtPassword.text.toString()
-            val confirmPassword = edtConfirmPassword.text.toString()
+            val name = edtFullname.text.toString().trim()
+            val email = edtEmail.text.toString().trim()
+            val password = edtPassword.text.toString().trim()
+            val confirmPassword = edtConfirmPassword.text.toString().trim()
 
             if (name.isBlank()) {
                 status = false

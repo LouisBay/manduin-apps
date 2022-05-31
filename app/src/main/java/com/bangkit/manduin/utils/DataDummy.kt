@@ -203,20 +203,11 @@ object DataDummy {
     }
 
     fun getModelLabel() = arrayOf(
-        "besakih",
         "borobudur",
-        "gedungsate",
-        "gwk",
-        "jamgadang",
         "lawangsewu",
         "majt",
-        "monas",
         "monjali",
-        "museumfatahillah",
         "prambanan",
-        "sampookong",
-        "suroboyo",
-        "tamanayun",
         "tugujogja"
     )
 }

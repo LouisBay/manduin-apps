@@ -71,7 +71,7 @@ class AllNewsActivity : AppCompatActivity() {
     private fun showResult(result: Result<ArrayList<NewsItem>>?) {
         when (result) {
             is Result.Loading -> { setShimmer(true) }
-            is Result.Succes -> {
+            is Result.Success -> {
                 lifecycleScope.launch {
                     delay(2000L)
                     newsAdapter.setList(result.data, null)

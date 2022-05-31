@@ -14,7 +14,7 @@ class ApiDataRepository @Inject constructor(
     fun getTravelNewsData() = flow {
         emit(Result.Loading)
         newsApiService.getTravelNews().let {
-            if (it.success == true) emit(Result.Succes(it.data.posts))
+            if (it.success == true) emit(Result.Success(it.data.posts))
             else emit(Result.Error(it.message.toString()))
         }
     }.catch { emit(Result.Error(it.localizedMessage?.toString() ?: it.message.toString()))
