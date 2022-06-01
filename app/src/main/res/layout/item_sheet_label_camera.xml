@@ -22,6 +22,7 @@
         android:letterSpacing="0.05"/>
 
     <LinearLayout
+        android:id="@+id/layout_accuracy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -56,7 +57,7 @@
         android:max="100"
         android:progress="80"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_detail_landmark"
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -69,10 +70,6 @@
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_semi_bold"
         android:text="@string/detail_landmark"
-        android:focusable="true"
-        android:clickable="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:cornerRadius="6dp"/>
 
 </LinearLayout>

@@ -1,0 +1,6 @@
+borobudur|Candi Borobudur|3
+lawangsewu|Lawang Sewu|1
+majt|Masjid Agung Jawa Tengah|2
+monjali|Monumen Yogya Kembali|5
+prambanan|Candi Prambanan|6
+tugujogja|Tugu Pal Putih Jogja|4
