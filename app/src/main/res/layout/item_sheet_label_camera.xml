@@ -59,16 +59,9 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_detail_landmark"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
+        style="@style/buttonDetailLandmark"
         android:layout_marginTop="16dp"
         android:paddingHorizontal="8dp"
-        android:backgroundTint="@color/light_blue_200"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:text="@string/detail_landmark"
-        app:cornerRadius="6dp"/>
+        android:text="@string/detail_landmark"/>
 
 </LinearLayout>
