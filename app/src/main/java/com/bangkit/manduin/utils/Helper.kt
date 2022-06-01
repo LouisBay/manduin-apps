@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import androidx.camera.core.ImageProxy
-import com.bangkit.manduin.data.repository.MLRepository
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.nio.ByteBuffer

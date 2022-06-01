@@ -107,7 +107,7 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageCapturedCallback() {
                 override fun onCaptureSuccess(img: ImageProxy) {
-                    cameraViewModel.detectImage(img)
+                    cameraViewModel.detectImage(img, applicationContext)
                     img.close()
                     Log.d(TAG, "Success Capture Photo")
                 }

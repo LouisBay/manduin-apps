@@ -13,9 +13,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_detect"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"
         android:paddingVertical="8dp"
         android:paddingHorizontal="16dp"
         android:backgroundTint="@color/light_blue_200"
@@ -23,8 +24,8 @@
         android:letterSpacing="0.08"
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_bold"
-        android:textSize="16sp"
-        app:cornerRadius="6dp"
+        android:textSize="24sp"
+        app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
