@@ -109,32 +109,32 @@ class HomeFragment : Fragment() {
         listSliderItemDestination = ArrayList()
 
         listSliderItemDestination.add(
-            SliderItemDestinationModel(R.drawable.slide1,
+            SliderItemDestinationModel("https://storage.googleapis.com/mandu-in-bucket/landmark_images/lawang_sewu.jpg",
             resources.getString(R.string.lawang_sewu),
             resources.getString(R.string.loc_lawang_sewu))
         )
         listSliderItemDestination.add(
-            SliderItemDestinationModel(R.drawable.slide2,
+            SliderItemDestinationModel("https://storage.googleapis.com/mandu-in-bucket/landmark_images/majt.jpg",
+                resources.getString(R.string.masjid_agung),
+                resources.getString(R.string.loc_masjid_agung))
+        )
+        listSliderItemDestination.add(
+            SliderItemDestinationModel("https://storage.googleapis.com/mandu-in-bucket/landmark_images/borobudur.jpg",
+                resources.getString(R.string.borobudur),
+                resources.getString(R.string.loc_borobudur))
+        )
+        listSliderItemDestination.add(
+            SliderItemDestinationModel("https://storage.googleapis.com/mandu-in-bucket/landmark_images/tugu_jogja.jpg",
             resources.getString(R.string.tugu_jogja),
             resources.getString(R.string.loc_tugu_jogja))
         )
         listSliderItemDestination.add(
-            SliderItemDestinationModel(R.drawable.slide3,
-            resources.getString(R.string.masjid_agung),
-            resources.getString(R.string.loc_masjid_agung))
-        )
-        listSliderItemDestination.add(
-            SliderItemDestinationModel(R.drawable.slide4,
+            SliderItemDestinationModel("https://storage.googleapis.com/mandu-in-bucket/landmark_images/monjali.jpg",
             resources.getString(R.string.jogja_kembali),
             resources.getString(R.string.loc_jogja_kembali))
         )
         listSliderItemDestination.add(
-            SliderItemDestinationModel(R.drawable.slide5,
-            resources.getString(R.string.borobudur),
-            resources.getString(R.string.loc_borobudur))
-        )
-        listSliderItemDestination.add(
-            SliderItemDestinationModel(R.drawable.slide6,
+            SliderItemDestinationModel("https://storage.googleapis.com/mandu-in-bucket/landmark_images/prambanan.jpg",
             resources.getString(R.string.prambanan),
             resources.getString(R.string.loc_prambanan))
         )
