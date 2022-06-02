@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:password@35.238.59.47/db_manduin"
+}
+
+model landmark {
+  land_id     Int     @id
+  label       String? @db.VarChar(50)
+  nama        String? @db.VarChar(50)
+  description String? @db.Text
+  Img_Url     String? @db.Text
+  lat         Float?  @db.Float
+  lon         Float?  @db.Float
+  category    String? @db.VarChar(50)
+  city        String? @db.VarChar(50)
+  price       Int?
+  rating      Int?
+}
+
+model wisata {
+  place_id    Int     @id
+  nama        String? @db.VarChar(50)
+  city        String? @db.VarChar(50)
+  provinsi    String? @db.VarChar(50)
+  description String? @db.Text
+  Img_Url     String? @db.Text
+  lat         Float?  @db.Float
+  lon         Float?  @db.Float
+  category    String? @db.VarChar(50)
+  price       Int?
+  rating      Int?
+}
+
+model transaksi {
+  land_id     Int
+  label       String? @db.VarChar(50)
+  place_id    Int
+  nama_wisata String? @db.VarChar(50)
+  img_Url     String? @db.Text
+  lat         Float?  @db.Float
+  lon         Float?  @db.Float
+
+  @@id([land_id, place_id])
+}
