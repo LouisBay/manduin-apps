@@ -35,7 +35,14 @@ class DetailPlaceActivity : AppCompatActivity() {
 
         actionBar()
         loadReview()
+        initComponent()
         observeData()
+    }
+
+    private fun initComponent() {
+        binding.btnAddReview.setOnClickListener {
+            Toast.makeText(applicationContext, resources.getString(R.string.review), Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun observeData() {
@@ -76,15 +83,11 @@ class DetailPlaceActivity : AppCompatActivity() {
 
     private fun actionBar() {
         val btnBack: Button = findViewById(R.id.btn_back)
-        val btnMaps : Button = findViewById(R.id.btn_maps)
 
         btnBack.setOnClickListener {
             super.onBackPressed()
         }
 
-        btnMaps.setOnClickListener {
-            startActivity(Intent(this@DetailPlaceActivity, MapsActivity::class.java))
-        }
     }
 
     private fun loadReview() {
