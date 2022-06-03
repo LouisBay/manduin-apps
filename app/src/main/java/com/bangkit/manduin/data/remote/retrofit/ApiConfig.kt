@@ -23,5 +23,22 @@ class ApiConfig {
 
             return retrofit.create(NewsApiService::class.java)
         }
+
+        fun getManduinApiService(): ManduinApiService {
+            val loggingInterceptor =
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+
+            val client = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .build()
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl(BuildConfig.MANDUIN_BASE_API_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+
+            return retrofit.create(ManduinApiService::class.java)
+        }
     }
 }

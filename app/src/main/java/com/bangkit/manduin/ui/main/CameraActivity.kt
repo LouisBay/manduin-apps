@@ -1,6 +1,7 @@
 package com.bangkit.manduin.ui.main
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ import com.bangkit.manduin.R
 import com.bangkit.manduin.databinding.ActivityCameraBinding
 import com.bangkit.manduin.databinding.ItemSheetLabelCameraBinding
 import com.bangkit.manduin.model.LabelModel
+import com.bangkit.manduin.ui.MapsActivity
 import com.bangkit.manduin.utils.Helper.toPercentage
 import com.bangkit.manduin.utils.Result
 import com.bangkit.manduin.viewmodel.CameraViewModel
@@ -176,7 +178,7 @@ class CameraActivity : AppCompatActivity() {
             if (confidence > 0.9) {
                 layoutAccuracy.visibility = View.VISIBLE
                 pgHorizontal.visibility = View.VISIBLE
-                btnDetailLandmark.visibility = View.VISIBLE
+                btnToMaps.visibility = View.VISIBLE
 
                 tvPercentage.text = confidence.toPercentage()
                 tvLabel.text = label
@@ -190,12 +192,21 @@ class CameraActivity : AppCompatActivity() {
             } else {
                 layoutAccuracy.visibility = View.GONE
                 pgHorizontal.visibility = View.GONE
-                btnDetailLandmark.visibility = View.GONE
+                btnToMaps.visibility = View.GONE
 
                 tvLabel.text = resources.getString(R.string.no_object)
             }
         }
+
+        bindingBottomSheet.btnToMaps.setOnClickListener { toMaps(data) }
     }
+
+    private fun toMaps(data: LabelModel) {
+        Intent(this, MapsActivity::class.java).apply {
+            putExtra(ID_LANDMARK, data.id)
+        }.also { startActivity(it) }
+    }
+
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) loadingDialog.show()
@@ -233,5 +244,6 @@ class CameraActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "CameraActivity"
+        const val ID_LANDMARK = "landmark"
     }
 }

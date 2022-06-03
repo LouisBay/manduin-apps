@@ -58,10 +58,10 @@
         android:progress="80"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_detail_landmark"
+        android:id="@+id/btn_to_maps"
         style="@style/buttonDetailLandmark"
         android:layout_marginTop="16dp"
         android:paddingHorizontal="8dp"
-        android:text="@string/detail_landmark"/>
+        android:text="@string/show_maps"/>
 
 </LinearLayout>

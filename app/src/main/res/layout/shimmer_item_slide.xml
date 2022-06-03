@@ -25,7 +25,7 @@
                 android:layout_width="240dp"
                 android:layout_height="320dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/image_preview"
+                android:background="@color/shimmer"
                 card_view:riv_corner_radius="12dp"
                 card_view:layout_constraintTop_toTopOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
@@ -35,10 +35,10 @@
             <TextView
                 android:id="@+id/place_slider"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="28dp"
                 android:layout_marginTop="8dp"
                 style="@style/sliderPlaceText"
-                android:text="@string/lawang_sewu"
+                android:background="@color/shimmer"
                 card_view:layout_constraintTop_toBottomOf="@id/iv_destination"
                 card_view:layout_constraintStart_toStartOf="@id/iv_destination"
                 card_view:layout_constraintEnd_toEndOf="@id/iv_destination"/>
@@ -46,10 +46,11 @@
             <TextView
                 android:id="@+id/location_slider"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="28dp"
                 android:paddingBottom="8dp"
+                android:layout_marginTop="8dp"
                 style="@style/sliderLocationText"
-                android:text="@string/loc_borobudur"
+                android:background="@color/shimmer"
                 card_view:layout_constraintTop_toBottomOf="@id/place_slider"
                 card_view:layout_constraintStart_toStartOf="@id/iv_destination"
                 card_view:layout_constraintEnd_toEndOf="@id/iv_destination"/>

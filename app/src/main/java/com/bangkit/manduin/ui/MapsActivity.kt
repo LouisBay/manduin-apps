@@ -1,10 +1,17 @@
 package com.bangkit.manduin.ui
 
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.manduin.R
+import com.bangkit.manduin.data.remote.response.LandmarkItem
 import com.bangkit.manduin.databinding.ActivityMapsBinding
+import com.bangkit.manduin.ui.main.CameraActivity
 import com.bangkit.manduin.utils.CustomInfoMarkerMaps
+import com.bangkit.manduin.utils.Result
+import com.bangkit.manduin.viewmodel.MapsViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -12,11 +19,20 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+    private lateinit var loadingDialog: AlertDialog
+
+    private var idLandmark: Int = 0
+    private lateinit var landmark: LandmarkItem
+
+    private val mapsViewModel: MapsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,37 +40,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        // get extra from intent
+        idLandmark = intent.getIntExtra(CameraActivity.ID_LANDMARK, 0)
 
-        binding.btnBack.setOnClickListener {
-            super.onBackPressed()
-        }
+        initComponent()
+
+        loadingDialog.show()
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-        // Add a marker in Sydney and move the camera
-        val udinus = LatLng(-6.983773510311124, 110.41042618605893)
-        mMap.addMarker(
-            MarkerOptions()
-                .position(udinus)
-                .title("Lawang Sewu")
-                .snippet("Alamat")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.logo_marker)))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(udinus, 14F))
 
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.uiSettings.isIndoorLevelPickerEnabled = true
@@ -62,5 +57,64 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isMapToolbarEnabled = true
 
         mMap.setInfoWindowAdapter(CustomInfoMarkerMaps(this))
+
+        observeData()
+    }
+
+
+    private fun initComponent() {
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+
+        binding.btnBack.setOnClickListener { super.onBackPressed() }
+
+        val builder = MaterialAlertDialogBuilder(this)
+            .setView(R.layout.loading_dialog)
+            .setCancelable(false)
+        loadingDialog = builder.create()
+
+    }
+
+    private fun observeData() {
+        mapsViewModel.apply {
+            resultLandmark.observe(this@MapsActivity) { result ->
+                processLandmarkResult(result)
+            }
+        }
+    }
+
+    private fun processLandmarkResult(result: Result<LandmarkItem>?) {
+        when(result) {
+            is Result.Loading -> { showLoading(true) }
+            is Result.Success -> {
+                showLandmarkMarker(result.data)
+                showLoading(false)
+            }
+            is Result.Error -> {
+                Toast.makeText(applicationContext, resources.getString(R.string.failed_get_data_maps), Toast.LENGTH_LONG).show()
+                showLoading(false)
+            }
+            else -> {}
+        }
+    }
+
+    private fun showLandmarkMarker(data: LandmarkItem) {
+        val landmarkLocation = LatLng(data.lat, data.lon)
+
+        mMap.addMarker(
+            MarkerOptions()
+                .position(landmarkLocation)
+                .title(data.nama)
+                .snippet("${data.lat},${data.lon}")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.logo_marker)))
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(landmarkLocation, 14F))
+
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) loadingDialog.show()
+        else loadingDialog.dismiss()
     }
 }

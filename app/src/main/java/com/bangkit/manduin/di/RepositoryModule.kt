@@ -1,6 +1,7 @@
 package com.bangkit.manduin.di
 
 import android.content.Context
+import com.bangkit.manduin.data.remote.retrofit.ManduinApiService
 import com.bangkit.manduin.data.remote.retrofit.NewsApiService
 import com.bangkit.manduin.data.repository.ApiDataRepository
 import com.bangkit.manduin.data.repository.AuthRepository
@@ -22,7 +23,10 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideApiDataRepository(newsApiService: NewsApiService): ApiDataRepository = ApiDataRepository(newsApiService)
+    fun provideApiDataRepository(
+        newsApiService: NewsApiService,
+        manduinApiService: ManduinApiService
+    ): ApiDataRepository = ApiDataRepository(newsApiService, manduinApiService)
 
     @Provides
     @Singleton

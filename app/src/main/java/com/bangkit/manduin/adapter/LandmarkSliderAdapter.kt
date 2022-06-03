@@ -9,11 +9,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.manduin.R
-import com.bangkit.manduin.model.SliderItemDestinationModel
+import com.bangkit.manduin.data.remote.response.LandmarkItem
 import com.bumptech.glide.Glide
 
-class SliderAdapter(private val listSliderItemDestination: ArrayList<SliderItemDestinationModel>, private val viewPager: ViewPager2) :
-    RecyclerView.Adapter<SliderAdapter.SliderViewHolder>() {
+class LandmarkSliderAdapter(private val listSliderItemDestination: ArrayList<LandmarkItem>, private val viewPager: ViewPager2) :
+    RecyclerView.Adapter<LandmarkSliderAdapter.SliderViewHolder>() {
+
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     class SliderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.iv_destination)
@@ -28,12 +34,17 @@ class SliderAdapter(private val listSliderItemDestination: ArrayList<SliderItemD
     }
 
     override fun onBindViewHolder(holder: SliderViewHolder, position: Int) {
-        val listDestionation = listSliderItemDestination[position]
+        val listDestination = listSliderItemDestination[position]
+
         Glide.with(holder.itemView.context)
-            .load(listDestionation.image)
+            .load(listDestination.imgUrl)
             .into(holder.image)
-        holder.place.text = listDestionation.place
-        holder.location.text = listDestionation.location
+
+        holder.place.text = listDestination.nama
+        holder.location.text = listDestination.city
+
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listDestination) }
+
         if (position == listSliderItemDestination.size-1){
             viewPager.post(runnable)
         }
@@ -47,5 +58,9 @@ class SliderAdapter(private val listSliderItemDestination: ArrayList<SliderItemD
     private val runnable = Runnable {
         listSliderItemDestination.addAll(listSliderItemDestination)
         notifyDataSetChanged()
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(landmarkItem: LandmarkItem)
     }
 }

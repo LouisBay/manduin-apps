@@ -19,11 +19,12 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.manduin.*
 import com.bangkit.manduin.adapter.ListNewsAdapter
-import com.bangkit.manduin.adapter.SliderAdapter
+import com.bangkit.manduin.adapter.LandmarkSliderAdapter
+import com.bangkit.manduin.data.remote.response.LandmarkItem
 import com.bangkit.manduin.data.remote.response.NewsItem
 import com.bangkit.manduin.databinding.FragmentHomeBinding
-import com.bangkit.manduin.model.SliderItemDestinationModel
 import com.bangkit.manduin.ui.AllNewsActivity
+import com.bangkit.manduin.ui.DetailPlaceActivity
 import com.bangkit.manduin.utils.Result
 import com.bangkit.manduin.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,8 +40,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var handler : Handler
-    private lateinit var listSliderItemDestination: ArrayList<SliderItemDestinationModel>
-    private lateinit var adapter: SliderAdapter
+    private lateinit var listSliderItemDestination: ArrayList<LandmarkItem>
+    private lateinit var adapter: LandmarkSliderAdapter
     private lateinit var newsAdapter: ListNewsAdapter
 
     private val homeViewModel: HomeViewModel by viewModels()
@@ -56,12 +57,13 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init(view)
+        setViewPagerLandmark()
         setupTransformer()
-        toAllNews()
         setNewsRecyclerView()
+        observerData()
 
         binding.shimmerNews.startShimmer()
+        binding.shimmerLandmark.startShimmer()
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
@@ -70,6 +72,22 @@ class HomeFragment : Fragment() {
                 handler.postDelayed(runnable , 2000)
             }
         })
+
+        binding.tvAllNews.setOnClickListener {
+            startActivity(Intent(requireActivity(), AllNewsActivity::class.java))
+        }
+    }
+
+    private fun observerData() {
+        homeViewModel.apply {
+            resultlistNews.observe(viewLifecycleOwner) { result ->
+                showResultNewsData(result)
+            }
+
+            resultlistLandmark.observe(viewLifecycleOwner) { result ->
+                showResultLandmarkData(result)
+            }
+        }
     }
 
     override fun onPause() {
@@ -102,51 +120,49 @@ class HomeFragment : Fragment() {
         viewPager.setPageTransformer(transformer)
     }
 
-    private fun init(view: View){
-        viewPager = view.findViewById(R.id.vp_destination)
-
+    private fun setViewPagerLandmark(){
         handler = Handler(Looper.myLooper()!!)
         listSliderItemDestination = ArrayList()
 
-        listSliderItemDestination.add(
-            SliderItemDestinationModel("https://storage.googleapis.com/mandu-in-bucket/landmark_images/lawang_sewu.jpg",
-            resources.getString(R.string.lawang_sewu),
-            resources.getString(R.string.loc_lawang_sewu))
-        )
-        listSliderItemDestination.add(
-            SliderItemDestinationModel("https://storage.googleapis.com/mandu-in-bucket/landmark_images/majt.jpg",
-                resources.getString(R.string.masjid_agung),
-                resources.getString(R.string.loc_masjid_agung))
-        )
-        listSliderItemDestination.add(
-            SliderItemDestinationModel("https://storage.googleapis.com/mandu-in-bucket/landmark_images/borobudur.jpg",
-                resources.getString(R.string.borobudur),
-                resources.getString(R.string.loc_borobudur))
-        )
-        listSliderItemDestination.add(
-            SliderItemDestinationModel("https://storage.googleapis.com/mandu-in-bucket/landmark_images/tugu_jogja.jpg",
-            resources.getString(R.string.tugu_jogja),
-            resources.getString(R.string.loc_tugu_jogja))
-        )
-        listSliderItemDestination.add(
-            SliderItemDestinationModel("https://storage.googleapis.com/mandu-in-bucket/landmark_images/monjali.jpg",
-            resources.getString(R.string.jogja_kembali),
-            resources.getString(R.string.loc_jogja_kembali))
-        )
-        listSliderItemDestination.add(
-            SliderItemDestinationModel("https://storage.googleapis.com/mandu-in-bucket/landmark_images/prambanan.jpg",
-            resources.getString(R.string.prambanan),
-            resources.getString(R.string.loc_prambanan))
-        )
-
-        adapter = SliderAdapter(listSliderItemDestination, viewPager)
-
-        viewPager.adapter = adapter
+        viewPager = binding.vpDestination
         viewPager.offscreenPageLimit = 3
         viewPager.clipToPadding = false
         viewPager.clipChildren = false
         viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+
+        homeViewModel.getAllLandmark()
+
     }
+
+    private fun showResultLandmarkData(result: Result<ArrayList<LandmarkItem>>?) {
+        when (result) {
+            is Result.Loading -> { setLandmarkShimmer(true) }
+            is Result.Success -> {
+                listSliderItemDestination = result.data
+                adapter = LandmarkSliderAdapter(listSliderItemDestination, viewPager)
+
+                adapter.setOnItemClickCallback(object : LandmarkSliderAdapter.OnItemClickCallback {
+                    override fun onItemClicked(landmarkItem: LandmarkItem) {
+                        Intent(requireContext(), DetailPlaceActivity::class.java).apply {
+                            putExtra(KEY_LANDMARK, landmarkItem.landId)
+                        }.also { requireActivity().startActivity(it) }
+                    }
+                })
+
+                viewPager.adapter = adapter
+
+                lifecycleScope.launch {
+                    delay(2000L)
+                    setLandmarkShimmer(false)
+                }
+            }
+            is Result.Error -> {
+                Toast.makeText(requireContext(), resources.getString(R.string.error_occured, result.errorMessage), Toast.LENGTH_SHORT).show()
+            }
+            else -> {}
+        }
+    }
+
 
     private fun setNewsRecyclerView() {
         newsAdapter = ListNewsAdapter()
@@ -168,40 +184,27 @@ class HomeFragment : Fragment() {
             }
         })
 
-        loadNews()
+        homeViewModel.getTravelNewsData()
     }
 
-    private fun loadNews() {
-        homeViewModel.getTravelNewsData().observe(viewLifecycleOwner) { result ->
-            showResult(result)
-        }
-    }
-
-    private fun showResult(result: Result<ArrayList<NewsItem>>?) {
+    private fun showResultNewsData(result: Result<ArrayList<NewsItem>>?) {
         when (result) {
-            is Result.Loading -> { setShimmer(true) }
+            is Result.Loading -> { setNewsShimmer(true) }
             is Result.Success -> {
                 lifecycleScope.launch {
                     delay(2000L)
                     newsAdapter.setList(result.data, ListNewsAdapter.TAG_HOME)
-                    setShimmer(false)
+                    setNewsShimmer(false)
                 }
             }
             is Result.Error -> {
                 Toast.makeText(requireContext(), resources.getString(R.string.error_occured, result.errorMessage), Toast.LENGTH_SHORT).show()
-                setShimmer(false)
             }
             else -> {}
         }
     }
 
-    private fun toAllNews() {
-        binding.tvAllNews.setOnClickListener {
-            startActivity(Intent(requireActivity(), AllNewsActivity::class.java))
-        }
-    }
-
-    private fun setShimmer(isLoading: Boolean) {
+    private fun setNewsShimmer(isLoading: Boolean) {
         binding.apply {
             if (isLoading) {
                 shimmerNews.visibility = View.VISIBLE
@@ -213,5 +216,23 @@ class HomeFragment : Fragment() {
                 rvNews.visibility = View.VISIBLE
             }
         }
+    }
+
+    private fun setLandmarkShimmer(isLoading: Boolean) {
+        binding.apply {
+            if (isLoading) {
+                shimmerLandmark.visibility = View.VISIBLE
+                shimmerLandmark.startShimmer()
+                vpDestination.visibility = View.GONE
+            } else {
+                shimmerLandmark.visibility = View.GONE
+                shimmerLandmark.stopShimmer()
+                vpDestination.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    companion object {
+        const val KEY_LANDMARK = "landmark"
     }
 }

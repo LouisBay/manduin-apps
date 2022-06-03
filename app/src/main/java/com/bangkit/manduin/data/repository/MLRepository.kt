@@ -26,6 +26,5 @@ class MLRepository @Inject constructor(
         }
         reader.close()
         emit(labelList)
-        Log.d("TEST", labelList.toString())
     }.flowOn(Dispatchers.IO)
 }

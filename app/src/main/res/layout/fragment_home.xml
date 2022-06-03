@@ -48,6 +48,33 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/greetings2"/>
 
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_landmark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="16dp"
+                        android:paddingHorizontal="8dp"
+                        android:orientation="horizontal">
+
+                        <include
+                            layout="@layout/shimmer_item_slide"/>
+                        <include
+                            layout="@layout/shimmer_item_slide"/>
+                        <include
+                            layout="@layout/shimmer_item_slide"/>
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_destination"
                 android:layout_width="match_parent"

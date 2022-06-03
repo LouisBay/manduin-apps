@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.DetailLandmarkActivity">
+    tools:context=".ui.DetailPlaceActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -30,9 +30,9 @@
             android:layout_height="wrap_content">
 
             <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/iv_landmark"
+                android:id="@+id/iv_detail"
                 android:layout_width="match_parent"
-                android:layout_height="264dp"
+                android:layout_height="wrap_content"
                 app:riv_corner_radius="12dp"
                 android:src="@drawable/image_preview"
                 android:scaleType="centerCrop"
@@ -45,11 +45,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Description"
+                android:text="@string/description"
                 android:textSize="18sp"
                 android:textColor="@color/dark_blue"
                 android:fontFamily="@font/poppins_bold"
-                app:layout_constraintTop_toBottomOf="@id/iv_landmark"
+                app:layout_constraintTop_toBottomOf="@id/iv_detail"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.cardview.widget.CardView
@@ -69,7 +69,8 @@
                     android:padding="16dp"
                     style="@style/descriptionLandmarkText"
                     android:justificationMode="inter_word"
-                    android:text="@string/desc_landmark"/>
+                    android:text="@string/desc_landmark"
+                    tools:targetApi="o" />
             </androidx.cardview.widget.CardView>
 
             <TextView

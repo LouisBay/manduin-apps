@@ -1,5 +1,7 @@
 package com.bangkit.manduin.data.repository
 
+import com.bangkit.manduin.data.remote.response.LandmarkItem
+import com.bangkit.manduin.data.remote.retrofit.ManduinApiService
 import com.bangkit.manduin.data.remote.retrofit.NewsApiService
 import com.bangkit.manduin.utils.Result
 import kotlinx.coroutines.Dispatchers
@@ -9,7 +11,8 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class ApiDataRepository @Inject constructor(
-    private val newsApiService: NewsApiService
+    private val newsApiService: NewsApiService,
+    private val manduinApiService: ManduinApiService
 ) {
     fun getTravelNewsData() = flow {
         emit(Result.Loading)
@@ -19,4 +22,22 @@ class ApiDataRepository @Inject constructor(
         }
     }.catch { emit(Result.Error(it.localizedMessage?.toString() ?: it.message.toString()))
     }.flowOn(Dispatchers.IO)
+
+
+    fun getAllLandmark() = flow {
+        emit(Result.Loading)
+        manduinApiService.getAllLandmark().let {
+            if (it.data != null) emit(Result.Success(it.data))
+        }
+    }.catch { emit(Result.Error(it.localizedMessage?.toString() ?: it.message.toString()))
+    }.flowOn(Dispatchers.IO)
+
+    fun getLandmarkDetail(id: Int) = flow {
+        emit(Result.Loading)
+        manduinApiService.getLandmarkDetail(id).let {
+            if (it != null) emit(Result.Success(it))
+        }
+    }.catch { emit(Result.Error(it.localizedMessage?.toString() ?: it.message.toString()))
+    }.flowOn(Dispatchers.IO)
+
 }
