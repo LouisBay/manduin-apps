@@ -4,7 +4,6 @@ import com.bangkit.manduin.R
 import com.bangkit.manduin.model.FavoriteModel
 import com.bangkit.manduin.model.ProvinceModel
 import com.bangkit.manduin.model.ReviewModel
-import com.bangkit.manduin.model.TourismModel
 
 object DataDummy {
 
@@ -18,25 +17,25 @@ object DataDummy {
         )
         province.add(
             ProvinceModel(
-                "Special Capital Region of Jakarta" ,
+                "DKI Jakarta" ,
                 "https://3.bp.blogspot.com/-7b4VZpjgzYY/Vtg760Lzl0I/AAAAAAAAAcQ/zR2WA1flHQE/s320/12.jpg" ,
             )
         )
         province.add(
             ProvinceModel(
-                "West Java" ,
+                "Jawa Barat" ,
                 "https://4.bp.blogspot.com/-0WDb4S7MAJk/Vtg-XO97dzI/AAAAAAAAAcc/wvn5vJw4q08/s320/13.jpg" ,
             )
         )
         province.add(
             ProvinceModel(
-                "Central Java" ,
+                "Jawa Tengah" ,
                 "https://4.bp.blogspot.com/-9cTRtgqoLFs/Vtg_nBNs6yI/AAAAAAAAAco/--c_jgDGJD8/s320/14.jpg" ,
             )
         )
         province.add(
             ProvinceModel(
-                "Special Region of Yogyakarta" ,
+                "Daerah Istimewa Yogyakarta" ,
                 "https://1.bp.blogspot.com/-hWy5xW9JIG0/VthAcu4vKXI/AAAAAAAAAc0/jSZLyHgL1kM/s320/15.jpg" ,
             )
         )
@@ -105,100 +104,5 @@ object DataDummy {
         )
 
         return review
-    }
-
-    fun generateDummyTourism() : ArrayList<TourismModel> {
-        val tourism = ArrayList<TourismModel>()
-        tourism.add(
-            TourismModel(
-                "Central Java" ,
-                "Lawang Sewu" ,
-                "Semarang, Central Java" ,
-                "Description",
-                R.drawable.slide1
-            )
-        )
-
-        tourism.add(
-            TourismModel(
-                "Central Java" ,
-                "Borobudur Temple" ,
-                "Magelang, Central Java" ,
-                "Description",
-                R.drawable.slide5
-            )
-        )
-
-        tourism.add(
-            TourismModel(
-                "Central Java" ,
-                "Place" ,
-                "Location" ,
-                "Description",
-                R.drawable.image_preview
-            )
-        )
-
-        tourism.add(
-            TourismModel(
-                "Central Java" ,
-                "Place" ,
-                "Location" ,
-                "Description",
-                R.drawable.image_preview
-            )
-        )
-
-        tourism.add(
-            TourismModel(
-                "Central Java" ,
-                "Place" ,
-                "Location" ,
-                "Description",
-                R.drawable.image_preview
-            )
-        )
-
-        tourism.add(
-            TourismModel(
-                "Special Region of Yogyakarta" ,
-                "Prambanan Temple" ,
-                "Sleman, Yogyakarta" ,
-                "Description",
-                R.drawable.slide6
-            )
-        )
-
-        tourism.add(
-            TourismModel(
-                "Special Region of Yogyakarta" ,
-                "Jogja Monument" ,
-                "Yogyakarta" ,
-                "Description",
-                R.drawable.slide2
-            )
-        )
-
-        tourism.add(
-            TourismModel(
-                "Special Region of Yogyakarta" ,
-                "Place" ,
-                "Location" ,
-                "Description",
-                R.drawable.image_preview
-            )
-        )
-
-        tourism.add(
-            TourismModel(
-                "Special Region of Yogyakarta" ,
-                "Jogja Monument" ,
-                "Yogyakarta" ,
-                "Description",
-                R.drawable.slide2
-            )
-        )
-
-        return tourism
     }
 }

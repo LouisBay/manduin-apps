@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.TourismActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+        <include
+            android:id="@+id/action_bar"
+            layout="@layout/custom_action_bar_back"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_news"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="8dp"
+                android:orientation="vertical">
+
+                <include layout="@layout/shimmer_item_row_tourism"/>
+                <include layout="@layout/shimmer_item_row_tourism"/>
+                <include layout="@layout/shimmer_item_row_tourism"/>
+                <include layout="@layout/shimmer_item_row_tourism"/>
+                <include layout="@layout/shimmer_item_row_tourism"/>
+                <include layout="@layout/shimmer_item_row_tourism"/>
+                <include layout="@layout/shimmer_item_row_tourism"/>
+                <include layout="@layout/shimmer_item_row_tourism"/>
+                <include layout="@layout/shimmer_item_row_tourism"/>
+                <include layout="@layout/shimmer_item_row_tourism"/>
+            </LinearLayout>
+
+        </ScrollView>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_tourism"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="8dp"
+        android:clipToPadding="false"
+        android:visibility="gone"
+        tools:listitem="@layout/item_row_tourism"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
