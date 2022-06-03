@@ -27,6 +27,11 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.MyApp.Button.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
     <style name="headerText">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/dark_blue</item>
@@ -263,11 +268,6 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/dark_blue</item>
         <item name="fontFamily">@font/poppins_bold</item>
-    </style>
-
-    <style name="ShapeAppearanceOverlay.MyApp.Button.Circle" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
     </style>
 
 </resources>

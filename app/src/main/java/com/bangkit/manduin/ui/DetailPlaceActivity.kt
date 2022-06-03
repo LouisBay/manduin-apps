@@ -1,6 +1,7 @@
 package com.bangkit.manduin.ui
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -17,6 +18,10 @@ import com.bangkit.manduin.utils.Result
 import com.bangkit.manduin.viewmodel.DetailViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailPlaceActivity : AppCompatActivity() {
@@ -40,8 +45,17 @@ class DetailPlaceActivity : AppCompatActivity() {
     }
 
     private fun initComponent() {
+        binding.btnMaps.setOnClickListener {
+            startActivity(Intent(this@DetailPlaceActivity, MapsActivity::class.java))
+        }
+
+        binding.btnDirections.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?daddr=-6.98389,110.4104"))
+            startActivity(intent)
+        }
         binding.btnAddReview.setOnClickListener {
-            Toast.makeText(applicationContext, resources.getString(R.string.review), Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, resources.getString(R.string.toast_review), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -68,9 +82,13 @@ class DetailPlaceActivity : AppCompatActivity() {
     }
 
     private fun parseData(data: LandmarkItem) {
+        val rating = data.rating
+        val ratingResult = rating/10f
+
         binding.apply {
             actionBar.tvTitle.text = data.nama
             tvDescLandmark.text = data.description
+            tvRating.text = ratingResult.toString()
 
             Glide.with(applicationContext)
                 .load(data.imgUrl)
@@ -78,6 +96,13 @@ class DetailPlaceActivity : AppCompatActivity() {
                 .error(R.drawable.image_preview)
                 .centerCrop()
                 .into(ivDetail)
+
+            CoroutineScope(Dispatchers.Default).launch {
+                for (i in 1 until rating + 1) {
+                    ratingBar.progress = i
+                    delay(5)
+                }
+            }
         }
     }
 
