@@ -18,6 +18,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -83,7 +84,7 @@
 
             <TextView
                 android:id="@+id/tv_rating"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="8dp"
@@ -101,7 +102,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginStart="8dp"
                 android:scaleX=".8"
                 android:scaleY=".8"
                 android:transformPivotX="0dp"
@@ -210,4 +210,36 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp">
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:orientation="vertical"
+                android:paddingVertical="16dp"
+                android:background="@color/white">
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:background="@color/shimmer"/>
+            </LinearLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:clipToPadding="false"
+            android:scrollbars="none">
+            <include layout="@layout/shimmer_detail_place"/>
+        </ScrollView>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 </LinearLayout>

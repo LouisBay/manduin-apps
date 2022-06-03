@@ -24,6 +24,7 @@ class MLRepository @Inject constructor(
                 labelList.add(LabelModel(label[0], label[1], label[2].toInt()))
             }
         }
+
         reader.close()
         emit(labelList)
     }.flowOn(Dispatchers.IO)

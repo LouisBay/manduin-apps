@@ -1,8 +1,10 @@
 package com.bangkit.manduin.utils
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
+import android.location.Geocoder
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
@@ -10,6 +12,7 @@ import androidx.camera.core.ImageProxy
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.nio.ByteBuffer
+import java.util.*
 
 object Helper {
 
@@ -56,5 +59,15 @@ object Helper {
             matrix,
             false
         )
+    }
+
+    fun generateAddressFromLocation(lat: Double, lon: Double, context: Context): String {
+        val geocoder = Geocoder(context, Locale.getDefault())
+        val addresses = geocoder.getFromLocation(lat, lon, 1)
+        return addresses[0].getAddressLine(0)
+    }
+
+    fun parseSnippet(snippets: String) : List<String> {
+        return snippets.split("|")
     }
 }

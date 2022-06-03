@@ -16,21 +16,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.bangkit.manduin.R
 import com.bangkit.manduin.databinding.ActivityCameraBinding
 import com.bangkit.manduin.databinding.ItemSheetLabelCameraBinding
 import com.bangkit.manduin.model.LabelModel
 import com.bangkit.manduin.ui.MapsActivity
+import com.bangkit.manduin.utils.Constant
 import com.bangkit.manduin.utils.Helper.toPercentage
 import com.bangkit.manduin.utils.Result
 import com.bangkit.manduin.viewmodel.CameraViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 @AndroidEntryPoint
 class CameraActivity : AppCompatActivity() {
@@ -183,9 +182,11 @@ class CameraActivity : AppCompatActivity() {
                 tvPercentage.text = confidence.toPercentage()
                 tvLabel.text = label
 
-                CoroutineScope(Dispatchers.Default).launch {
+                lifecycleScope.launch(Dispatchers.Default) {
                     for (i in 1 until forProgress + 1) {
-                        bindingBottomSheet.pgHorizontal.progress = i
+                        withContext(Dispatchers.Main) {
+                            bindingBottomSheet.pgHorizontal.progress = i
+                        }
                         delay(5)
                     }
                 }
@@ -203,7 +204,7 @@ class CameraActivity : AppCompatActivity() {
 
     private fun toMaps(data: LabelModel) {
         Intent(this, MapsActivity::class.java).apply {
-            putExtra(ID_LANDMARK, data.id)
+            putExtra(Constant.TAG_LANDMARK, data.id)
         }.also { startActivity(it) }
     }
 
@@ -244,6 +245,5 @@ class CameraActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "CameraActivity"
-        const val ID_LANDMARK = "landmark"
     }
 }

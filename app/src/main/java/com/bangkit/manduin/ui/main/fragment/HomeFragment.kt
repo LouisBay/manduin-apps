@@ -25,6 +25,7 @@ import com.bangkit.manduin.data.remote.response.NewsItem
 import com.bangkit.manduin.databinding.FragmentHomeBinding
 import com.bangkit.manduin.ui.AllNewsActivity
 import com.bangkit.manduin.ui.DetailPlaceActivity
+import com.bangkit.manduin.utils.Constant
 import com.bangkit.manduin.utils.Result
 import com.bangkit.manduin.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -144,7 +145,8 @@ class HomeFragment : Fragment() {
                 adapter.setOnItemClickCallback(object : LandmarkSliderAdapter.OnItemClickCallback {
                     override fun onItemClicked(landmarkItem: LandmarkItem) {
                         Intent(requireContext(), DetailPlaceActivity::class.java).apply {
-                            putExtra(KEY_LANDMARK, landmarkItem.landId)
+                            putExtra(Constant.EXTRA_DETAIL, Constant.TAG_LANDMARK)
+                            putExtra(Constant.TAG_LANDMARK, landmarkItem.landId)
                         }.also { requireActivity().startActivity(it) }
                     }
                 })
@@ -230,9 +232,5 @@ class HomeFragment : Fragment() {
                 vpDestination.visibility = View.VISIBLE
             }
         }
-    }
-
-    companion object {
-        const val KEY_LANDMARK = "landmark"
     }
 }

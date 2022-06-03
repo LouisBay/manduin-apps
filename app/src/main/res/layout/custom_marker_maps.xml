@@ -5,11 +5,10 @@
     android:id="@+id/card_view"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="64dp"
     card_view:cardCornerRadius="8dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -36,7 +35,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Places"/>
+                            android:text="@string/lawang_sewu"/>
 
                         <TextView
                             android:id="@+id/tv_location"
@@ -45,7 +44,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:layout_marginBottom="8dp"
-                            android:text="Location" />
+                            android:maxLines="2"
+                            android:text="@string/loc_borobudur" />
                 </LinearLayout>
         </LinearLayout>
 </androidx.cardview.widget.CardView>

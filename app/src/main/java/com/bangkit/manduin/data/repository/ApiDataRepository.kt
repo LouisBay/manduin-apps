@@ -40,4 +40,19 @@ class ApiDataRepository @Inject constructor(
     }.catch { emit(Result.Error(it.localizedMessage?.toString() ?: it.message.toString()))
     }.flowOn(Dispatchers.IO)
 
+    fun getTourismPlaceDetail(id: Int) = flow {
+        emit(Result.Loading)
+        manduinApiService.getTourismPlaceDetail(id).let {
+            if (it != null) emit(Result.Success(it))
+        }
+    }.catch { emit(Result.Error(it.localizedMessage?.toString() ?: it.message.toString()))
+    }.flowOn(Dispatchers.IO)
+
+    fun getNearestTourismLocFromLandmark(label: String) = flow {
+        emit(Result.Loading)
+        manduinApiService.getNearestTourismLocFromLandmark(label).let {
+            if (it.data != null) emit(Result.Success(it.data))
+        }
+    }.catch { emit(Result.Error(it.localizedMessage?.toString() ?: it.message.toString()))
+    }.flowOn(Dispatchers.IO)
 }
