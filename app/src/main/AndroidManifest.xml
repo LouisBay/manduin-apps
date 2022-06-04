@@ -38,8 +38,7 @@
             android:theme="@style/SplashTheme" />
         <activity
             android:name=".ui.DetailPlaceActivity"
-            android:exported="false"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:exported="false" />
         <activity
             android:name=".ui.main.CameraActivity"
             android:exported="false" />

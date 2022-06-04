@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:windowSoftInputMode="stateHidden|adjustPan"
     tools:context=".ui.DetailPlaceActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -40,6 +41,45 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_bookmark"
+                style="@style/buttonBookmarkDetail"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintTop_toTopOf="@id/iv_detail"
+                app:layout_constraintEnd_toEndOf="@id/iv_detail"
+                app:icon="@drawable/bookmarked"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_centerHorizontal="true"
+                android:text="Category"
+                android:clickable="false"
+                app:chipBackgroundColor="@color/chip"
+                android:textAppearance="@style/chipText"
+                app:layout_constraintTop_toBottomOf="@id/iv_detail"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_category_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_centerHorizontal="true"
+                android:text="Category"
+                android:clickable="false"
+                app:chipBackgroundColor="@color/chip"
+                android:textAppearance="@style/chipText"
+                app:layout_constraintTop_toBottomOf="@id/iv_detail"
+                app:layout_constraintStart_toEndOf="@id/chip_category"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_maps"
@@ -92,7 +132,7 @@
                 android:textSize="24sp"
                 android:textColor="@color/dark_blue"
                 android:fontFamily="@font/poppins_semi_bold"
-                app:layout_constraintTop_toBottomOf="@id/iv_detail"
+                app:layout_constraintTop_toBottomOf="@id/chip_category"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="@id/rating_bar"/>
 
@@ -113,7 +153,7 @@
                 android:progressTint="@color/star"
                 android:secondaryProgressTint="@color/star"
                 android:layout_toEndOf="@id/tv_rating"
-                app:layout_constraintTop_toBottomOf="@id/iv_detail"
+                app:layout_constraintTop_toBottomOf="@id/chip_category"
                 app:layout_constraintStart_toEndOf="@id/tv_rating"/>
 
             <TextView

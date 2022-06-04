@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -113,6 +114,8 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
             btnDirections.visibility = View.GONE
             actionBar.tvTitle.text = data.nama
             tvDescLandmark.text = data.description
+            chipCategory.text = resources.getString(R.string.landmark)
+            chipCategoryPlace.text = data.category
             tvAddress.text = Helper.generateAddressFromLocation(data.lat, data.lon, applicationContext)
 
             Glide.with(applicationContext)
@@ -145,6 +148,9 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
             btnDirections.visibility = View.VISIBLE
             actionBar.tvTitle.text = data.nama
             tvDescLandmark.text = data.description
+            chipCategory.text = resources.getString(R.string.tourism)
+            chipCategoryPlace.text = data.category
+            tvAddress.text = Helper.generateAddressFromLocation(data.lat, data.lon, applicationContext)
 
             Glide.with(applicationContext)
                 .load(data.imgUrl)
@@ -169,11 +175,12 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun actionBar() {
         val btnBack: Button = findViewById(R.id.btn_back)
+        val titleMarquee: TextView = findViewById(R.id.tv_title)
+        titleMarquee.isSelected = true
 
         btnBack.setOnClickListener {
             super.onBackPressed()
         }
-
     }
 
     private fun loadReview() {

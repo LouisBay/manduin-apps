@@ -105,6 +105,8 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="toast_review">Review is under development</string>
     <string name="review">Review</string>
+    <string name="landmark">Landmark</string>
+    <string name="tourism">Wisata</string>
 
     <!--    String On Camera Activity-->
     <string name="camera_failed">Failed to show camera</string>
