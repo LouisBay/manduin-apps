@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.TourismActivity">
+    tools:context=".ui.tourism.TourismActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -17,7 +17,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_news"
+        android:id="@+id/shimmer_tourism"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?actionBarSize">
@@ -32,16 +32,16 @@
                 android:paddingHorizontal="8dp"
                 android:orientation="vertical">
 
-                <include layout="@layout/shimmer_item_row_tourism"/>
-                <include layout="@layout/shimmer_item_row_tourism"/>
-                <include layout="@layout/shimmer_item_row_tourism"/>
-                <include layout="@layout/shimmer_item_row_tourism"/>
-                <include layout="@layout/shimmer_item_row_tourism"/>
-                <include layout="@layout/shimmer_item_row_tourism"/>
-                <include layout="@layout/shimmer_item_row_tourism"/>
-                <include layout="@layout/shimmer_item_row_tourism"/>
-                <include layout="@layout/shimmer_item_row_tourism"/>
-                <include layout="@layout/shimmer_item_row_tourism"/>
+                <include layout="@layout/shimmer_item_row_news"/>
+                <include layout="@layout/shimmer_item_row_news"/>
+                <include layout="@layout/shimmer_item_row_news"/>
+                <include layout="@layout/shimmer_item_row_news"/>
+                <include layout="@layout/shimmer_item_row_news"/>
+                <include layout="@layout/shimmer_item_row_news"/>
+                <include layout="@layout/shimmer_item_row_news"/>
+                <include layout="@layout/shimmer_item_row_news"/>
+                <include layout="@layout/shimmer_item_row_news"/>
+                <include layout="@layout/shimmer_item_row_news"/>
             </LinearLayout>
 
         </ScrollView>
@@ -57,5 +57,18 @@
         android:clipToPadding="false"
         android:visibility="gone"
         tools:listitem="@layout/item_row_tourism"/>
+
+    <TextView
+        android:id="@+id/tv_available_soon"
+        style="@style/emailText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/available_soon"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

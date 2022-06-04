@@ -21,7 +21,7 @@ import com.bangkit.manduin.R
 import com.bangkit.manduin.databinding.ActivityCameraBinding
 import com.bangkit.manduin.databinding.ItemSheetLabelCameraBinding
 import com.bangkit.manduin.model.LabelModel
-import com.bangkit.manduin.ui.MapsActivity
+import com.bangkit.manduin.ui.maps.MapsActivity
 import com.bangkit.manduin.utils.Constant
 import com.bangkit.manduin.utils.Helper.toPercentage
 import com.bangkit.manduin.utils.Result

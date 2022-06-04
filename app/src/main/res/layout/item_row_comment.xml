@@ -44,13 +44,13 @@
             card_view:layout_constraintBottom_toBottomOf="@id/iv_user"/>
 
         <TextView
-            android:id="@+id/tv_review"
+            android:id="@+id/tv_comment"
             style="@style/reviewText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
-            android:text="Review"
+            android:text="Comment"
             card_view:layout_constraintTop_toBottomOf="@+id/iv_user"
             card_view:layout_constraintStart_toStartOf="@+id/iv_user"
             card_view:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
             android:text="24/05/2022"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_review"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_comment"
             card_view:layout_constraintStart_toStartOf="@+id/iv_user"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintBottom_toBottomOf="parent"

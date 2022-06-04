@@ -126,7 +126,7 @@
         <item name="fontFamily">@font/poppins_semi_bold</item>
     </style>
 
-    <style name="buttonAddReview">
+    <style name="buttonAddComment">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">56dp</item>
         <item name="backgroundTint">@color/light_blue_200</item>

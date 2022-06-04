@@ -1,6 +1,5 @@
 package com.bangkit.manduin.data.repository
 
-import com.bangkit.manduin.data.remote.response.LandmarkItem
 import com.bangkit.manduin.data.remote.retrofit.ManduinApiService
 import com.bangkit.manduin.data.remote.retrofit.NewsApiService
 import com.bangkit.manduin.utils.Result
@@ -8,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import retrofit2.HttpException
 import javax.inject.Inject
 
 class ApiDataRepository @Inject constructor(
@@ -54,5 +54,19 @@ class ApiDataRepository @Inject constructor(
             if (it.data != null) emit(Result.Success(it.data))
         }
     }.catch { emit(Result.Error(it.localizedMessage?.toString() ?: it.message.toString()))
+    }.flowOn(Dispatchers.IO)
+
+    fun getTourismPlaceAtProvince(search: String) = flow {
+        emit(Result.Loading)
+        try {
+            manduinApiService.getTourismPlaceAtProvince(search).let {
+                if (it.data != null) emit(Result.Success(it.data))
+            }
+        } catch (e: HttpException) {
+            val message = String.format("%s|%s", (e.localizedMessage?.toString() ?: e.message.toString()), e.code())
+            emit(Result.Error(message))
+        } catch (e: Exception) {
+            emit(Result.Error(e.localizedMessage?.toString() ?: e.message.toString()))
+        }
     }.flowOn(Dispatchers.IO)
 }

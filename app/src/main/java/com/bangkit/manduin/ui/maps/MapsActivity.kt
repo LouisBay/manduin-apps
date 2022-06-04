@@ -1,4 +1,4 @@
-package com.bangkit.manduin.ui
+package com.bangkit.manduin.ui.maps
 
 import android.Manifest
 import android.content.Intent
@@ -18,7 +18,7 @@ import com.bangkit.manduin.R
 import com.bangkit.manduin.data.remote.response.LandmarkItem
 import com.bangkit.manduin.data.remote.response.MapsTourismPlaceItem
 import com.bangkit.manduin.databinding.ActivityMapsBinding
-import com.bangkit.manduin.ui.main.CameraActivity
+import com.bangkit.manduin.ui.detail.DetailPlaceActivity
 import com.bangkit.manduin.utils.Constant
 import com.bangkit.manduin.utils.CustomInfoMarkerMaps
 import com.bangkit.manduin.utils.Helper

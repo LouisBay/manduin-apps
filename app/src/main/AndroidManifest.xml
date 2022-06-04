@@ -21,10 +21,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name=".ui.TourismActivity"
+            android:name=".ui.tourism.TourismActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.AllNewsActivity"
+            android:name=".ui.news.AllNewsActivity"
             android:exported="false" />
 
         <meta-data
@@ -32,12 +32,12 @@
             android:value="AIzaSyAcGL64H6dBzyvWxF6m3AlB5hsd78mL9P8" />
 
         <activity
-            android:name=".ui.MapsActivity"
+            android:name=".ui.maps.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps"
             android:theme="@style/SplashTheme" />
         <activity
-            android:name=".ui.DetailPlaceActivity"
+            android:name=".ui.detail.DetailPlaceActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.CameraActivity"

@@ -1,9 +1,6 @@
 package com.bangkit.manduin.data.remote.retrofit
 
-import com.bangkit.manduin.data.remote.response.LandmarkItem
-import com.bangkit.manduin.data.remote.response.LandmarkResponse
-import com.bangkit.manduin.data.remote.response.TourismPlaceItem
-import com.bangkit.manduin.data.remote.response.WisataMapsResponse
+import com.bangkit.manduin.data.remote.response.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -25,4 +22,9 @@ interface ManduinApiService {
     suspend fun getNearestTourismLocFromLandmark(
         @Path("label") label: String
     ) : WisataMapsResponse
+
+    @GET("/provinsi/{search}")
+    suspend fun getTourismPlaceAtProvince(
+        @Path("search") search: String
+    ) : TourismPlaceResponse
 }

@@ -1,11 +1,14 @@
 package com.bangkit.manduin.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.manduin.databinding.ItemRowProvinceBinding
 import com.bangkit.manduin.model.ProvinceModel
+import com.bangkit.manduin.ui.tourism.TourismActivity
+import com.bangkit.manduin.utils.Constant
 import com.bumptech.glide.Glide
 import java.util.ArrayList
 
@@ -27,6 +30,14 @@ class ListProvinceAdapter : RecyclerView.Adapter<ListProvinceAdapter.ItemTarget>
                 .centerCrop()
                 .into(binding.ivProvince)
             binding.tvProvince.text = model.province
+
+            binding.root.setOnClickListener {
+                Intent(itemView.context, TourismActivity::class.java).apply {
+                    putExtra(Constant.EXTRA_PROVINCE, model.province)
+                }.also { intent ->
+                    it.context.startActivity(intent)
+                }
+            }
         }
     }
 

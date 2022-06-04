@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.manduin.databinding.ItemRowReviewBinding
+import com.bangkit.manduin.databinding.ItemRowCommentBinding
 import com.bangkit.manduin.model.ReviewModel
 import com.bumptech.glide.Glide
 import java.util.ArrayList
 
-class ListReviewAdapter : RecyclerView.Adapter<ListReviewAdapter.ItemTarget>() {
+class ListCommentAdapter : RecyclerView.Adapter<ListCommentAdapter.ItemTarget>() {
     private val listReview = ArrayList<ReviewModel>()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -19,7 +19,7 @@ class ListReviewAdapter : RecyclerView.Adapter<ListReviewAdapter.ItemTarget>() {
         notifyDataSetChanged()
     }
 
-    inner class ItemTarget(private val binding : ItemRowReviewBinding) :
+    inner class ItemTarget(private val binding : ItemRowCommentBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(model : ReviewModel) {
             Glide.with(itemView.context)
@@ -27,14 +27,14 @@ class ListReviewAdapter : RecyclerView.Adapter<ListReviewAdapter.ItemTarget>() {
                 .circleCrop()
                 .into(binding.ivUser)
             binding.tvUser.text = model.name
-            binding.tvReview.text = model.review
+            binding.tvComment.text = model.review
             binding.tvDate.text = model.date
         }
     }
 
     override fun onCreateViewHolder(parent : ViewGroup, viewType : Int) : ItemTarget {
         return ItemTarget(
-            ItemRowReviewBinding.inflate(
+            ItemRowCommentBinding.inflate(
                 LayoutInflater.from(parent.context) ,
                 parent ,
                 false

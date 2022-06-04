@@ -1,4 +1,4 @@
-package com.bangkit.manduin.ui
+package com.bangkit.manduin.ui.detail
 
 import android.content.Intent
 import android.net.Uri
@@ -12,10 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.manduin.R
-import com.bangkit.manduin.adapter.ListReviewAdapter
+import com.bangkit.manduin.adapter.ListCommentAdapter
 import com.bangkit.manduin.data.remote.response.LandmarkItem
 import com.bangkit.manduin.data.remote.response.TourismPlaceItem
 import com.bangkit.manduin.databinding.ActivityDetailPlaceBinding
+import com.bangkit.manduin.ui.maps.MapsActivity
 import com.bangkit.manduin.utils.Constant
 import com.bangkit.manduin.utils.DataDummy
 import com.bangkit.manduin.utils.Helper
@@ -33,7 +34,7 @@ import kotlinx.coroutines.withContext
 class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityDetailPlaceBinding
-    private lateinit var reviewAdapter: ListReviewAdapter
+    private lateinit var reviewAdapter: ListCommentAdapter
     private var idItem: Int = 0
     private var tag: String = ""
     private lateinit var location: LatLng
@@ -64,7 +65,7 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
     private fun initComponent() {
         binding.btnMaps.setOnClickListener(this)
         binding.btnDirections.setOnClickListener(this)
-        binding.btnAddReview.setOnClickListener(this)
+        binding.btnAddComment.setOnClickListener(this)
     }
 
     private fun observeData() {
@@ -184,9 +185,9 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun loadReview() {
-        reviewAdapter = ListReviewAdapter()
-        binding.rvReview.layoutManager = LinearLayoutManager(this)
-        binding.rvReview.adapter = reviewAdapter
+        reviewAdapter = ListCommentAdapter()
+        binding.rvComment.layoutManager = LinearLayoutManager(this)
+        binding.rvComment.adapter = reviewAdapter
         val listReview = DataDummy.generateDummyReview()
         reviewAdapter.setList(listReview)
     }
@@ -203,7 +204,7 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 val uriString = StringBuilder("http://maps.google.com/maps?daddr=").append("${location.latitude},${location.longitude}")
                 Intent(Intent.ACTION_VIEW, Uri.parse(uriString.toString())).also { startActivity(it) }
             }
-            R.id.btn_add_review -> {
+            R.id.btn_add_comment -> {
                 Toast.makeText(applicationContext, resources.getString(R.string.toast_review), Toast.LENGTH_SHORT).show()
             }
         }

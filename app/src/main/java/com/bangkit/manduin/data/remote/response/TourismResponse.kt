@@ -79,6 +79,12 @@ data class MapsTourismPlaceItem(
 	val imgUrl: String
 )
 
+data class TourismPlaceResponse(
+
+	@field:SerializedName("data")
+	val data: ArrayList<TourismPlaceItem>? = null,
+)
+
 data class TourismPlaceItem(
 
 	@field:SerializedName("place_id")

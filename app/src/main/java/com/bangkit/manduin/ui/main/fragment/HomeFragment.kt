@@ -23,8 +23,8 @@ import com.bangkit.manduin.adapter.LandmarkSliderAdapter
 import com.bangkit.manduin.data.remote.response.LandmarkItem
 import com.bangkit.manduin.data.remote.response.NewsItem
 import com.bangkit.manduin.databinding.FragmentHomeBinding
-import com.bangkit.manduin.ui.AllNewsActivity
-import com.bangkit.manduin.ui.DetailPlaceActivity
+import com.bangkit.manduin.ui.news.AllNewsActivity
+import com.bangkit.manduin.ui.detail.DetailPlaceActivity
 import com.bangkit.manduin.utils.Constant
 import com.bangkit.manduin.utils.Result
 import com.bangkit.manduin.viewmodel.HomeViewModel

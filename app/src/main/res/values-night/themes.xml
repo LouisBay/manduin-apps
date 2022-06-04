@@ -92,7 +92,7 @@
         <item name="android:textColor">@color/red</item>
     </style>
 
-    <style name="buttonAddReview">
+    <style name="buttonAddComment">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">64dp</item>
         <item name="cornerRadius">8dp</item>

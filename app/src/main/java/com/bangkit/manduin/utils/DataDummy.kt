@@ -11,6 +11,18 @@ object DataDummy {
         val province = ArrayList<ProvinceModel>()
         province.add(
             ProvinceModel(
+                "Jawa Tengah" ,
+                "https://4.bp.blogspot.com/-9cTRtgqoLFs/Vtg_nBNs6yI/AAAAAAAAAco/--c_jgDGJD8/s320/14.jpg" ,
+            )
+        )
+        province.add(
+            ProvinceModel(
+                "Daerah Istimewa Yogyakarta" ,
+                "https://1.bp.blogspot.com/-hWy5xW9JIG0/VthAcu4vKXI/AAAAAAAAAc0/jSZLyHgL1kM/s320/15.jpg" ,
+            )
+        )
+        province.add(
+            ProvinceModel(
                 "Banten" ,
                 "https://4.bp.blogspot.com/-I2CdF3zBl64/Vtg65QUXa1I/AAAAAAAAAcE/wkhf7Ec2FNo/s320/11.jpg" ,
             )
@@ -29,19 +41,7 @@ object DataDummy {
         )
         province.add(
             ProvinceModel(
-                "Jawa Tengah" ,
-                "https://4.bp.blogspot.com/-9cTRtgqoLFs/Vtg_nBNs6yI/AAAAAAAAAco/--c_jgDGJD8/s320/14.jpg" ,
-            )
-        )
-        province.add(
-            ProvinceModel(
-                "Daerah Istimewa Yogyakarta" ,
-                "https://1.bp.blogspot.com/-hWy5xW9JIG0/VthAcu4vKXI/AAAAAAAAAc0/jSZLyHgL1kM/s320/15.jpg" ,
-            )
-        )
-        province.add(
-            ProvinceModel(
-                "East Java" ,
+                "Jawa Timur" ,
                 "https://3.bp.blogspot.com/-gsUvtPTpQ88/VthAq-daQPI/AAAAAAAAAc4/Q6Fl6dXHWVA/s320/16.jpg" ,
             )
         )

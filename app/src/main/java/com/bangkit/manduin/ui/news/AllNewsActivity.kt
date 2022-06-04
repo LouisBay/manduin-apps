@@ -1,4 +1,4 @@
-package com.bangkit.manduin.ui
+package com.bangkit.manduin.ui.news
 
 import android.content.Intent
 import android.net.Uri
@@ -73,8 +73,8 @@ class AllNewsActivity : AppCompatActivity() {
             is Result.Loading -> { setShimmer(true) }
             is Result.Success -> {
                 lifecycleScope.launch {
-                    delay(2000L)
                     newsAdapter.setList(result.data, null)
+                    delay(2000L)
                     setShimmer(false)
                 }
             }
