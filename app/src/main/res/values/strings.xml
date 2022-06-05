@@ -106,8 +106,8 @@
     <string name="desc_landmark">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="add_comment">Add comment</string>
     <string name="title_activity_maps">MapsActivity</string>
-    <string name="toast_review">Review is under development</string>
-    <string name="review">Review</string>
+    <string name="toast_review">Comment is under development</string>
+    <string name="review">Comment</string>
     <string name="landmark">Landmark</string>
     <string name="tourism">Wisata</string>
 
