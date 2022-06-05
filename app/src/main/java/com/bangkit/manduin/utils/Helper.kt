@@ -9,6 +9,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import androidx.camera.core.ImageProxy
+import com.bangkit.manduin.data.local.entity.PlaceEntity
+import com.bangkit.manduin.data.remote.response.TourismPlaceItem
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.nio.ByteBuffer
@@ -61,13 +63,31 @@ object Helper {
         )
     }
 
+    // Generate Address From Latitude & Longitude
     fun generateAddressFromLocation(lat: Double, lon: Double, context: Context): String {
         val geocoder = Geocoder(context, Locale.getDefault())
         val addresses = geocoder.getFromLocation(lat, lon, 1)
         return addresses[0].getAddressLine(0)
     }
 
+    // Parsing Data Snippets on InfoWindow Marker
     fun parseSnippet(snippets: String) : List<String> {
         return snippets.split("|")
+    }
+
+    fun TourismPlaceItem.toPlaceEntity(context: Context): PlaceEntity {
+        return PlaceEntity(
+            placeId,
+            nama,
+            generateAddressFromLocation(lat,lon, context),
+            city,
+            provinsi,
+            rating,
+            description,
+            lat,
+            lon,
+            imgUrl,
+            category
+        )
     }
 }

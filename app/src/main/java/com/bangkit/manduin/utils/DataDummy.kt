@@ -3,7 +3,7 @@ package com.bangkit.manduin.utils
 import com.bangkit.manduin.R
 import com.bangkit.manduin.model.FavoriteModel
 import com.bangkit.manduin.model.ProvinceModel
-import com.bangkit.manduin.model.ReviewModel
+import com.bangkit.manduin.model.CommentModel
 
 object DataDummy {
 
@@ -76,10 +76,10 @@ object DataDummy {
         return favorite
     }
 
-    fun generateDummyReview() : ArrayList<ReviewModel> {
-        val review = ArrayList<ReviewModel>()
+    fun generateDummyReview() : ArrayList<CommentModel> {
+        val review = ArrayList<CommentModel>()
         review.add(
-            ReviewModel(
+            CommentModel(
                 "User" ,
                 "Awesome" ,
                 "22/04/2022" ,
@@ -87,7 +87,7 @@ object DataDummy {
             )
         )
         review.add(
-            ReviewModel(
+            CommentModel(
                 "User" ,
                 "Awesome" ,
                 "22/04/2022" ,
@@ -95,7 +95,7 @@ object DataDummy {
             )
         )
         review.add(
-            ReviewModel(
+            CommentModel(
                 "User" ,
                 "Awesome" ,
                 "22/04/2022" ,

@@ -1,10 +1,12 @@
 package com.bangkit.manduin.di
 
 import android.content.Context
+import com.bangkit.manduin.data.local.room.ManduinDatabase
 import com.bangkit.manduin.data.remote.retrofit.ManduinApiService
 import com.bangkit.manduin.data.remote.retrofit.NewsApiService
 import com.bangkit.manduin.data.repository.ApiDataRepository
 import com.bangkit.manduin.data.repository.AuthRepository
+import com.bangkit.manduin.data.repository.DatabaseRepository
 import com.bangkit.manduin.data.repository.MLRepository
 import dagger.Module
 import dagger.Provides
@@ -31,4 +33,8 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun provideMLRepository(@ApplicationContext context: Context): MLRepository = MLRepository(context)
+
+    @Provides
+    @Singleton
+    fun provideDatabaseRepository(manduinDatabase: ManduinDatabase): DatabaseRepository = DatabaseRepository(manduinDatabase)
 }

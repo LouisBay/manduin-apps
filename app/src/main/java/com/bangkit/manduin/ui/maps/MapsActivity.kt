@@ -48,8 +48,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private var idLandmark: Int = 0
+    private var currentLocation: LatLng? = null
     private lateinit var landmark: LandmarkItem
-    private lateinit var currentLocation: LatLng
 
     private val mapsViewModel: MapsViewModel by viewModels()
 
@@ -104,7 +104,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         binding.btnBack.setOnClickListener { super.onBackPressed() }
         binding.btnMyLocation.setOnClickListener {
             getMyLocation()
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
+            if (currentLocation != null) {
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation!!, 15f))
+            }
         }
     }
 

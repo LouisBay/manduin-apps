@@ -13,7 +13,7 @@
     <string name="text_or">or login with</string>
     <string name="image">image</string>
     <string name="explore">Explore</string>
-    <string name="bookmark">Favorite Places</string>
+    <string name="bookmark">Bookmarked Places</string>
     <string name="profile">Profile</string>
     <string name="travel_news">Travel News</string>
     <string name="logout">Log Out</string>
@@ -122,7 +122,13 @@
 
     <!--    String On Maps Activity-->
     <string name="failed_get_data_maps">Failed to Get Data Maps</string>
-    <string name="location_not_found">Location is not found. Try Again</string>
+    <string name="location_not_found">Location is not found. Please turn on your GPS</string>
     <string name="location_not_granted">Location not granted</string>
+
+    <!--    String Bookmark-->
+    <string name="success_unbookmark">Successfully delete from bookmark</string>
+    <string name="success_bookmark">Successfully save to bookmark</string>
+    <string name="confirm_delete_bookmark">Confirm Delete</string>
+    <string name="confirm_delete_bookmark_message">Are you sure want to delete this place from Bookmark?</string>
 
 </resources>

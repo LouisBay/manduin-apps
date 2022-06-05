@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.manduin.databinding.ItemRowCommentBinding
-import com.bangkit.manduin.model.ReviewModel
+import com.bangkit.manduin.model.CommentModel
 import com.bumptech.glide.Glide
 import java.util.ArrayList
 
 class ListCommentAdapter : RecyclerView.Adapter<ListCommentAdapter.ItemTarget>() {
-    private val listReview = ArrayList<ReviewModel>()
+    private val listReview = ArrayList<CommentModel>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(listReview : List<ReviewModel>) {
+    fun setList(listReview : List<CommentModel>) {
         this.listReview.clear()
         this.listReview.addAll(listReview)
         notifyDataSetChanged()
@@ -21,7 +21,7 @@ class ListCommentAdapter : RecyclerView.Adapter<ListCommentAdapter.ItemTarget>()
 
     inner class ItemTarget(private val binding : ItemRowCommentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(model : ReviewModel) {
+        fun bind(model : CommentModel) {
             Glide.with(itemView.context)
                 .load(model.image)
                 .circleCrop()

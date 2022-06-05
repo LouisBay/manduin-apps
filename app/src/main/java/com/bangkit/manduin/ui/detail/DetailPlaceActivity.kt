@@ -1,11 +1,10 @@
 package com.bangkit.manduin.ui.detail
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.manduin.R
 import com.bangkit.manduin.adapter.ListCommentAdapter
+import com.bangkit.manduin.data.local.entity.PlaceEntity
 import com.bangkit.manduin.data.remote.response.LandmarkItem
 import com.bangkit.manduin.data.remote.response.TourismPlaceItem
 import com.bangkit.manduin.databinding.ActivityDetailPlaceBinding
@@ -20,10 +20,12 @@ import com.bangkit.manduin.ui.maps.MapsActivity
 import com.bangkit.manduin.utils.Constant
 import com.bangkit.manduin.utils.DataDummy
 import com.bangkit.manduin.utils.Helper
+import com.bangkit.manduin.utils.Helper.toPlaceEntity
 import com.bangkit.manduin.utils.Result
 import com.bangkit.manduin.viewmodel.DetailViewModel
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -37,6 +39,8 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var reviewAdapter: ListCommentAdapter
     private var idItem: Int = 0
     private var tag: String = ""
+    private var placeEntity: PlaceEntity? = null
+    private var isPlaceBookmarked:Boolean = false
     private lateinit var location: LatLng
     private val detailViewModel: DetailViewModel by viewModels()
 
@@ -63,9 +67,12 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initComponent() {
-        binding.btnMaps.setOnClickListener(this)
-        binding.btnDirections.setOnClickListener(this)
-        binding.btnAddComment.setOnClickListener(this)
+        binding.apply {
+            btnMaps.setOnClickListener(this@DetailPlaceActivity)
+            btnDirections.setOnClickListener(this@DetailPlaceActivity)
+            btnAddComment.setOnClickListener(this@DetailPlaceActivity)
+            btnBookmark.setOnClickListener(this@DetailPlaceActivity)
+        }
     }
 
     private fun observeData() {
@@ -83,7 +90,19 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
 
+                checkBookmarked(idItem)
+                isBookmarked.observe(this@DetailPlaceActivity) {
+                    isPlaceBookmarked = it
+                    setBookmarkButton(it)
+                }
             }
+        }
+    }
+
+    private fun setBookmarkButton(isBookmarked: Boolean) {
+        binding.btnBookmark.apply {
+            if (isBookmarked) setIconResource(R.drawable.bookmarked)
+            else setIconResource(R.drawable.bookmark)
         }
     }
 
@@ -111,6 +130,7 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
         val rating = data.rating
 
         binding.apply {
+            btnBookmark.visibility = View.GONE
             btnMaps.visibility = View.VISIBLE
             btnDirections.visibility = View.GONE
             actionBar.tvTitle.text = data.nama
@@ -141,6 +161,7 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun parseDataTourismPlace(data: TourismPlaceItem) {
+        placeEntity = data.toPlaceEntity(this@DetailPlaceActivity)
         location = LatLng(data.lat, data.lon)
         val rating = data.rating
 
@@ -175,12 +196,9 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun actionBar() {
-        val btnBack: Button = findViewById(R.id.btn_back)
-        val titleMarquee: TextView = findViewById(R.id.tv_title)
-        titleMarquee.isSelected = true
-
-        btnBack.setOnClickListener {
-            super.onBackPressed()
+        binding.actionBar.apply {
+            tvTitle.isSelected = true
+            btnBack.setOnClickListener { super.onBackPressed() }
         }
     }
 
@@ -207,7 +225,37 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_add_comment -> {
                 Toast.makeText(applicationContext, resources.getString(R.string.toast_review), Toast.LENGTH_SHORT).show()
             }
+            R.id.btn_bookmark -> {
+                if(isPlaceBookmarked) {
+                    setBookmarkButton(false)
+                    showConfirmDialog()
+                } else {
+                    setBookmarkButton(true)
+                    placeEntity?.let { detailViewModel.insertPlaceToBookmark(it) }
+                    Toast.makeText(applicationContext, resources.getString(R.string.success_bookmark), Toast.LENGTH_SHORT).show()
+                }
+            }
         }
+    }
+
+    private fun showConfirmDialog() {
+        MaterialAlertDialogBuilder(this@DetailPlaceActivity)
+            .setTitle(resources.getString(R.string.confirm_delete_bookmark))
+            .setMessage(resources.getString(R.string.confirm_delete_bookmark_message))
+            .setIcon(R.drawable.ic_baseline_logout_24)
+            .setPositiveButton("Yes") { _, _ ->
+                placeEntity?.let { detailViewModel.deletePlaceFromBookmark(it) }
+                Toast.makeText(applicationContext, resources.getString(R.string.success_unbookmark), Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.cancel()
+                setBookmarkButton(true)
+            }
+            .setCancelable(true)
+            .setOnCancelListener {
+                setBookmarkButton(true)
+            }
+            .show()
     }
 
     private fun setDetailShimmer(isLoading: Boolean) {
@@ -216,12 +264,12 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 shimmerDetail.visibility = View.VISIBLE
                 shimmerDetail.startShimmer()
                 container.visibility = View.GONE
-                appBarLayout.visibility = View.GONE
+                actionBar.tvTitle.visibility = View.GONE
             } else {
                 shimmerDetail.visibility = View.GONE
                 shimmerDetail.stopShimmer()
                 container.visibility = View.VISIBLE
-                appBarLayout.visibility = View.VISIBLE
+                actionBar.tvTitle.visibility = View.VISIBLE
             }
         }
     }
