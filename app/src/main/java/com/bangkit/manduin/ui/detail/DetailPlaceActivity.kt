@@ -77,19 +77,23 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
     private fun observeData() {
         if (idItem != 0) {
             detailViewModel.apply {
-                if (tag == Constant.TAG_LANDMARK) {
-                    getLandmarkDetail(idItem)
-                    resultLandmark.observe(this@DetailPlaceActivity) { result ->
-                        showResult(result)
-                    }
-                } else {
-                    getTourismPlaceDetail(idItem)
-                    resultTourismPlace.observe(this@DetailPlaceActivity) { result ->
-                        showResult(result)
+                checkBookmarked(idItem)
+
+                isFetched.observe(this@DetailPlaceActivity) { isFetched ->
+                    if (!isFetched) {
+                        if (tag == Constant.TAG_LANDMARK) getLandmarkDetail(idItem)
+                        else getTourismPlaceDetail(idItem)
                     }
                 }
 
-                checkBookmarked(idItem)
+                resultLandmark.observe(this@DetailPlaceActivity) { result ->
+                    showResult(result)
+                }
+
+                resultTourismPlace.observe(this@DetailPlaceActivity) { result ->
+                    showResult(result)
+                }
+
                 isBookmarked.observe(this@DetailPlaceActivity) {
                     isPlaceBookmarked = it
                     setBookmarkButton(it)
@@ -116,6 +120,8 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
                     delay(2000L)
                     setDetailShimmer(false)
                 }
+
+                detailViewModel.dataFetched()
             }
             is Result.Error -> {
                 Toast.makeText(applicationContext, resources.getString(R.string.error_occured, result.errorMessage), Toast.LENGTH_SHORT).show()
@@ -138,6 +144,7 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
             chipCategoryPlace.text = data.category
             tvAddress.text = Helper.generateAddressFromLocation(data.lat, data.lon, applicationContext)
 
+
             Glide.with(applicationContext)
                 .load(data.imgUrl)
                 .placeholder(R.drawable.image_preview)
@@ -146,6 +153,10 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 .into(ivDetail)
 
             lifecycleScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.Main) {
+                    ratingBar.progress = 0
+                    tvRating.text = 0f.toString()
+                }
                 delay(2000L)
                 for (i in 1 until rating + 1) {
                     val ratingResult = i/10f
@@ -181,6 +192,10 @@ class DetailPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 .into(ivDetail)
 
             lifecycleScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.Main) {
+                    ratingBar.progress = 0
+                    tvRating.text = 0f.toString()
+                }
                 delay(2000L)
                 for (i in 1 until rating + 1) {
                     val ratingResult = i/10f

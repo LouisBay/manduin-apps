@@ -15,6 +15,9 @@ class TourismViewModel @Inject constructor(
     private val apiDataRepository: ApiDataRepository
 ) : ViewModel() {
 
+    private val _isDataFetched = MutableLiveData(false)
+    val isDataFetched: LiveData<Boolean> = _isDataFetched
+
     private val _resultListWisata = MutableLiveData<Result<ArrayList<TourismPlaceItem>>>()
     val resultListWisata: LiveData<Result<ArrayList<TourismPlaceItem>>> = _resultListWisata
 
@@ -26,4 +29,9 @@ class TourismViewModel @Inject constructor(
         }
     }
 
+    fun dataFetched() {
+        viewModelScope.launch {
+            _isDataFetched.value = true
+        }
+    }
 }

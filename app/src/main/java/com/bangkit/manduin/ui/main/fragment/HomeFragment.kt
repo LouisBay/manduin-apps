@@ -63,9 +63,6 @@ class HomeFragment : Fragment() {
         setNewsRecyclerView()
         observerData()
 
-        binding.shimmerNews.startShimmer()
-        binding.shimmerLandmark.startShimmer()
-
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -131,7 +128,9 @@ class HomeFragment : Fragment() {
         viewPager.clipChildren = false
         viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
 
-        homeViewModel.getAllLandmark()
+        homeViewModel.isLandmarksFetched.observe(viewLifecycleOwner) { isFetched ->
+            if (!isFetched) homeViewModel.getAllLandmark()
+        }
 
     }
 
@@ -157,6 +156,8 @@ class HomeFragment : Fragment() {
                     delay(2000L)
                     setLandmarkShimmer(false)
                 }
+
+                homeViewModel.landmarksFetched()
             }
             is Result.Error -> {
                 Toast.makeText(requireContext(), resources.getString(R.string.error_occured, result.errorMessage), Toast.LENGTH_SHORT).show()
@@ -186,18 +187,23 @@ class HomeFragment : Fragment() {
             }
         })
 
-        homeViewModel.getTravelNewsData()
+        homeViewModel.isNewsFetched.observe(viewLifecycleOwner) { isFetched ->
+            if (!isFetched) homeViewModel.getTravelNewsData()
+        }
     }
 
     private fun showResultNewsData(result: Result<ArrayList<NewsItem>>?) {
         when (result) {
             is Result.Loading -> { setNewsShimmer(true) }
             is Result.Success -> {
+                newsAdapter.setList(result.data, ListNewsAdapter.TAG_HOME)
+
                 lifecycleScope.launch {
                     delay(2000L)
-                    newsAdapter.setList(result.data, ListNewsAdapter.TAG_HOME)
                     setNewsShimmer(false)
                 }
+
+                homeViewModel.newsFetched()
             }
             is Result.Error -> {
                 Toast.makeText(requireContext(), resources.getString(R.string.error_occured, result.errorMessage), Toast.LENGTH_SHORT).show()

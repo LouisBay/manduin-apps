@@ -50,6 +50,7 @@
 
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/shimmer_landmark"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -95,6 +96,7 @@
 
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/shimmer_news"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -125,7 +127,6 @@
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="8dp"
                 android:overScrollMode="never"
-                android:visibility="gone"
                 tools:listitem="@layout/item_row_news"/>
 
             <TextView

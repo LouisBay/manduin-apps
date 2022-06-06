@@ -16,6 +16,12 @@ class HomeViewModel @Inject constructor(
     private val apiDataRepository: ApiDataRepository
 ) : ViewModel() {
 
+    private val _isNewsFetched = MutableLiveData(false)
+    val isNewsFetched: LiveData<Boolean> = _isNewsFetched
+
+    private val _isLandmarksFetched = MutableLiveData(false)
+    val isLandmarksFetched: LiveData<Boolean> = _isLandmarksFetched
+
     private val _resultlistNews = MutableLiveData<Result<ArrayList<NewsItem>>>()
     val resultlistNews: LiveData<Result<ArrayList<NewsItem>>> = _resultlistNews
 
@@ -35,6 +41,18 @@ class HomeViewModel @Inject constructor(
             apiDataRepository.getAllLandmark().collect {
                 _resultlistLandmark.value = it
             }
+        }
+    }
+
+    fun newsFetched() {
+        viewModelScope.launch {
+            _isNewsFetched.value = true
+        }
+    }
+
+    fun landmarksFetched() {
+        viewModelScope.launch {
+            _isLandmarksFetched.value = true
         }
     }
 }

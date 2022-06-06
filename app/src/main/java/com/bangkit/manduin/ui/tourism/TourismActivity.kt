@@ -75,18 +75,22 @@ class TourismActivity : AppCompatActivity() {
             }
         })
 
-        tourismViewModel.getTourismPlaceAtProvince(province)
+        tourismViewModel.isDataFetched.observe(this) { isFetched ->
+            if (!isFetched) tourismViewModel.getTourismPlaceAtProvince(province)
+        }
     }
 
     private fun showResult(result: Result<ArrayList<TourismPlaceItem>>?) {
         when (result) {
             is Result.Loading -> { setShimmer(true) }
             is Result.Success -> {
+                tourismAdapter.setList(result.data)
                 lifecycleScope.launch {
-                    tourismAdapter.setList(result.data)
                     delay(2000L)
                     setShimmer(false)
                 }
+
+                tourismViewModel.dataFetched()
             }
             is Result.Error -> {
                 try {

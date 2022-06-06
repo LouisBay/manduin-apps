@@ -14,6 +14,9 @@ class MapsViewModel @Inject constructor(
     private val apiDataRepository: ApiDataRepository
 ) : ViewModel() {
 
+    private val _isDataFetched = MutableLiveData(false)
+    val isDataFetched: LiveData<Boolean> = _isDataFetched
+
     private val _resultLandmark = MutableLiveData<Result<LandmarkItem>>()
     val resultLandmark: LiveData<Result<LandmarkItem>> = _resultLandmark
 
@@ -33,6 +36,12 @@ class MapsViewModel @Inject constructor(
             apiDataRepository.getNearestTourismLocFromLandmark(label).collect {
                 _resultWisataMaps.value = it
             }
+        }
+    }
+
+    fun dataFetched() {
+        viewModelScope.launch {
+            _isDataFetched.value = true
         }
     }
 

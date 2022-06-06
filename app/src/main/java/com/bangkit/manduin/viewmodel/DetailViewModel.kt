@@ -18,6 +18,9 @@ class DetailViewModel @Inject constructor(
     private val databaseRepository: DatabaseRepository
 ) : ViewModel() {
 
+    private val _isFetched = MutableLiveData(false)
+    val isFetched: LiveData<Boolean> = _isFetched
+
     private val _isBookmarked = MutableLiveData(false)
     val isBookmarked: LiveData<Boolean> = _isBookmarked
 
@@ -37,12 +40,14 @@ class DetailViewModel @Inject constructor(
 
     fun insertPlaceToBookmark(place: PlaceEntity) {
         viewModelScope.launch {
+            _isBookmarked.value = true
             databaseRepository.insertPlaceToBookmark(place)
         }
     }
 
     fun deletePlaceFromBookmark(place: PlaceEntity) {
         viewModelScope.launch {
+            _isBookmarked.value = false
             databaseRepository.deletePlaceFromBookmark(place)
         }
     }
@@ -60,6 +65,12 @@ class DetailViewModel @Inject constructor(
             apiDataRepository.getTourismPlaceDetail(id).collect {
                 _resultTourismPlace.value = it
             }
+        }
+    }
+
+    fun dataFetched() {
+        viewModelScope.launch {
+            _isFetched.value = true
         }
     }
 }

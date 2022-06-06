@@ -63,7 +63,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         initComponent()
 
-        loadingDialog.show()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -82,7 +81,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
 
         observeData()
-        getMyLocation()
         setMapStyle()
     }
 
@@ -112,7 +110,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     private fun observeData() {
         mapsViewModel.apply {
-            getLandmark(idLandmark)
+            isDataFetched.observe(this@MapsActivity) { isFetched ->
+                if (!isFetched) {
+                    getLandmark(idLandmark)
+                    getMyLocation()
+                }
+            }
+
             resultLandmark.observe(this@MapsActivity) { result ->
                 processLandmarkResult(result)
             }
@@ -129,6 +133,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             is Result.Success -> {
                 showWisataMarker(result.data)
                 showLoading(false)
+                mapsViewModel.dataFetched()
             }
             is Result.Error -> {
                 Toast.makeText(applicationContext, resources.getString(R.string.failed_get_data_maps), Toast.LENGTH_LONG).show()

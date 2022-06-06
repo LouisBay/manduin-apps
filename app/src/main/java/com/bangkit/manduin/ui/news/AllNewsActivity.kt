@@ -33,10 +33,11 @@ class AllNewsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.actionBar.tvTitle.text = resources.getString(R.string.travel_news)
+        binding.actionBar.btnBack.setOnClickListener { super.onBackPressed() }
+
+        observeData()
         setNewsRecyclerView()
 
-        binding.shimmerNews.startShimmer()
-        binding.actionBar.btnBack.setOnClickListener { finish() }
     }
 
     private fun setNewsRecyclerView() {
@@ -59,11 +60,13 @@ class AllNewsActivity : AppCompatActivity() {
             }
         })
 
-        loadNews()
+        newsViewModel.isNewsFetched.observe(this) { isFetched ->
+            if (!isFetched) newsViewModel.getTravelNewsData()
+        }
     }
 
-    private fun loadNews() {
-        newsViewModel.getTravelNewsData().observe(this) { result ->
+    private fun observeData() {
+        newsViewModel.resultlistNews.observe(this) { result ->
             showResult(result)
         }
     }
@@ -77,6 +80,8 @@ class AllNewsActivity : AppCompatActivity() {
                     delay(2000L)
                     setShimmer(false)
                 }
+
+                newsViewModel.newsFetched()
             }
             is Result.Error -> {
                 Toast.makeText(this, resources.getString(R.string.error_occured, result.errorMessage), Toast.LENGTH_SHORT).show()

@@ -20,6 +20,7 @@
         android:id="@+id/shimmer_tourism"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:layout_marginTop="?actionBarSize">
 
         <ScrollView
@@ -55,7 +56,6 @@
         android:paddingVertical="16dp"
         android:paddingHorizontal="8dp"
         android:clipToPadding="false"
-        android:visibility="gone"
         tools:listitem="@layout/item_row_tourism"/>
 
     <com.airbnb.lottie.LottieAnimationView
