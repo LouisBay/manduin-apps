@@ -89,15 +89,21 @@ class TourismActivity : AppCompatActivity() {
                 }
             }
             is Result.Error -> {
-                var message = result.errorMessage.split("|")[0]
-                val code = result.errorMessage.split("|")[1].toInt()
+                try {
+                    var message = result.errorMessage.split("|")[0]
+                    val code = result.errorMessage.split("|")[1].toInt()
 
-                if (code == 400) {
-                    setShimmer(false)
-                    binding.tvAvailableSoon.visibility = View.VISIBLE
-                    message = resources.getString(R.string.msg_available_soon)
+                    if (code == 400) {
+                        setShimmer(false)
+                        binding.tvAvailableSoon.visibility = View.VISIBLE
+                        message = resources.getString(R.string.msg_available_soon)
+                    }
+
+                    Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Toast.makeText(applicationContext, result.errorMessage, Toast.LENGTH_SHORT).show()
                 }
-                Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+
             }
             else -> {}
         }

@@ -40,10 +40,15 @@ class UserPreferences @Inject constructor(private val dataStore: DataStore<Prefe
         }
     }
 
+    fun getOpennedState(): Flow<Boolean> = dataStore.data.map { it[OPEN_STATE] ?: false }
+
+    suspend fun setOpennedStateToTrue() { dataStore.edit { it[OPEN_STATE] = true } }
+
     companion object {
         private val USER_UID = stringPreferencesKey("user_uid")
         private val USER_NAME = stringPreferencesKey("user_name")
         private val USER_EMAIL = stringPreferencesKey("user_email")
         private val LOGIN_STATE = booleanPreferencesKey("user_login_state")
+        private val OPEN_STATE = booleanPreferencesKey("application_opened_state")
     }
 }

@@ -8,18 +8,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.bangkit.manduin.model.OnBoardingItemModel
 import com.bangkit.manduin.R
 import com.bangkit.manduin.adapter.OnBoardingAdapter
 import com.bangkit.manduin.databinding.ActivityOnboardingBinding
+import com.bangkit.manduin.ui.auth.AuthActivity
 import com.bangkit.manduin.ui.main.MainActivity
+import com.bangkit.manduin.viewmodel.SplashViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OnboardingActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityOnboardingBinding
     private lateinit var onBoardingAdapter: OnBoardingAdapter
+
+    private val viewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,13 +138,13 @@ class OnboardingActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.tv_skip -> {
                 toLoginPage()
-                Log.d("TEST", "Terpencet ges")
             }
         }
     }
 
     private fun toLoginPage() {
-        Intent(this@OnboardingActivity, MainActivity::class.java).also {
+        Intent(this@OnboardingActivity, AuthActivity::class.java).also {
+            viewModel.setOpennedStateToTrue()
             startActivity(it)
             finish()
         }

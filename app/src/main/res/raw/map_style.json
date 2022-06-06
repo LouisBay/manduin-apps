@@ -1,5 +1,14 @@
 [
   {
+    "featureType": "administrative",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
     "featureType": "poi",
     "elementType": "labels.text",
     "stylers": [
