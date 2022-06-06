@@ -80,25 +80,25 @@ object DataDummy {
         val review = ArrayList<CommentModel>()
         review.add(
             CommentModel(
-                "User" ,
-                "Awesome" ,
-                "22/04/2022" ,
+                "Michellia" ,
+                "Beautiful place that I've seen" ,
+                "02/05/2022" ,
                 R.drawable.profile_ava
             )
         )
         review.add(
             CommentModel(
-                "User" ,
-                "Awesome" ,
-                "22/04/2022" ,
+                "Rio" ,
+                "Healing dulu bestiee" ,
+                "02/05/2022" ,
                 R.drawable.profile_ava
             )
         )
         review.add(
             CommentModel(
-                "User" ,
-                "Awesome" ,
-                "22/04/2022" ,
+                "Alvin" ,
+                "Best place ever" ,
+                "29/04/2022" ,
                 R.drawable.profile_ava
             )
         )

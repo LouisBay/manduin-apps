@@ -49,7 +49,6 @@
     <string name="invalid_confirm_password">The password confirmation does not match</string>
     <string name="show_password">Show password</string>
     <string name="hide_password">Hide password</string>
-    <string name="available_soon">Available Soon</string>
     <string name="msg_available_soon">This Content Available Soon</string>
 
     <!--String On Forgot Password Layout-->
@@ -99,7 +98,6 @@
     <string name="prambanan">Prambanan Temple</string>
     <string name="loc_prambanan">Special Region of Yogyakarta</string>
     <string name="see_all_news">See all travel news</string>
-    <string name="tourism_place">Tourism Place</string>
 
     <!--    String On Detail Activity-->
     <string name="description">Description</string>
@@ -120,6 +118,10 @@
     <string name="detect_again">Detect Again</string>
     <string name="no_object">No Object Detected</string>
 
+    <!--    String on Explore-->
+    <string name="available_soon">Available Soon</string>
+    <string name="desc_available_soon">Tourism data is being processed.</string>
+    
     <!--    String On Maps Activity-->
     <string name="failed_get_data_maps">Failed to Get Data Maps</string>
     <string name="location_not_found">Location is not found. Please turn on your GPS</string>
@@ -130,5 +132,7 @@
     <string name="success_bookmark">Successfully save to bookmark</string>
     <string name="confirm_delete_bookmark">Confirm Delete</string>
     <string name="confirm_delete_bookmark_message">Are you sure want to delete this place from Bookmark?</string>
+    <string name="no_place_saved">No place saved</string>
+    <string name="empty_bookmark">You haven\'t saved any place yet. Please explore and save place to display them here.</string>
 
 </resources>

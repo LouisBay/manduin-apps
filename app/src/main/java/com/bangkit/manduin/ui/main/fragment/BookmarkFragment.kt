@@ -56,6 +56,11 @@ class BookmarkFragment : Fragment() {
         bookmarkViewModel.getAllBookmarkedPlace().observe(viewLifecycleOwner) { data ->
             Log.d("BookmarkFragment", data.toString())
             bookmarkAdapter.submitList(data)
+            if (data.isNotEmpty()) {
+                showLottie(true)
+            } else {
+                showLottie(false)
+            }
         }
     }
 
@@ -100,6 +105,10 @@ class BookmarkFragment : Fragment() {
                 button.setIconResource(R.drawable.bookmarked)
             }
             .show()
+    }
+
+    private fun showLottie(state : Boolean) {
+        binding.llLottieGrup.visibility = if (state) View.GONE else View.VISIBLE
     }
 
 }

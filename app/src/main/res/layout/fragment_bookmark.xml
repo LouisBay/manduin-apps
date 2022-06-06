@@ -29,4 +29,47 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="RtlSymmetry" />
 
+    <LinearLayout
+        android:id="@+id/ll_lottie_grup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="32dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_bookmark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:lottie_rawRes="@raw/bookmark"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/no_place_saved"
+            android:textColor="@color/dark_blue"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_semi_bold" />
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_bookmark"
+            android:gravity="center"
+            android:textColor="@color/dark_blue"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

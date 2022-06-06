@@ -3,7 +3,6 @@ package com.bangkit.manduin.ui.tourism
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -44,8 +43,9 @@ class TourismActivity : AppCompatActivity() {
 
     private fun initComponent() {
         binding.apply {
-            tvAvailableSoon.visibility = View.GONE
-            actionBar.tvTitle.text = resources.getString(R.string.tourism_place)
+            showLottie(true)
+            actionBar.tvTitle.text = province
+            actionBar.tvTitle.isSelected = true
             actionBar.btnBack.setOnClickListener { super.onBackPressed() }
         }
     }
@@ -95,7 +95,7 @@ class TourismActivity : AppCompatActivity() {
 
                     if (code == 400) {
                         setShimmer(false)
-                        binding.tvAvailableSoon.visibility = View.VISIBLE
+                        showLottie(false)
                         message = resources.getString(R.string.msg_available_soon)
                     }
 
@@ -107,6 +107,12 @@ class TourismActivity : AppCompatActivity() {
             }
             else -> {}
         }
+    }
+
+    private fun showLottie(state : Boolean) {
+        binding.lottieSoon.visibility = if (state) View.GONE else View.VISIBLE
+        binding.tvAvailableSoon.visibility = if (state) View.GONE else View.VISIBLE
+        binding.tvDesc.visibility = if (state) View.GONE else View.VISIBLE
     }
 
     private fun setShimmer(isLoading: Boolean) {

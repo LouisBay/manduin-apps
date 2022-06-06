@@ -58,17 +58,42 @@
         android:visibility="gone"
         tools:listitem="@layout/item_row_tourism"/>
 
-    <TextView
-        android:id="@+id/tv_available_soon"
-        style="@style/emailText"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_soon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/available_soon"
-        android:textAlignment="center"
-        android:textSize="16sp"
+        android:layout_marginBottom="48dp"
+        app:lottie_rawRes="@raw/available_soon"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_available_soon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/available_soon"
+        android:textColor="@color/dark_blue"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_semi_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_desc"/>
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="160dp"
+        android:text="@string/desc_available_soon"
+        android:textColor="@color/dark_blue"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/lottie_soon"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
