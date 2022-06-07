@@ -32,19 +32,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:navGraph="@navigation/menu_navigation" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_scan"
-        android:layout_width="wrap_content"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/dark_blue"
-        app:elevation="9dp"
-        android:translationZ="10dp"
-        app:fabSize="normal"
-        app:srcCompat="@drawable/scan"
-        android:layout_marginBottom="-28dp"
-        android:contentDescription="@string/app_name"
+        android:elevation="9dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/nav_view"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_scan"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/dark_blue"
+            app:elevation="0dp"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/scan"
+            android:layout_marginBottom="28dp"
+            android:contentDescription="@string/app_name"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
