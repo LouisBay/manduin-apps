@@ -4,10 +4,12 @@ We develop our app using [Kotlin programming language](https://kotlinlang.org/).
 
 ## Design Apps
 
-We design the application using [Figma](figma.com)
+We design the application using [Figma](figma.com).<br>
+Our prototype is here:<br>
+https://intip.in/prototypeManduin
 
 ## Preview Mobile Apps
 
-## Library
+### Library
 
-## Architecture
+### Architecture
