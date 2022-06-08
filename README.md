@@ -48,6 +48,8 @@ Due to time limit and unavailable nearby tourism dataset for certain landmark, w
 
 **Processing Technique**<br />
 
+We use Image Hashing
+
 
 
 ## 3. Tourism Destination Dataset
