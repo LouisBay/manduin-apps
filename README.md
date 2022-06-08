@@ -34,10 +34,11 @@ Mandu.in Apps is Android based application that aims to introduce Indonesian tou
 4. [machine-learning](https://github.com/LouisBay/manduin-apps/tree/machine-learning) - ML Project Repository
 
 ## Technologies
-1. Machine Learning
-   - Tensorflow
+
+1. <b>Machine Learning</b>
+   - TensorFlow 
    - Python
-2. Android Development
+2. <b>Android Development</b>
    - Kotlin
    - MVVM Architecture
    - Retrofit (Networking)
