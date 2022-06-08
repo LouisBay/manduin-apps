@@ -48,6 +48,6 @@ Mandu.in Apps is Android based application that aims to introduce Indonesian tou
    - Dagger-Hilt (Dependency Injection)
    - TensorFlow Lite (Machine Learning)
 3. Cloud Computing
-   - s
-   - s
+   - Cloud SQL (Server Database)
+   - Compute Engine (Server API)
 
