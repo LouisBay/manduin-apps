@@ -26,6 +26,30 @@ For the second model, we tried transfer learning using InceptionV3 model. Incept
 
 ## 2. Landmark Image Dataset
 
+We collected dataset manually by scraping from Google image. In total, we accumulated 2067 images for 15 landmarks. The distribution as follows:
+
+1. Lawang Sewu : 115
+2. Candi Borobudur : 131
+3. Candi Prambanan : 194
+4. Masjid Agung Jawa Tengah : 111
+5. Tugu Jogja : 100
+6. Monjali : 88
+7. Besakih : 200
+8. Suroboyo : 216
+9. Garuda Wisnu Kencana : 100
+10. Monumen Nasional : 146
+11. Gedung Sate : 140
+12. Jam Gadang : 115
+13. Sam Poo Kong : 148
+14. Taman Ayun : 130
+15. Museum Fatahillah : 134
+
+Due to time limit and unavailable nearby tourism dataset for certain landmark, we only put 6 landmark in our final product which focused on landmark from Yogyakarta & Central Java (Lawang Sewu, Borobudur, Prambanan, Masjid Agung, Tugu Jogja, and Monjali).
+
+**Processing Technique**<br />
+
+
+
 ## 3. Tourism Destination Dataset
 
 ## 4. TFLite Model
