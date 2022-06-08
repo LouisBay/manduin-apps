@@ -32,7 +32,7 @@ Here are some libraries that we use on this project.
 
 ## Download
 
-Here is the [link]([https://www.figma.com/file/9bvFP0ZFZMHASRDQ6ACSko/mandu.in?node-id=143%3A1764](https://drive.google.com/file/d/1fDfXF_4QcsNzybaRa6arrJiawigZP7q6/view?usp=sharing)) of Manduin App.
+Here is the [link](https://drive.google.com/file/d/1fDfXF_4QcsNzybaRa6arrJiawigZP7q6/view?usp=sharing) of Manduin App.
 
 ## Preview 
 <p align="center">
