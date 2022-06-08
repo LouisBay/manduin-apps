@@ -1,7 +1,6 @@
 ## Mobile Development Project For Manduin Apps
 
 ## Design Prototype
-
 Before entering the code implementation process, we designed the UI of the application using the [Figma](https://www.figma.com/) which is prototyping tools application.
 
 Here is the [link](https://www.figma.com/file/9bvFP0ZFZMHASRDQ6ACSko/mandu.in?node-id=143%3A1764) to our design prototype.
