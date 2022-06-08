@@ -29,9 +29,9 @@ Mandu.in Apps is Android based application that aims to introduce Indonesian tou
 ## Repository Branches
 
 1. [main](https://github.com/LouisBay/manduin-apps) - About Project
-2. [android-development](https://github.com/LouisBay/manduin-apps/tree/mobile-development) - MD Project Repository
-3. [cloud-computing](https://github.com/LouisBay/manduin-apps/tree/cloud-computing) - CC Project Repository
-4. [machine-learning](https://github.com/LouisBay/manduin-apps/tree/machine-learning) - ML Project Repository
+2. [cloud-computing](https://github.com/LouisBay/manduin-apps/tree/cloud-computing) - CC Project Repository
+3. [machine-learning](https://github.com/LouisBay/manduin-apps/tree/machine-learning) - ML Project Repository
+4. [mobile-development](https://github.com/LouisBay/manduin-apps/tree/mobile-development) - MD Project Repository
 
 ## Technologies
 
