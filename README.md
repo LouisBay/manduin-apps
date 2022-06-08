@@ -30,6 +30,10 @@ Here are some libraries that we use on this project.
 | Lottie                   | [5.0.3](http://airbnb.io/lottie/) |
 | Rounded Image            | [2.3.0](https://github.com/vinc3m1/RoundedImageView) |
 
+## Download
+
+Here is the [link]([https://www.figma.com/file/9bvFP0ZFZMHASRDQ6ACSko/mandu.in?node-id=143%3A1764](https://drive.google.com/file/d/1fDfXF_4QcsNzybaRa6arrJiawigZP7q6/view?usp=sharing)) of Manduin App.
+
 ## Preview 
 <p align="center">
   <a href="https://github.com/LouisBay/manduin-apps/blob/main/images/manduin_mockup.jpg">
