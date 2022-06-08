@@ -21,8 +21,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         // News API
-        buildConfigField 'String', 'NEWS_BASE_API_URL', '"https://api-berita-indonesia.vercel.app/"'
-        buildConfigField 'String', 'MANDUIN_BASE_API_URL', '"http://34.101.118.46:3000"'
+        buildConfigField 'String', 'NEWS_BASE_API_URL', '"API_KEY"'
+        buildConfigField 'String', 'MANDUIN_BASE_API_URL', '"API_KEY"'
     }
 
     buildTypes {
@@ -50,8 +50,8 @@ android {
 dependencies {
 
     // Core
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // Google Location
