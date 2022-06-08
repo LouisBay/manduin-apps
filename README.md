@@ -23,13 +23,25 @@ Here are some libraries that we use on this project.
 | Firebase Auth            | [21.0.5](https://firebase.google.com/docs/auth/android/start) |
 | Firebase Database        | [20.0.5](https://firebase.google.com/docs/database/android/start) |
 | Google Maps SDK          | [18.0.2](https://developers.google.com/maps/documentation/android-sdk) |
-| Fused Location Provided   | [19.0.1](https://developer.android.com/training/location) |
+| Fused Location Provided  | [19.0.1](https://developer.android.com/training/location) |
 | Datastore                | [1.0.0](https://developer.android.com/topic/libraries/architecture/datastore) |
 | Glide                    | [4.13.1](https://bumptech.github.io/glide/) |
 | Shimmer                  | [0.5.0](http://facebook.github.io/shimmer-android/) |
 | Lottie                   | [5.0.3](http://airbnb.io/lottie/) |
 | Rounded Image            | [2.3.0](https://github.com/vinc3m1/RoundedImageView) |
 
+## Data Source
+
+Here are some API that we use on this application.
+- <b>News API</b>
+  <br>API to get data about Travel News.
+  <br>URL     : https://api-berita-indonesia.vercel.app/tribun/travel/
+  <br>Credit  : [renomureza](https://github.com/renomureza/api-berita-indonesia)
+- <b>Mandu.in API</b>
+  <br>Main API for this application that created by CC Path
+  <br>URL     : http://34.101.118.46:3000/landmark
+  <br>Credit  : [Manduin CC Path](https://github.com/LouisBay/manduin-apps/tree/cloud-computing)
+  
 ## Download
 
 Here is the [link](https://drive.google.com/file/d/1fDfXF_4QcsNzybaRa6arrJiawigZP7q6/view?usp=sharing) of Manduin App.
