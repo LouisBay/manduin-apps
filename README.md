@@ -35,8 +35,8 @@ Mandu.in Apps is Android based application that aims to introduce Indonesian tou
 
 ## Technologies
 1. Machine Learning
-   - 
-   - 
+   - Tensorflow
+   - Python
 2. Android Development
    - Kotlin
    - MVVM Architecture
