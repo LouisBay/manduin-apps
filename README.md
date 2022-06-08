@@ -19,8 +19,9 @@ For the first model, we made basic image classification model with 5 layers of c
 ![image](Contents/Model1_Val_Acc.jpg)
 
 **Model with transfer learning using InceptionV3**<br />
-For the second model, we tried transfer learning using InceptionV3 model. InceptionV3 is an upgraded version from InceptionV1 which was introduced as GoogLeNet in 2014. As the name suggests it was developed by a team at Google. InceptionV3 architecture consist of Convolutional Neural Networks with 48 layers deep. With InceptionV3, our model performance is significantly better despite having small amount of dataset. After 25 epoch, our model quickly achieved **0.9467 validation accuracy** and **0.0111 validation loss**
+For the second model, we tried transfer learning using InceptionV3 model. InceptionV3 is an upgraded version from InceptionV1 which was introduced as GoogLeNet in 2014. As the name suggests it was developed by a team at Google. InceptionV3 architecture consist of Convolutional Neural Networks with 48 layers deep. With InceptionV3, our model performance is significantly better despite having small amount of dataset. After 40 epoch, our model quickly achieved **0.9865 validation accuracy** and **0.0617 validation loss**
 
+![image](Contents/Model2_Val_Acc.jpg)
 
 
 ## 2. Landmark Image Dataset
