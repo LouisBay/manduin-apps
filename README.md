@@ -1,10 +1,20 @@
 # Mandu.in Apps
 
-# About Mandu.in
+This is a repository for Mandu.in Apps which is the final Product Based Capstone Project for Bangkit Academy 2022. This apps is created by team C22-PS028 with 6 students from 3 learning path such as Machine Learning, Mobile Development, and Cloud Computing.
 
-# Meet the Team 
+## About Mandu.in
 
-## Team ID : C22-PS028
+Mandu.in Apps is Android based application that aims to introduce Indonesian tourism, give recommendations to tourists about which place to visit during travel, and educate the tourist to know and understand better about Indonesian tourism. This application uses Machine Learning model to detect landmarks and display the nearest tourism place from those landmarks. This app will also provide information & history about Indonesian landmarks/tourism spots.
+
+<p align="center">
+  <a href="https://github.com/LouisBay/manduin-apps/blob/main/images/manduin_mockup.jpg">
+    <img src="images/manduin_mockup.jpg">
+  </a>
+</p>
+
+## Meet the Team 
+
+<b> Team ID : C22-PS028</b>
 
 |         Member                    |  Student ID  |        Path        |                University             |                                               
 | :------------------------------:  | :----------: | :----------------: |  :----------------------------------: |
@@ -14,4 +24,29 @@
 |  Louis Bayu Krisna Redionando     |  A2007F0698  | Mobile Development |  Universitas Dian Nuswantoro          |
 |  Mira Nabila                      |  C7007F0702  |  Cloud Computing   |  Universitas Dian Nuswantoro          |
 |  Ghiyas Ash-Shidiqie Rismawan     |  C2004F0366  |  Cloud Computing   |  Institut Teknologi Sepuluh Nopember  |
+
+
+## Repository Branches
+
+1. [main](https://github.com/LouisBay/manduin-apps) - About Project
+2. [android-development](https://github.com/LouisBay/manduin-apps/tree/mobile-development) - MD Project Repository
+3. [cloud-computing](https://github.com/LouisBay/manduin-apps/tree/cloud-computing) - CC Project Repository
+4. [machine-learning](https://github.com/LouisBay/manduin-apps/tree/machine-learning) - ML Project Repository
+
+## Technologies
+1. Machine Learning
+   - 
+   - 
+2. Android Development
+   - Kotlin
+   - MVVM Architecture
+   - Retrofit (Networking)
+   - CameraX (Camera View)
+   - Google Service (Maps API)
+   - Firebase (Authentication)
+   - Dagger-Hilt (Dependency Injection)
+   - TensorFlow Lite (Machine Learning)
+3. Cloud Computing
+   - s
+   - s
 
