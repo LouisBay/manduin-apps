@@ -4,8 +4,9 @@ This is a repository for Mandu.in Apps which is the final Product Based Capstone
 
 ## About Mandu.in
 
-Mandu.in Apps is Android based application that aims to introduce Indonesian tourism, give recommendations to tourists about which place to visit during travel, and educate the tourist to know and understand better about Indonesian tourism. This application uses Machine Learning model to detect landmarks and display the nearest tourism place from those landmarks. This app will also provide information & history about Indonesian landmarks/tourism spots.
-
+Mandu.in Apps is Android based application that aims to introduce Indonesian tourism, give recommendations to tourists about which place to visit during travel, and educate the tourist to know and understand better about Indonesian tourism. This application uses Machine Learning model to detect landmarks and display the nearest tourism place from those landmarks. This app will also provide information & history about Indonesian landmarks/tourism spots.<br>
+<b>Download:</b><br>
+Here is the [link](https://drive.google.com/file/d/1fDfXF_4QcsNzybaRa6arrJiawigZP7q6/view?usp=sharing) of Manduin App.
 <p align="center">
   <a href="https://github.com/LouisBay/manduin-apps/blob/main/images/manduin_mockup.jpg">
     <img src="images/manduin_mockup.jpg">
