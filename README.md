@@ -1,6 +1,6 @@
 # Cloud Computing Path
 
-Creating RESTful APIs and deploying to Google Cloud Platform by using Compute Engine for connection between android application and database. Using Cloud SQL for creating the database server.
+Creating RESTful APIs and deploying to Google Cloud Platform by using Compute Engine and App Engine for connection between android application and database. Using Cloud SQL for creating the database server.
 
 ## RESTful APIs
 In making the RESTful APIs we use NodeJS with the Prisma Framework and Express for building an API server, and for responses using JSON format.
@@ -10,7 +10,7 @@ Explanation for each URL that can be used :
 In this section there is a list of all landmarks that can be filtered by id or label. Response from each URL using JSON format.
 
 **Base URL :**
-> http://34.101.118.46:3000/
+> https://manduin-app.et.r.appspot.com/
 
 **Path :**
 > /landmark
@@ -19,7 +19,7 @@ In this section there is a list of all landmarks that can be filtered by id or l
 > `GET`
 
 **Show List All Landmarks**
-> http://34.101.118.46:3000/landmark
+> https://manduin-app.et.r.appspot.com/landmark
 
 ```json
 {
@@ -58,13 +58,13 @@ In this section there is a list of all landmarks that can be filtered by id or l
 <br>
 
 **Show List Landmark filtering by land_id**
-> http://34.101.118.46:3000/landmark/:id
+> https://manduin-app.et.r.appspot.com/landmark/:id
 
   **Required**
   > id = [int]
 
   **Example request**
-  > http://34.101.118.46:3000/landmark/2
+  > https://manduin-app.et.r.appspot.com/landmark/2
 
 ```json
 {
@@ -85,13 +85,13 @@ In this section there is a list of all landmarks that can be filtered by id or l
 <br>
 
 **Show List Landmark search by label**
-> http://34.101.118.46:3000/landmark/:label/wisata
+> https://manduin-app.et.r.appspot.com/landmark/:label/wisata
 
   **Required**
   > label = [string]
 
   **Example request**
-  > http://34.101.118.46:3000/landmark/borobudur/wisata
+  > https://manduin-app.et.r.appspot.com/landmark/borobudur/wisata
 
 ```json
 {
@@ -124,7 +124,7 @@ In this section there is a list of all landmarks that can be filtered by id or l
 In this section there is a list of all wisata that can be filtered by id or province. Response from each URL using JSON format.
 
 **Base URL :**
-> http://34.101.118.46:3000/
+> https://manduin-app.et.r.appspot.com/
 
 **Path :**
 > /wisata
@@ -133,7 +133,7 @@ In this section there is a list of all wisata that can be filtered by id or prov
 > `GET`
 
 **Show List All Wisata**
-> http://34.101.118.46:3000/wisata
+> https://manduin-app.et.r.appspot.com/wisata
 
 ```json
 {
@@ -172,13 +172,13 @@ In this section there is a list of all wisata that can be filtered by id or prov
 <br>
 
 **Show List wisata filtering by land_id**
-> http://34.101.118.46:3000/wisata/:id
+> https://manduin-app.et.r.appspot.com/wisata/:id
 
   **Required**
   > id = [int]
 
   **Example request**
-  > http://34.101.118.46:3000/wisata/3
+  > https://manduin-app.et.r.appspot.com/wisata/3
 
 ```json
 {
@@ -199,13 +199,13 @@ In this section there is a list of all wisata that can be filtered by id or prov
 <br>
 
 **Show List Landmark search by label**
-> http://34.101.118.46:3000/provinsi/:searchProv
+> https://manduin-app.et.r.appspot.com/provinsi/:searchProv
 
   **Required**
   > searchProv = [string]
 
   **Example request**
-  > http://34.101.118.46:3000/provinsi/yogya
+  > https://manduin-app.et.r.appspot.com/provinsi/yogya
 
 ```json
 {
@@ -246,7 +246,7 @@ In this section there is a list of all wisata that can be filtered by id or prov
 In this section there is a list of all transaksi that is the data transactions between wisatat data and landmark data. Response from each URL using JSON format.
 
 **Base URL :**
-> http://34.101.118.46:3000/
+> https://manduin-app.et.r.appspot.com/
 
 **Path :**
 > /transaksi
@@ -255,7 +255,7 @@ In this section there is a list of all transaksi that is the data transactions b
 > `GET`
 
 **Show List All Wisata**
-> http://34.101.118.46:3000/transaksi
+> https://manduin-app.et.r.appspot.com/transaksi
 
 ```json
 {
