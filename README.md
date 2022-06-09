@@ -1,6 +1,6 @@
 # Cloud Computing Path
 
-Creating RESTful APIs and deploying to Google Cloud Platform by using Compute Engine and App Engine for connection between android application and database. Using Cloud SQL for creating the database server.
+Creating RESTful APIs and deploying to Google Cloud Platform by using App Engine for connection between android application and database. Using Cloud SQL for creating the database server.
 
 ## RESTful APIs
 In making the RESTful APIs we use NodeJS with the Prisma Framework and Express for building an API server, and for responses using JSON format.
