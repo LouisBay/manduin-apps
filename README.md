@@ -48,7 +48,7 @@ Due to time limit and unavailable nearby tourism dataset for certain landmark, w
 
 **Processing Technique**<br />
 
-We use [Download All Images](https://chrome.google.com/webstore/detail/download-all-images/ifipmflagepipjokmbdecpmjbibjnakm?hl=en) chrome extension to download multiple images from Google simultaneously. After that, we can quickly detect duplicate images and remove them automaticly using Image Hashing & Hamming Distance method with Python script from this [repository](https://github.com/moondra2017/Computer-Vision) (Credit : [moondra2017](https://github.com/moondra2017))
+We use [Download All Images](https://chrome.google.com/webstore/detail/download-all-images/ifipmflagepipjokmbdecpmjbibjnakm?hl=en) chrome extension to download multiple images from Google simultaneously. After that, we can quickly detect duplicate images and remove them automatically using Image Hashing & Hamming Distance method with Python script from this [repository](https://github.com/moondra2017/Computer-Vision) (Credit : [moondra2017](https://github.com/moondra2017))
 
 ## 3. Tourism Destination Dataset
 
