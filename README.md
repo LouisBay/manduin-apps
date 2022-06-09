@@ -61,7 +61,7 @@ In this section there is a list of all landmarks that can be filtered by id or l
 > http://34.101.118.46:3000/landmark/:id
 
   **Required**
-  > id atau land_id = [int]
+  > id = [int]
 
   **Example request**
   > http://34.101.118.46:3000/landmark/2
@@ -175,7 +175,7 @@ In this section there is a list of all wisata that can be filtered by id or prov
 > http://34.101.118.46:3000/wisata/:id
 
   **Required**
-  > id atau place_id = [int]
+  > id = [int]
 
   **Example request**
   > http://34.101.118.46:3000/wisata/3
