@@ -34,12 +34,15 @@ Here are some libraries that we use on this project.
 
 Here are some API that we use on this application.
 - <b>News API</b>
-  <br>API to get data about Travel News.
-  <br>URL     : https://api-berita-indonesia.vercel.app/tribun/travel/
+  > https://api-berita-indonesia.vercel.app/tribun/travel/
+  
+  API to get data about Travel News.
   <br>Credit  : [renomureza](https://github.com/renomureza/api-berita-indonesia)
+  
 - <b>Mandu.in API</b>
-  <br>Main API for this application that created by CC Path
-  <br>URL     : http://34.101.118.46:3000/landmark
+  > https://manduin-app.et.r.appspot.com/
+  
+  Main API for this application that created by CC Path
   <br>Credit  : [Manduin CC Path](https://github.com/LouisBay/manduin-apps/tree/cloud-computing)
   
 ## Download
