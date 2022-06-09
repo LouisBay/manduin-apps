@@ -52,8 +52,8 @@ We use [Download All Images](https://chrome.google.com/webstore/detail/download-
 
 ## 3. Tourism Destination Dataset
 
-
+We use tourism destination dataset to get various information about tourism destination including landmark such as description, rate, coordinate, ticket price, etc. This dataset is used to create a list of closest nearby tourism destination from the detected landmark and put them in google map API. Futhermore, we use this dataset to create description and full information about each tourism destionation in the application. Dataset taken from Kaggle & can be accessed through this [link](https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination). 
 
 ## 4. TFLite Model
 
-
+For model deployment, we convert .h model into TFLite to make it smaller and compatible for mobile device. Our final TFLite model has size of 60mb & can be accessed through this [Google drive](https://drive.google.com/drive/folders/1jzKucwzypVAmtW5rCzH4nj8Bdu1IsWSZ?usp=sharing). 
