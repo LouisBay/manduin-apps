@@ -3,7 +3,7 @@
 Creating RESTful APIs and deploying to Google Cloud Platform by using App Engine for connection between android application and database. Using Cloud SQL for creating the database server.
 
 ## RESTful APIs
-In making the RESTful APIs we use NodeJS with the Prisma Framework and Express for building an API server, and for responses using JSON format.
+In making the RESTful APIs we use NodeJS with the Express Framework and Prisma for building an API server, and for responses using JSON format.
 Explanation for each URL that can be used :
 
 ### List Landmarks
@@ -243,7 +243,7 @@ In this section there is a list of all wisata that can be filtered by id or prov
 <br>
 
 ### List Transaksi
-In this section there is a list of all transaksi that is the data transactions between wisatat data and landmark data. Response from each URL using JSON format.
+In this section there is a list of all transaksi that is the data transactions between wisata data and landmark data. Response from each URL using JSON format.
 
 **Base URL :**
 > https://manduin-app.et.r.appspot.com/
