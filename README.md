@@ -55,5 +55,5 @@ Here is the [link](https://drive.google.com/file/d/1fDfXF_4QcsNzybaRa6arrJiawigZ
    - TensorFlow Lite (Machine Learning)
 3. <b>Cloud Computing</b>
    - Cloud SQL (Server Database)
-   - Compute Engine (Server API)
+   - App Engine (Server API)
 
