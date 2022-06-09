@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:password@35.238.59.47/db_manduin"
+  url      = "mysql://root:password@34.101.194.92/db_manduin"
 }
 
 model landmark {
