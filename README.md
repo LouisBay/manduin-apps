@@ -47,7 +47,7 @@ Here are some API that we use on this application.
   
 ## Download
 
-Here is the [link](https://drive.google.com/file/d/1JP6oTUlIgoHl_FitMuh0UqcReA_6eyY5/view?usp=sharing) of Manduin App.
+Here is the [link](https://drive.google.com/file/d/1DlvcbgJsvOuLegBrJ3YuT7V5ex0KX_jv/view?usp=sharing) of Manduin App.
 
 ## Preview 
 <p align="center">
