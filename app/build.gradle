@@ -22,7 +22,7 @@ android {
 
         // News API
         buildConfigField 'String', 'NEWS_BASE_API_URL', '"https://api-berita-indonesia.vercel.app/"'
-        buildConfigField 'String', 'MANDUIN_BASE_API_URL', '"https://manduin-app.et.r.appspot.com/"'
+        buildConfigField 'String', 'MANDUIN_BASE_API_URL', '"https://manduin-api.et.r.appspot.com/"'
     }
 
     buildTypes {
