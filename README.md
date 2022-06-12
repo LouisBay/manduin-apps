@@ -40,14 +40,14 @@ Here are some API that we use on this application.
   <br>Credit  : [renomureza](https://github.com/renomureza/api-berita-indonesia)
   
 - <b>Mandu.in API</b>
-  > https://manduin-app.et.r.appspot.com/
+  > https://manduin-api.et.r.appspot.com/
   
   Main API for this application that created by CC Path
   <br>Credit  : [Manduin CC Path](https://github.com/LouisBay/manduin-apps/tree/cloud-computing)
   
 ## Download
 
-Here is the [link](https://drive.google.com/file/d/1fDfXF_4QcsNzybaRa6arrJiawigZP7q6/view?usp=sharing) of Manduin App.
+Here is the [link](https://drive.google.com/file/d/1JP6oTUlIgoHl_FitMuh0UqcReA_6eyY5/view?usp=sharing) of Manduin App.
 
 ## Preview 
 <p align="center">
