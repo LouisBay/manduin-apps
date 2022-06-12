@@ -1,7 +1,0 @@
-/landmark			get all landmark table
-/wisata				get all wisata table
-/transaksi			get all transaksi table
-/landmark/:id			get landmark id
-/landmark/:label/wisata		get label
-/provinsi/:namaprovinsi		get wisata berdasar provinsi
-/wisata/:id			get wisata id
