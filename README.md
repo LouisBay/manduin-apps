@@ -8,7 +8,7 @@ Mandu.in Apps is Android based application that aims to introduce Indonesian tou
 
 #### Download Link:
 
-Here is the [link](https://drive.google.com/file/d/1JP6oTUlIgoHl_FitMuh0UqcReA_6eyY5/view?usp=sharing) of Manduin App.
+Here is the [link](https://drive.google.com/drive/folders/1Euq4K4-8EMhs6b4cTPQIb-zVl7hWNVM2?usp=sharing) of Manduin App.
 
 #### Preview:
 
