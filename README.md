@@ -18,40 +18,6 @@ Here is the [link](https://drive.google.com/file/d/1DlvcbgJsvOuLegBrJ3YuT7V5ex0K
   </a>
 </p>
 
-## Getting Started
-
-- **Prerequisites**
-
-  1.  Android Device (with Camera for detection)
-  2.  Internet Connection
-  3.  GPS/Location
-
-- **Installation**
-
-  1.  Download the APK
-  2.  Install the APK
-
-- **Register & Login**
-
-  1.  Open Manduin application
-  2.  Register into the application or Login with Google Account
-
-## Some Steps
-
-- How to detect landmark
-  
-  1.  Login to the application
-  2.  Click on Camera Button (Blue Button on the middle of bottom navigation)
-  3.  Capture the landmark and click detect
-  4.  Result will shown
-
-- How to find nearest tourism place around landmark
-
-  1. Detect the landmark
-  2. After result shown, click show maps
-  3. Maps View will shown and nearest tourism place will shown
-  4. Click the marker to get detail information about the place
-
 ## Meet the Team 
 
 <b> Team ID : C22-PS028</b>
@@ -90,3 +56,38 @@ Here is the [link](https://drive.google.com/file/d/1DlvcbgJsvOuLegBrJ3YuT7V5ex0K
 3. <b>Cloud Computing</b>
    - Cloud SQL (Server Database)
    - App Engine (Server API)
+
+## Getting Started
+
+- **Prerequisites**
+
+  1.  Android Device (with Camera for detection)
+  2.  Internet Connection
+  3.  GPS/Location
+
+- **Installation**
+
+  1.  Download the APK
+  2.  Install the APK
+
+- **Register & Login**
+
+  1.  Open Manduin application
+  2.  Register into the application or Login with Google Account
+
+## Some Steps
+
+- How to detect landmark
+  
+  1.  Login to the application
+  2.  Click on Camera Button (Blue Button on the middle of bottom navigation)
+  3.  Capture the landmark and click detect
+  4.  Result will shown
+
+- How to find nearest tourism place around landmark
+
+  1. Detect the landmark
+  2. After result shown, click show maps
+  3. Maps View will shown and nearest tourism place will shown
+  4. Click the marker to get detail information about the place
+
